@@ -1,0 +1,20 @@
+.socials
+	display: flex
+	align-items: center
+	$parent: &
+	&__link
+		&:not(:first-child)
+			margin-left: 15px
+		.no-touch &:hover .icon
+			fill: $orange
+		.icon
+			//font-size: 20px
+			+trs
+		.icon-vk
+			font-size: 19px
+			
+	&_header
+		padding-top: 8px
+		
+	&_gray #{$parent}__link .icon
+		fill: #939aab

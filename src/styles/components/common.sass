@@ -1,0 +1,65 @@
+// basic styles
+body
+  min-width: 320px
+  +f('pn400', 23)
+  color: $dark-gray
+  &.is-locked
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    height: 100%
+    overflow: hidden
+
+h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
+  &::selection
+    color: $white
+    background-color: $orange
+
++selection
+  color: $white
+  background-color: $orange
+
+// layout
+.out
+  overflow: hidden
+  min-height: 100vh
+
+.container
+  max-width: 1730px
+  margin: 0 auto
+  padding: 0 15px
+  //+xs
+  //  padding: 0 10px
+  
+.content
+  max-width: 1730px
+  margin: 0 auto
+  padding-left: 15%
+  
+// titles
+.title-lg
+  +f('pf700', 65)
+  color: $dark-gray
+  
+.is-hidden
+  +hide-el
+  
+.link
+  display: inline-flex
+  position: relative
+  padding-bottom: 5px
+  color: $orange
+  +f('pf700')
+  .no-touch &:hover::after
+    left: 100%
+  &::after
+    position: absolute
+    left: 0
+    bottom: 0
+    height: 3px
+    right: 0
+    background: currentColor
+    transition: .3s ease
+    +gpu
+    content: ''

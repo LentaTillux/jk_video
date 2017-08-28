@@ -1,0 +1,42 @@
+//=lg
+//	+r($lg)
+//		@content
+//
+//=desk
+//	+rmin($minDesk)
+//		@content
+//
+//=md
+//	+r($md)
+//		@content
+//
+//=sm
+//	+r($sm)
+//		@content
+//
+//=xs
+//	+r($xs)
+//		@content
+		
+=mob-fix
+	@media only screen and (max-width: 767px) and (orientation: landscape)
+		@content
+
+=trs
+	transition: all 0.25s ease-out
+	
+=trs-lg
+	transition: all 0.4s ease-out
+	
+=trs-ease
+	transition: all 0.25s ease-in-out
+	
+=trs-btn
+	transition: all 0.4s ease-out
+	
+// variables
+$orange: #e74c3c
+$gray: #939aab
+$light-gray: #9299aa
+$dark-gray: #333
+$white: #fff

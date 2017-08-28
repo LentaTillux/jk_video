@@ -1,0 +1,74 @@
+.header
+	position: relative
+	padding-top: 100px
+	background: $white
+	z-index: 1
+	$parent: &
+	&__container
+		position: relative
+		display: flex
+		justify-content: space-between
+		align-items: center
+	&__contacts
+		display: flex
+		&-item
+			position: relative
+			margin-right: 170px
+		&-tel
+			+f('pf700', 23)
+			color: $dark-gray
+			&:hover + #{$parent}__contacts-svg .svg-circle__outer
+				stroke-dasharray: 450
+				
+		&-svg
+			position: absolute
+			top: calc(50% - 40px)
+			right: 0
+			
+.nav
+	position: absolute
+	bottom: -230%
+	left: 20px
+	z-index: 1
+	&__list
+		$parent: &
+		&-item
+			&:not(:first-child)
+				margin-top: 30px
+			&.active #{$parent}-link::after,
+			&.active #{$parent}-link::before
+				height: 6em
+				width: 6em
+				visibility: visible
+			&:not(.active) #{$parent}-link
+				.no-touch &:hover::after,
+				.no-touch &:hover::before
+					visibility: visible
+					width: 100%
+					height: 100%
+		&-link
+			position: relative
+			display: block
+			padding: 15px 30px
+			transition: .7s ease
+			overflow: hidden
+			&::after, &::before
+				display: block
+				content: ''
+				height: 0
+				width: 0
+				visibility: hidden
+			&::before
+				border-bottom: 3px solid $orange
+				border-left: 3px solid $orange
+				position: absolute
+				left: 0
+				bottom: 0
+				transition: .7s ease
+			&::after
+				border-top: 3px solid $orange
+				border-right: 3px solid $orange
+				position: absolute
+				right: 0
+				top: 0
+				transition: .7s ease

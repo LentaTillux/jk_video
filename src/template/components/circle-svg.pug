@@ -1,0 +1,12 @@
+// Variables
+
+- radius = 175
+- padding = 25
+- stroke = 25
+- size = (radius + padding) * 2
+- diameter = Math.round(Math.PI * radius * 2)
+
+// SVG circle
+svg.score(width=size height=size viewBox="-25 -25 " + size + " " + size)
+	circle.score-empty(cx=radius cy=radius r=radius stroke-width=stroke fill="none")
+	circle.js-circle.score-circle(transform="rotate(-90 " + radius + " " + radius + ")" cx=radius cy=radius r=radius stroke-dasharray=diameter stroke-width=stroke stroke-dashoffset=diameter fill="none")

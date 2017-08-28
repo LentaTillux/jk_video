@@ -1,0 +1,8 @@
+if socials ? socials : socials = []
+if socialsList ? socialsList : socialsList = ['vk', 'facebook', 'instagram', 'vimeo']
+
+//begin socials
++b.socials(class= socialsClass ? socialsClass : '')
+	for socItem in socialsList
+		+e.A.link(href='#!' target='_blank')
+			+i(socItem)

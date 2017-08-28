@@ -1,0 +1,34 @@
+extends ../extend/default
+
+block variables
+	- var title = 'JK Video';
+
+block main
+	main.content.js-fullpage(data-page='home')
+
+		//begin screen
+		+b.SECTION.about.fp-section(data-anchor='screen')
+			+e.inner
+				+e.video
+				+e.text
+					+b.H2.title-lg Мы - глаза Вашего праздника
+					+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
+					+e.A.link.link(href='#!') Задать вопрос
+
+		//begin about
+		+b.SECTION.about.fp-section(data-anchor='about')
+			+e.inner
+				+e.video
+				+e.text
+					+b.H2.title-lg Мы - глаза Вашего праздника
+					+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
+					+e.A.link.link(href='#!') Задать вопрос
+
+		//begin about
+		+b.SECTION.about.fp-section(data-anchor='portfolio')
+			+e.inner
+				+e.video
+				+e.text
+					+b.H2.title-lg erferferf erfа
+					+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
+					+e.A.link.link(href='#!') Задать вопрос

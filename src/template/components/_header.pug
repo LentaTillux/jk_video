@@ -1,0 +1,47 @@
++b.HEADER.header(class= headerClass ? headerClass : '')
+	+e.container.container
+		+b.H1.is-hidden JK Video
+		+e.A.logo(href='#screen')
+			+e.IMG.logo-img(src='static/img/logo.png' alt='JK Video')
+
+		+e.contacts
+			+e.contacts-item
+				+e.A.contacts-tel(href='#!') +7 (846) 379-53-68
+				+b.svg-circle.header__contacts-svg(data-percent='25')
+					+e.SVG(width='100', height='80')
+						+e.CIRCLE.outer(cx='90', cy='0', r='40', transform='rotate(-50, 95, 95)')
+
+
+			//-socials
+			-socialsClass = '_gray'
+			include ../components/socials
+
+		+b.NAV.nav.js-fp-nav
+			-
+				navList = [{
+				text: 'Мы в цифрах',
+				anchor: 'about',
+				anchorLink: 'about'
+				}, {
+				text: 'Портфолио',
+				anchor: 'portfolio',
+				anchorLink: 'portfolio'
+				}, {
+				text: 'Заказать',
+				anchor: 'order',
+				anchorLink: 'order'
+				}, {
+				text: 'Цены',
+				anchor: 'prices',
+				anchorLink: 'prices'
+				}, {
+				text: 'Контакты',
+				anchor: 'contacts',
+				anchorLink: 'contacts'
+				}]
+			+e.UL.list
+				mixin navItem(item)
+					+e.LI.list-item(data-menuanchor= `${item.anchor}`)
+						+e.A.list-link(href=`#${item.anchorLink}`)= item.text
+				each item in navList
+					+navItem(item)

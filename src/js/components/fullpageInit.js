@@ -11,7 +11,8 @@ export default function InitFullpage () {
       // paddingTop: '125px',
       scrollOverflow: true,
       scrollingSpeed: 1000,
-      verticalCentered: true
+      verticalCentered: true,
+      fixedElements: '.header'
     });
 
     $nextSectionBtn.on('click', function () {

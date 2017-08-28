@@ -7,25 +7,45 @@ block main
 	main.content.js-fullpage(data-page='home')
 
 		//begin screen
-		+b.SECTION.about.fp-section(data-anchor='screen')
+		+b.SECTION.section.fp-section(data-anchor='screen')
 			+e.inner
-				+e.video
-				+e.text
-					+b.H2.title-lg Мы - глаза Вашего праздника
+				+e.block._left
+				+e.block._right
+					+e.H2.title.title-lg Мы - глаза Вашего праздника
 					+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
 					+e.A.link.link(href='#!') Задать вопрос
 
 		//begin about
-		+b.SECTION.about.fp-section(data-anchor='about')
-			+e.inner
-				+e.video
-				+e.text
-					+b.H2.title-lg Мы - глаза Вашего праздника
-					+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
-					+e.A.link.link(href='#!') Задать вопрос
+		+b.SECTION.section.fp-section(data-anchor='about')
+			+e.inner._full
+				+e.block._full
+					-
+						circleList = [{
+						count: '300',
+						text: 'мероприятий'
+						}, {
+						count: '250',
+						text: 'репортажей'
+						}, {
+						count: '50',
+						text: 'рекламных видео'
+						}, {
+						count: '21',
+						text: 'маркетинг'
+						}]
+					mixin circleItem(item)
+						+b.circle-item.section__circle-item
+							+e.SPAN.count= item.count
+							+e.P.text= item.text
+					each item in circleList
+						+circleItem(item)
+				+e.block._left
+					+e.P tabs ero[girhtg
+				+e.block._right
+					+e.P image here
 
 		//begin about
-		+b.SECTION.about.fp-section(data-anchor='portfolio')
+		+b.SECTION.section.fp-section(data-anchor='portfolio')
 			+e.inner
 				+e.video
 				+e.text

@@ -1,9 +1,40 @@
-// home page styles
-.about
+/* ===================================
+	 section
+	 =================================== */
+.section
 	&__inner
 		display: flex
 		justify-content: space-between
-	&__video
-		flex: 0 1 620px
+		&_full
+			flex-wrap: wrap
+	&__block
+		&_left
+			flex: 0 1 620px
+		&_right
+			flex: 0 1 600px
+		&_full
+			display: flex
+			flex: 1 1 100%
+			width: 100%
+			margin: 0 -30px 100px
+	&__descr
+		max-width: 500px
+		color: $gray
+		
+	&__circle-item
+		width: calc(25% - 60px)
+		flex: 0 0 calc(25% - 60px)
+		margin: 0 30px
+		
+/* circle-item
+	----------------------------------- */
+.circle-item
+	text-align: center
+	&__count
+		+f('pf700', 65)
+		color: $orange
 	&__text
-		flex: 0 1 586px
+		max-width: 150px
+		margin: 0 auto
+		color: $gray
+		

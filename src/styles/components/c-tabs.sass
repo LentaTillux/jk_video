@@ -1,0 +1,49 @@
+.c-tabs
+	&__tabs-nav
+		position: relative
+		display: flex
+		justify-content: center
+		margin-bottom: 40px
+	
+	&__tabs-for
+	&__tabs-el
+		position: relative
+		display: block
+		padding: 0 10px 10px
+		cursor: pointer
+		line-height: 1
+		color: $dark-gray
+		+trs-ease
+		&::after
+			content: ''
+			position: absolute
+			bottom: 0
+			left: 50%
+			right: 50%
+			height: 3px
+			background: $orange
+			+trs-ease
+		&.is-active
+			pointer-events: none
+			color: $orange
+			&::after
+				left: 0
+				right: 0
+		&.is-disabled
+			pointer-events: none
+			opacity: 0.5
+			background-color: $white
+		.no-touch &:hover
+			color: $orange
+		& + &
+			margin-left: 58px
+	
+	&__tab
+		display: none
+		&:first-child
+			display: block
+		&-in
+			display: flex
+			flex-wrap: wrap
+			margin: 0 -30px
+			padding-bottom: 160px

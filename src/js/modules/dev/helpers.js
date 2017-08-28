@@ -174,7 +174,14 @@ export class Resp {
  * @type {Object}
  */
 export const css = {
-  active: 'active'
+  overflow: 'is-overflow',
+  menuActive: 'menu-active',
+  active: 'is-active',
+  fill: 'is-fill',
+  fixed: 'is-fixed',
+  enabled: 'is-enabled',
+  disabled: 'is-disabled',
+  image: 'has-image'
 };
 
 /**

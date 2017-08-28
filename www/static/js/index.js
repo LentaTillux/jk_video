@@ -224,7 +224,14 @@ var Resp = exports.Resp = function () {
 
 
 var css = exports.css = {
-  active: 'active'
+  overflow: 'is-overflow',
+  menuActive: 'menu-active',
+  active: 'is-active',
+  fill: 'is-fill',
+  fixed: 'is-fixed',
+  enabled: 'is-enabled',
+  disabled: 'is-disabled',
+  image: 'has-image'
 };
 
 /**
@@ -785,7 +792,7 @@ var CTabs = function () {
     key: 'changeTab',
     value: function changeTab(currentIndex, nextIndex) {
       var _this = this;
-      var speed = 0.3;
+      var speed = 0.4;
       var $currentTabNav = this.$tabNav.eq(currentIndex);
       var $nextTabNav = this.$tabNav.eq(nextIndex);
       var $currentTab = this.$tabItem.eq(currentIndex);
@@ -795,7 +802,8 @@ var CTabs = function () {
       $nextTabNav.removeClass(_helpers.css.disabled).addClass(_helpers.css.active);
       _gsap.TweenMax.to($currentTab, speed, {
         autoAlpha: 0,
-        y: 15,
+        y: 0,
+        x: 0,
         clearProps: 'transform',
         onComplete: function onComplete() {
           var currentHeight = _this.$tabItemContainer.outerHeight();
@@ -805,10 +813,12 @@ var CTabs = function () {
           $nextTab.show();
           _gsap.TweenMax.staggerFromTo($nextTab.children().children(), speed, {
             autoAlpha: 0,
-            y: -50
+            y: -50,
+            x: -50
           }, {
             autoAlpha: 1,
-            y: 0
+            y: 0,
+            x: 0
           }, speed / 2);
           _gsap.TweenMax.set(_this.$tabItemContainer, { height: 'auto' });
           _gsap.TweenMax.from(_this.$tabItemContainer, speed, { height: currentHeight });

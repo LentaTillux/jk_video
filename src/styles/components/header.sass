@@ -38,6 +38,8 @@
 		&-item
 			&:not(:first-child)
 				margin-top: 30px
+			&.active #{$parent}-link
+				color: $orange
 			&.active #{$parent}-link::after,
 			&.active #{$parent}-link::before
 				height: 6em

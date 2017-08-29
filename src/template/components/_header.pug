@@ -1,5 +1,5 @@
 +b.HEADER.header(class= headerClass ? headerClass : '')
-	+e.container.container
+	+e.container
 		+b.H1.is-hidden JK Video
 		+e.A.logo(href='#screen')
 			+e.IMG.logo-img(src='static/img/logo.png' alt='JK Video')
@@ -45,3 +45,5 @@
 						+e.A.list-link(href=`#${item.anchorLink}`)= item.text
 				each item in navList
 					+navItem(item)
+
+			+e.BUTTON.next-section.js-next-section(type='button') rgvorthg

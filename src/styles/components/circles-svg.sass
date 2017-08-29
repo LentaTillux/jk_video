@@ -1,30 +1,10 @@
-// Variables
-
-$color-front: #1e1935
-$color-subtle: #ddd
-$font: "Poppins", Helvetica, Arial, sans-serif
-
-// SVG styling and animation
-
-.score-circle
-	stroke: $color-front
-	transition: stroke-dashoffset 1s ease-out
-
-.score-empty
-	stroke: $color-subtle
-
-.score-text
-	fill: $color-front
-	font: bold 4rem $font
-	
-// other circles
 .svg-circle
 	$parent: &
 	svg
 		position: absolute
 		top: 0
 		left: 0
-
+	
 	&__outer
 		fill: transparent
 		stroke: $orange
@@ -34,7 +14,6 @@ $font: "Poppins", Helvetica, Arial, sans-serif
 		-webkit-animation-play-state: running
 		/* firefox bug fix - won't rotate at 90deg angles
 		-moz-transform: rotate(-57deg) translate(-120px, 30px)
-
 	&[data-percent='100'] #{$parent}__outer
 		stroke-dashoffset: 0
 		-webkit-animation: show100 2s
@@ -51,76 +30,52 @@ $font: "Poppins", Helvetica, Arial, sans-serif
 		stroke-dashoffset: 460
 		-webkit-animation: show25 2s
 		animation: show25 2s
-
-/* END Circle colors and graphic positions
-
-/* Set the initial values for the animation
-
-/* END set initial animation values
-
-/* Keyframes for the initial animation
+		
 @-webkit-keyframes show100
 	from
 		stroke-dashoffset: 537
 	
 	to
 		stroke-dashoffset: 0
-
-
 @keyframes show100
 	from
 		stroke-dashoffset: 537
 	
 	to
 		stroke-dashoffset: 0
-
-
 @-webkit-keyframes show75
 	from
 		stroke-dashoffset: 537
 	
 	to
 		stroke-dashoffset: 134
-
-
 @keyframes show75
 	from
 		stroke-dashoffset: 537
 	
 	to
 		stroke-dashoffset: 124
-
-
 @-webkit-keyframes show50
 	from
 		stroke-dashoffset: 537
 	
 	to
 		stroke-dashoffset: 267
-
-
 @keyframes show50
 	from
 		stroke-dashoffset: 537
 	
 	to
 		stroke-dashoffset: 267
-
-
 @-webkit-keyframes show25
 	from
 		stroke-dashoffset: 537
 	
 	to
 		stroke-dashoffset: 460
-
-
 @keyframes show25
 	from
 		stroke-dashoffset: 537
 	
 	to
 		stroke-dashoffset: 460
-
-
-/* END Keyframes for the initial animation

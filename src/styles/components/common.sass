@@ -2,6 +2,7 @@
 body
   min-width: 320px
   +f('pn400', 23)
+  background: $white
   color: $dark-gray
   &.is-locked
     position: fixed
@@ -26,13 +27,6 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
   min-height: 100vh
 
 .container
-  max-width: 1730px
-  margin: 0 auto
-  padding: 0 15px
-  //+xs
-  //  padding: 0 10px
-  
-.content
   max-width: 1730px
   margin: 0 auto
   padding-left: 300px
@@ -60,6 +54,6 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
     height: 3px
     right: 0
     background: currentColor
-    transition: .3s ease
+    transition: .4s ease
     +gpu
     content: ''

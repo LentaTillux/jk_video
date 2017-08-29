@@ -5,46 +5,28 @@
  */
 
 import './noTouch';
+import objectFitVideos from 'object-fit-videos';
 import objectFitImages from 'object-fit-images';
 import CTabs from './c-tabs';
 import Dot from './dot';
 import InitFullpage from './fullpageInit';
+import initScreenVideo from './screenVIdeo';
 
 export class Common {
   /**
-   * Cache data etc.
-   */
-  constructor() {
-    this.messages = {
-      constructor: 'COMMON: constructing...',
-      init: 'COMMON: initializing...',
-      test: 'COMMON: Test message!'
-    };
-
-    console.log(this.messages.constructor);
-  }
-
-  /**
-   * Test method.
-   */
-  test() {
-    console.log(this.messages.test);
-  };
-
-  /**
    * Initialize Main page scripts.
    */
-  init() {
-    // console.log(this.messages.init);
+  static init() {
+    objectFitVideos();
     objectFitImages();
     new Dot;
     new InitFullpage;
-    this.test();
+    new initScreenVideo;
   }
 }
 
 /** Export initialized common scripts by default */
-export default new Common().init();
+export default Common.init();
 
 /** tabs init */
 const $tabs = $('.c-tabs');

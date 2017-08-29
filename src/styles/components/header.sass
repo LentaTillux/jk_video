@@ -5,13 +5,18 @@
 	right: 0
 	padding-top: 100px
 	background: $white
-	z-index: 101
+	z-index: 10
+	transition: background .7s ease
 	$parent: &
 	&__container
 		position: relative
 		display: flex
 		justify-content: space-between
 		align-items: center
+		max-width: 1730px
+		margin: 0 auto
+	&__logo
+		transition: .5s ease
 	&__contacts
 		display: flex
 		&-item
@@ -27,12 +32,32 @@
 			position: absolute
 			top: calc(50% - 40px)
 			right: 0
+
+	&.in-video
+		background: transparent
+		.svg-circle__outer
+			stroke: $white
+		.socials__link .icon
+			fill: $white
+		.nav
+			opacity: 0
+			visibility: hidden
+			pointer-events: none
+			transform: translateX(-200%)
+	&.in-video #{$parent}
+		&__logo
+			pointer-events: none
+			visibility: hidden
+			transform: translateX(-200%)
+		&__contacts-tel
+			color: $white
 			
 .nav
 	position: absolute
 	bottom: -230%
 	left: 20px
 	z-index: 1
+	transition: .5s ease
 	&__list
 		$parent: &
 		&-item
@@ -63,17 +88,16 @@
 				height: 0
 				width: 0
 				visibility: hidden
+				transition: .7s ease
 			&::before
 				border-bottom: 3px solid $orange
 				border-left: 3px solid $orange
 				position: absolute
 				left: 0
 				bottom: 0
-				transition: .7s ease
 			&::after
 				border-top: 3px solid $orange
 				border-right: 3px solid $orange
 				position: absolute
 				right: 0
 				top: 0
-				transition: .7s ease

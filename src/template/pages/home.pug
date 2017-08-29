@@ -4,87 +4,328 @@ block variables
 	- var title = 'JK Video';
 
 block main
-	main.content.js-fullpage(data-page='home')
+	main.js-fullpage(data-page='home')
 
 		//begin screen
 		+b.SECTION.section.fp-section(data-anchor='screen')
-			+e.inner
-				+e.block._left
-				+e.block._right
-					+e.H2.title.title-lg Мы - глаза Вашего праздника
-					+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
-					+e.A.link.link(href='#!') Задать вопрос
+			.container
+				+e.inner
+					+e.block._left
+						+b.screen-video
+							+e.inner
+								svg.screen-video__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 1920 1080', width='1920px', height='1080px', preserveaspectratio='xMidYMid slice')
+									defs
+										mask#screen-video__mask(x='0', y='0', width='100%', height='100%')
+											rect(x='0', y='0', width='100%', height='100%')
+											circle.screen-video__circle-sm(data-circle-type='tl' r='214', cx='50%', cy='50%')
+											circle.screen-video__circle-lg(data-circle-type='tl' r='470', cx='50%', cy='50%')
+									rect(x='0', y='0', width='100%', height='100%')
+
+								video.screen-video__el(autoplay='autoplay', muted='muted', preload='auto', loop='loop')
+									source(src='http://mazwai.com/system/posts/videos/000/000/110/original/alessio_balza--humans.mp4?1410742308', type='video/mp4')
+									source(src='http://mazwai.com/system/posts/videos/000/000/110/original/alessio_balza--humans.mp4?1410742308', type='video/webm')
+
+								+e.controls
+									+e.BUTTON.controls-btn.js-play-video(type='button')
+										+i('play-pause')
+									+e.BUTTON.controls-btn.js-pause-video(type='button')
+										+i('pause')
+							.screen-video__line.screen-video__line_v
+							.screen-video__line.screen-video__line_h
+
+					+e.block._right
+						+e.H2.title.title-lg Мы - глаза Вашего праздника
+						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
+						+e.A.link.link(href='#!') Задать вопрос
 
 		//begin about
 		+b.SECTION.section.fp-section(data-anchor='about')
-			//begin tabs
-			+b.c-tabs
-				+e.tabs-for
-					+e.tab
-						+e.tab-in
-							-
-								circleList = [{
-								count: '300',
-								text: 'мероприятий'
-								}, {
-								count: '250',
-								text: 'репортажей'
-								}, {
-								count: '50',
-								text: 'рекламных видео'
-								}, {
-								count: '21',
-								text: 'маркетинг'
-								}];
-							mixin circleItem(item)
-								+b.circle-item.section__circle-item
-									+e.text
-										+e.SPAN.count= item.count
-										+e.P.descr= item.text
+			.container
+				//begin tabs
+				+b.c-tabs
+					+e.tabs-for
+						+e.tab
+							+e.tab-in
+								-
+									circleList = [{
+									count: '300',
+									text: 'мероприятий'
+									}, {
+									count: '250',
+									text: 'репортажей'
+									}, {
+									count: '50',
+									text: 'рекламных видео'
+									}, {
+									count: '21',
+									text: 'маркетинг'
+									}];
+								mixin circleItem(item)
+									+b.circle-item
+										+e.text
+											+e.SPAN.count= item.count
+											+e.P.descr= item.text
 
-									svg.circle-item__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 291.95 291.75')
-										g.circle-1
-											path(d='M247,245.47a142.92,142.92,0,0,0-.09-202.12l-.11-.11')
-											path(d='M44.57,43.44a141.92,141.92,0,0,0,.09,200.71l.11.11')
-										g.circle-2
-											path(d='M66.52,65.34a111.94,111.94,0,0,1,158.31-.24l.08.08')
-											path(d='M225.07,223.57a111.94,111.94,0,0,1-158.31.24l-.08-.08')
-										line.line-1(x1='210.77', y1='81.19', x2='290.89', y2='1.06')
-										line.line-2(x1='1.06', y1='290.69', x2='81.31', y2='210.44')
-										line.line-3(x1='86.04', y1='205.94', x2='206.6', y2='85.37')
+										svg.circle-item__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 291.95 291.75')
+											g.circle-1
+												path(d='M247,245.47a142.92,142.92,0,0,0-.09-202.12l-.11-.11')
+												path(d='M44.57,43.44a141.92,141.92,0,0,0,.09,200.71l.11.11')
+											g.circle-2
+												path(d='M66.52,65.34a111.94,111.94,0,0,1,158.31-.24l.08.08')
+												path(d='M225.07,223.57a111.94,111.94,0,0,1-158.31.24l-.08-.08')
+											line.line-1(x1='210.77', y1='81.19', x2='290.89', y2='1.06')
+											line.line-2(x1='1.06', y1='290.69', x2='81.31', y2='210.44')
+											line.line-3(x1='86.04', y1='205.94', x2='206.6', y2='85.37')
 
-							each item in circleList
-								+circleItem(item)
+								each item in circleList
+									+circleItem(item)
 
-					+e.tab
-						+e.tab-in
-							-
-								circleList = [{
-								count: '300',
-								text: 'мероприятий'
-								}, {
-								count: '250',
-								text: 'репортажей'
-								}, {
-								count: '50',
-								text: 'рекламных видео'
-								}, {
-								count: '21',
-								text: 'маркетинг'
-								}];
-							+circleItem(item)
+						+e.tab
+							+e.tab-in
+								-
+									circleList = [{
+									count: '300',
+									text: 'мероприятий'
+									}, {
+									count: '250',
+									text: 'репортажей'
+									}, {
+									count: '50',
+									text: 'рекламных видео'
+									}, {
+									count: '21',
+									text: 'маркетинг'
+									}];
+								mixin circleItem(item)
+									+b.circle-item
+										+e.text
+											+e.SPAN.count= item.count
+											+e.P.descr= item.text
 
-				+e.tabs-nav
-					-tabsNavList = ['События', 'Креатив', 'Видео', 'PR', 'Маркетинг']
-					for tabsNavItem, index in tabsNavList
-						-activeIndex = 1
-						+e.tabs-el(class= index === activeIndex - 1 ? 'is-active' : '')= tabsNavItem
+										svg.circle-item__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 291.95 291.75')
+											g.circle-1
+												path(d='M247,245.47a142.92,142.92,0,0,0-.09-202.12l-.11-.11')
+												path(d='M44.57,43.44a141.92,141.92,0,0,0,.09,200.71l.11.11')
+											g.circle-2
+												path(d='M66.52,65.34a111.94,111.94,0,0,1,158.31-.24l.08.08')
+												path(d='M225.07,223.57a111.94,111.94,0,0,1-158.31.24l-.08-.08')
+											line.line-1(x1='210.77', y1='81.19', x2='290.89', y2='1.06')
+											line.line-2(x1='1.06', y1='290.69', x2='81.31', y2='210.44')
+											line.line-3(x1='86.04', y1='205.94', x2='206.6', y2='85.37')
 
-		//begin about
+								each item in circleList
+									+circleItem(item)
+
+						+e.tab
+							+e.tab-in
+								-
+									circleList = [{
+									count: '300',
+									text: 'мероприятий'
+									}, {
+									count: '250',
+									text: 'репортажей'
+									}, {
+									count: '50',
+									text: 'рекламных видео'
+									}, {
+									count: '21',
+									text: 'маркетинг'
+									}];
+								mixin circleItem(item)
+									+b.circle-item
+										+e.text
+											+e.SPAN.count= item.count
+											+e.P.descr= item.text
+
+										svg.circle-item__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 291.95 291.75')
+											g.circle-1
+												path(d='M247,245.47a142.92,142.92,0,0,0-.09-202.12l-.11-.11')
+												path(d='M44.57,43.44a141.92,141.92,0,0,0,.09,200.71l.11.11')
+											g.circle-2
+												path(d='M66.52,65.34a111.94,111.94,0,0,1,158.31-.24l.08.08')
+												path(d='M225.07,223.57a111.94,111.94,0,0,1-158.31.24l-.08-.08')
+											line.line-1(x1='210.77', y1='81.19', x2='290.89', y2='1.06')
+											line.line-2(x1='1.06', y1='290.69', x2='81.31', y2='210.44')
+											line.line-3(x1='86.04', y1='205.94', x2='206.6', y2='85.37')
+
+								each item in circleList
+									+circleItem(item)
+
+						+e.tab
+							+e.tab-in
+								-
+									circleList = [{
+									count: '300',
+									text: 'мероприятий'
+									}, {
+									count: '250',
+									text: 'репортажей'
+									}, {
+									count: '50',
+									text: 'рекламных видео'
+									}, {
+									count: '21',
+									text: 'маркетинг'
+									}];
+								mixin circleItem(item)
+									+b.circle-item
+										+e.text
+											+e.SPAN.count= item.count
+											+e.P.descr= item.text
+
+										svg.circle-item__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 291.95 291.75')
+											g.circle-1
+												path(d='M247,245.47a142.92,142.92,0,0,0-.09-202.12l-.11-.11')
+												path(d='M44.57,43.44a141.92,141.92,0,0,0,.09,200.71l.11.11')
+											g.circle-2
+												path(d='M66.52,65.34a111.94,111.94,0,0,1,158.31-.24l.08.08')
+												path(d='M225.07,223.57a111.94,111.94,0,0,1-158.31.24l-.08-.08')
+											line.line-1(x1='210.77', y1='81.19', x2='290.89', y2='1.06')
+											line.line-2(x1='1.06', y1='290.69', x2='81.31', y2='210.44')
+											line.line-3(x1='86.04', y1='205.94', x2='206.6', y2='85.37')
+
+								each item in circleList
+									+circleItem(item)
+
+						+e.tab
+							+e.tab-in
+								-
+									circleList = [{
+									count: '300',
+									text: 'мероприятий'
+									}, {
+									count: '250',
+									text: 'репортажей'
+									}, {
+									count: '50',
+									text: 'рекламных видео'
+									}, {
+									count: '21',
+									text: 'маркетинг'
+									}];
+								mixin circleItem(item)
+									+b.circle-item
+										+e.text
+											+e.SPAN.count= item.count
+											+e.P.descr= item.text
+
+										svg.circle-item__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 291.95 291.75')
+											g.circle-1
+												path(d='M247,245.47a142.92,142.92,0,0,0-.09-202.12l-.11-.11')
+												path(d='M44.57,43.44a141.92,141.92,0,0,0,.09,200.71l.11.11')
+											g.circle-2
+												path(d='M66.52,65.34a111.94,111.94,0,0,1,158.31-.24l.08.08')
+												path(d='M225.07,223.57a111.94,111.94,0,0,1-158.31.24l-.08-.08')
+											line.line-1(x1='210.77', y1='81.19', x2='290.89', y2='1.06')
+											line.line-2(x1='1.06', y1='290.69', x2='81.31', y2='210.44')
+											line.line-3(x1='86.04', y1='205.94', x2='206.6', y2='85.37')
+
+								each item in circleList
+									+circleItem(item)
+
+					+e.tabs-nav
+						-tabsNavList = ['События', 'Креатив', 'Видео', 'PR', 'Маркетинг']
+						for tabsNavItem, index in tabsNavList
+							-activeIndex = 1
+							+e.tabs-el(class= index === activeIndex - 1 ? 'is-active' : '')= tabsNavItem
+
+				+b.SVG.circles._absolute
+					circle.circles__body-1(data-circle-type='tr' r='58', cx='0', cy='77')
+					circle.circles__body-2(data-circle-type='tl-br' r='58', cx='240', cy='77')
+					circle.circles__body-3(data-circle-type='bl' r='58', cx='472', cy='77')
+
+		//begin portfolio
 		+b.SECTION.section.fp-section(data-anchor='portfolio')
-			+e.inner
-				+e.video
-				+e.text
-					+b.H2.title-lg erferferf erfа
-					+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
-					+e.A.link.link(href='#!') Задать вопрос
+			+b.fullscreen-controls
+				+e.BUTTON.btn.js-prev-slide(type='button')
+					+i('play-pause')
+				+e.BUTTON.btn.js-next-slide(type='button')
+					+i('play-pause')
+				+e.BUTTON.btn.js-play(type='button')
+					+i('play-triangle')
+				+e.BUTTON.btn.js-pause(type='button')
+					+i('pause')
+
+				+e.BUTTON.btn-exit.js-exit-player(type='button') Вернуться
+
+			+b.fp-slide
+				+b.portfolio.container
+					+e.block
+						-
+							portfolioList = [{
+							title: 'Презентация нового Land Rover DISCOVERY SPORT',
+							descr: 'Разработка концепции и организация мероприятия',
+							img: 1,
+							sldAnchor: 1
+							}, {
+							title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+							descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+							img: 2,
+							sldAnchor: 2
+							}, {
+							title: 'IKEA',
+							descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+							img: 1,
+							sldAnchor: 3
+							}, {
+							title: 'Рекламные ролики для десерт-кафе',
+							descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+							img: 3,
+							sldAnchor: 4
+							}, {
+							title: 'Премьера нового Mercedes-Benz CLS',
+							descr: 'Разработка концепции и организация мероприятия',
+							img: 3,
+							sldAnchor: 5
+							}, {
+							title: 'Открытие магазина BURTON',
+							descr: 'Организация открытия магазина Burton',
+							img: 2,
+							sldAnchor: 6
+							}]
+						mixin portfolioEl(el)
+							+b.portfolio-item
+								+e.text
+									+e.title= el.title
+									+e.P.descr= el.descr
+									+e.A.link.link(href='#!') Подробнее
+								+e.bg
+									+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+								+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+									+i('play-triangle')
+						each el in portfolioList
+							+portfolioEl(el)
+
+					+e.more
+						+b.A.more-link.link(href='#!') Смотреть все
+
+			+b.fullscreen.fp-slide
+				//+e.body
+				+e.VIDEO.video(autoplay='false' preload='auto')
+					source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
+					source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/webm')
+			+b.fp-slide
+			+b.fp-slide
+			+b.fp-slide
+			+b.fp-slide
+			+b.fp-slide
+
+
+		//begin order
+		+b.SECTION.section.fp-section(data-anchor='order')
+			.container
+				+e.inner
+					+e.block._left
+						+b.SVG.circles-big.js-anim-svg
+							circle.circles__body-1(data-circle-type='tl' r='235', cx='330', cy='309')
+							//circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
+					+e.block._right
+						+e.H2.title.title-lg Хотите пригласить нашу команду на Ваш праздник?
+						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
+						+b.SVG.circles
+							circle.circles__body-1(data-circle-type='br' r='58', cx='0', cy='77')
+							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
+							circle.circles__body-3(data-circle-type='tl' r='58', cx='472', cy='77')
+
+						+e.A.link.link(href='#!') Пригласить

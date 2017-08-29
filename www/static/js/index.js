@@ -313,6 +313,39 @@ var throttle = exports.throttle = function throttle(fn) {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = initScreenVideo;
+function initScreenVideo() {
+  var $videoBlock = $('.screen-video');
+
+  $videoBlock.each(function () {
+    var $this = $(this);
+    var $playBtn = $this.find('.js-play-video');
+    var $pauseBtn = $this.find('.js-pause-video');
+    var $video = $this.find('video');
+
+    // if ($video.length) $video[0].play();
+
+    $playBtn.on('click', function (ev) {
+      ev.preventDefault();
+      $video[0].play();
+    });
+    $pauseBtn.on('click', function (ev) {
+      ev.preventDefault();
+      $video[0].pause();
+    });
+  });
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 /**
  * App entry point.
  *
@@ -321,11 +354,11 @@ var throttle = exports.throttle = function throttle(fn) {
 
 /** Import initialized-by-default modules/libs */
 
-__webpack_require__(4);
+__webpack_require__(5);
 
-__webpack_require__(15);
+__webpack_require__(17);
 
-var _home = __webpack_require__(16);
+var _home = __webpack_require__(18);
 
 var _home2 = _interopRequireDefault(_home);
 
@@ -352,7 +385,7 @@ switch (_helpers.currentPage) {
 /** Import utils */
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -369,67 +402,53 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @module Common
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
-__webpack_require__(5);
+__webpack_require__(6);
 
-var _objectFitImages = __webpack_require__(6);
+var _objectFitVideos = __webpack_require__(7);
+
+var _objectFitVideos2 = _interopRequireDefault(_objectFitVideos);
+
+var _objectFitImages = __webpack_require__(8);
 
 var _objectFitImages2 = _interopRequireDefault(_objectFitImages);
 
-var _cTabs = __webpack_require__(7);
+var _cTabs = __webpack_require__(9);
 
 var _cTabs2 = _interopRequireDefault(_cTabs);
 
-var _dot = __webpack_require__(9);
+var _dot = __webpack_require__(11);
 
 var _dot2 = _interopRequireDefault(_dot);
 
-var _fullpageInit = __webpack_require__(11);
+var _fullpageInit = __webpack_require__(13);
 
 var _fullpageInit2 = _interopRequireDefault(_fullpageInit);
+
+var _screenVIdeo = __webpack_require__(3);
+
+var _screenVIdeo2 = _interopRequireDefault(_screenVIdeo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Common = exports.Common = function () {
-  /**
-   * Cache data etc.
-   */
   function Common() {
     _classCallCheck(this, Common);
-
-    this.messages = {
-      constructor: 'COMMON: constructing...',
-      init: 'COMMON: initializing...',
-      test: 'COMMON: Test message!'
-    };
-
-    console.log(this.messages.constructor);
   }
 
-  /**
-   * Test method.
-   */
-
-
-  _createClass(Common, [{
-    key: 'test',
-    value: function test() {
-      console.log(this.messages.test);
-    }
-  }, {
+  _createClass(Common, null, [{
     key: 'init',
-
 
     /**
      * Initialize Main page scripts.
      */
     value: function init() {
-      // console.log(this.messages.init);
+      (0, _objectFitVideos2.default)();
       (0, _objectFitImages2.default)();
       new _dot2.default();
       new _fullpageInit2.default();
-      this.test();
+      new _screenVIdeo2.default();
     }
   }]);
 
@@ -439,7 +458,7 @@ var Common = exports.Common = function () {
 /** Export initialized common scripts by default */
 
 
-exports.default = new Common().init();
+exports.default = Common.init();
 
 /** tabs init */
 
@@ -450,7 +469,7 @@ $tabs.each(function (index, el) {
 });
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -489,7 +508,258 @@ var NoTouch = exports.NoTouch = function () {
 exports.default = new NoTouch();
 
 /***/ }),
-/* 6 */
+/* 7 */
+/***/ (function(module, exports) {
+
+/**
+ * Object Fit Videos
+ * Polyfill for object-fit and object-position CSS properties on video elements
+ * Covers IE9, IE10, IE11, Edge, Safari <10
+ *
+ * Usage
+ * In your CSS, add a special font-family tag for IE/Edge
+ * video {
+ *   object-fit: cover;
+ *   font-family: 'object-fit: cover;';
+ * }
+ *
+ * Before the closing body tag, or whenever the DOM is ready,
+ * make the JavaScript call
+ * objectFitVideos();
+ *
+ * All video elements with the special CSS property will be targeted
+ *
+ * @license  MIT (https://opensource.org/licenses/MIT)
+ * @author   Todd Miller <todd.miller@tricomb2b.com>
+ * @version  1.0.2
+ * @changelog
+ * 2016-08-19 - Adds object-position support.
+ * 2016-08-19 - Add throttle function for more performant resize events
+ * 2016-08-19 - Initial release with object-fit support, and
+ *              object-position default 'center'
+ * 2016-10-14 - No longer relies on window load event, instead requires a specific
+ *              function call to initialize the videos for object fit and position.
+ * 2016-11-28 - Support CommonJS environment, courtesy of @msorensson
+ * 2016-12-05 - Refactors the throttling function to support IE
+ */
+var objectFitVideos = function () {
+  'use strict';
+
+  var testImg                = new Image(),
+      supportsObjectFit      = 'object-fit' in testImg.style,
+      supportsObjectPosition = 'object-position' in testImg.style,
+      propRegex              = /(object-fit|object-position)\s*:\s*([-\w\s%]+)/g;
+
+  if (!supportsObjectFit || !supportsObjectPosition) {
+    initialize();
+    throttle('resize', 'optimizedResize');
+  }
+
+  /**
+   * Parse the style and look for the special font-family tag
+   * @param  {object} $el The element to parse
+   * @return {object}     The font-family properties we're interested in
+   */
+  function getStyle ($el) {
+    var style  = getComputedStyle($el).fontFamily,
+        parsed = null,
+        props  = {};
+
+      while ((parsed = propRegex.exec(style)) !== null) {
+        props[parsed[1]] = parsed[2];
+      }
+
+      if (props['object-position'])
+        return parsePosition(props);
+
+      return props;
+  }
+
+  /**
+   * Initialize all the relevant video elements and get them fitted
+   */
+  function initialize () {
+    var videos = document.querySelectorAll('video'),
+        index  = -1;
+
+    while (videos[++index]) {
+      var style = getStyle(videos[index]);
+
+      // only do work if the property is on the element
+      if (style['object-fit'] || style['object-position']) {
+        // set the default values
+        style['object-fit'] = style['object-fit'] || 'fill';
+        fitIt(videos[index], style);
+      }
+    }
+  }
+
+  /**
+   * Object Fit
+   * @param  {object} $el Element to fit
+   * @return {object}     The element's relevant properties
+   */
+  function fitIt ($el, style) {
+    // fill is the default behavior, no action is necessary
+    if (style['object-fit'] === 'fill')
+      return;
+
+    // convenience style properties on the source element
+    var setCss = $el.style,
+        getCss = window.getComputedStyle($el);
+
+    // create and insert a wrapper element
+    var $wrap = document.createElement('object-fit');
+    $wrap.appendChild($el.parentNode.replaceChild($wrap, $el));
+
+    // style the wrapper element to mostly match the source element
+    var wrapCss = {
+      height:    '100%',
+      width:     '100%',
+      boxSizing: 'content-box',
+      display:   'inline-block',
+      overflow:  'hidden'
+    };
+
+    'backgroundColor backgroundImage borderColor borderStyle borderWidth bottom fontSize lineHeight left opacity margin position right top visibility'.replace(/\w+/g, function (key) {
+      wrapCss[key] = getCss[key];
+    });
+
+    for (var key in wrapCss)
+      $wrap.style[key] = wrapCss[key];
+
+    // give the source element some saner styles
+    setCss.border  = setCss.margin = setCss.padding = 0;
+    setCss.display = 'block';
+    setCss.opacity = 1;
+
+    // set up the event handlers
+    $el.addEventListener('loadedmetadata', doWork);
+    window.addEventListener('optimizedResize', doWork);
+
+    // we may have missed the loadedmetadata event, so if the video has loaded
+    // enough data, just drop the event listener and execute
+    if ($el.readyState >= 1) {
+      $el.removeEventListener('loadedmetadata', doWork);
+      doWork();
+    }
+
+    /**
+     * Do the actual sizing. Math.
+     * @methodOf fitIt
+     */
+    function doWork () {
+      // the actual size and ratio of the video
+      // we do this here, even though it doesn't change, because
+      // at this point we can be sure the metadata has loaded
+      var videoWidth  = $el.videoWidth,
+          videoHeight = $el.videoHeight,
+          videoRatio  = videoWidth / videoHeight;
+
+      var wrapWidth  = $wrap.clientWidth,
+          wrapHeight = $wrap.clientHeight,
+          wrapRatio  = wrapWidth / wrapHeight;
+
+      var newHeight = 0,
+          newWidth  = 0;
+      setCss.marginLeft = setCss.marginTop = 0;
+
+      // basically we do the opposite action for contain and cover,
+      // depending on whether the video aspect ratio is less than or
+      // greater than the wrapper's aspect ratio
+      if (videoRatio < wrapRatio ?
+          style['object-fit'] === 'contain' : style['object-fit'] === 'cover') {
+        newHeight = wrapHeight * videoRatio;
+        newWidth  = wrapWidth / videoRatio;
+
+        setCss.width  = Math.round(newHeight) + 'px';
+        setCss.height = wrapHeight + 'px';
+
+        if (style['object-position-x'] === 'left')
+          setCss.marginLeft = 0;
+        else if (style['object-position-x'] === 'right')
+          setCss.marginLeft = Math.round(wrapWidth - newHeight) + 'px';
+        else
+          setCss.marginLeft = Math.round((wrapWidth - newHeight) / 2) + 'px';
+      } else {
+        newWidth = wrapWidth / videoRatio;
+
+        setCss.width     = wrapWidth + 'px';
+        setCss.height    = Math.round(newWidth) + 'px';
+
+        if (style['object-position-y'] === 'top')
+          setCss.marginTop = 0;
+        else if (style['object-position-y'] === 'bottom')
+          setCss.marginTop = Math.round(wrapHeight - newWidth) + 'px';
+        else
+          setCss.marginTop = Math.round((wrapHeight - newWidth) / 2) + 'px';
+      }
+    }
+  }
+
+  /**
+   * Split the object-position property into x and y position properties
+   * @param  {object} style Relevant element styles
+   * @return {object}       The style object with the added x and y props
+   */
+  function parsePosition (style) {
+    if (~style['object-position'].indexOf('left'))
+      style['object-position-x'] = 'left';
+    else if (~style['object-position'].indexOf('right'))
+      style['object-position-x'] = 'right';
+    else
+      style['object-position-x'] = 'center';
+
+    if (~style['object-position'].indexOf('top'))
+      style['object-position-y'] = 'top';
+    else if (~style['object-position'].indexOf('bottom'))
+      style['object-position-y'] = 'bottom';
+    else
+      style['object-position-y'] = 'center';
+
+    return style;
+  }
+
+  /**
+   * Throttle an event with RequestAnimationFrame API for better performance
+   * @param  {string} type The event to throttle
+   * @param  {string} name Custom event name to listen for
+   * @param  {object} obj  Optional object to attach the event to
+   */
+  function throttle (type, name, obj) {
+    obj = obj || window;
+    var running = false,
+    		evt     = null;
+
+    // IE does not support the CustomEvent constructor
+    // so if that fails do it the old way
+    try {
+    	evt = new CustomEvent(name);
+    } catch (e) {
+    	evt = document.createEvent('Event');
+    	evt.initEvent(name, true, true);
+    }
+
+    var func = function () {
+      if (running) return;
+
+      running = true;
+      requestAnimationFrame(function () {
+        obj.dispatchEvent(evt);
+        running = false;
+      });
+    };
+
+    obj.addEventListener(type, func);
+  }
+};
+
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
+  module.exports = objectFitVideos;
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -727,7 +997,7 @@ module.exports = fix;
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -739,7 +1009,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _gsap = __webpack_require__(8);
+var _gsap = __webpack_require__(10);
 
 var _helpers = __webpack_require__(0);
 
@@ -833,7 +1103,7 @@ var CTabs = function () {
 exports.default = CTabs;
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -8765,7 +9035,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8777,7 +9047,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dotdotdot = __webpack_require__(10);
+var _dotdotdot = __webpack_require__(12);
 
 var _dotdotdot2 = _interopRequireDefault(_dotdotdot);
 
@@ -8835,7 +9105,7 @@ var Dot = function () {
 exports.default = Dot;
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /*
@@ -9507,7 +9777,7 @@ exports.default = Dot;
 
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9518,42 +9788,80 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = InitFullpage;
 
-var _fullpage = __webpack_require__(12);
+var _fullpage = __webpack_require__(14);
 
 var _fullpage2 = _interopRequireDefault(_fullpage);
+
+var _screenVIdeo = __webpack_require__(3);
+
+var _screenVIdeo2 = _interopRequireDefault(_screenVIdeo);
+
+var _helpers = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function InitFullpage() {
   var $fullpage = $('.js-fullpage');
   var $nextSectionBtn = $('.js-next-section');
-
+  var $animSVG = $('.js-anim-svg');
+  var $playerInitBtn = $('.js-init-player');
+  var $playerExitBtn = $('.js-exit-player');
+  var $playerControls = $('.fullscreen-controls');
+  // fp-slides
   if ($fullpage.length) {
     $fullpage.fullpage({
       sectionSelector: 'fp-section',
+      slideSelector: 'fp-slide',
       menu: '.js-fp-nav',
+      // fixedElements: '.header',
+      slidesNavigation: true,
       // paddingTop: '125px',
-      scrollOverflow: true,
+      // scrollOverflow: true,
       scrollingSpeed: 1000,
       verticalCentered: true,
-      fixedElements: '.header'
+      keyboardScrolling: false,
+      loopHorizontal: false,
+      controlArrows: false,
+      onLeave: function onLeave(index, nextIndex, direction) {
+        if (nextIndex === 1) {
+          (0, _screenVIdeo2.default)();
+        }
+        // $animSVG.toggleClass('animated');
+      }
     });
 
-    $nextSectionBtn.on('click', function () {
+    // buttons
+    $playerInitBtn.on('click', function (ev) {
+      ev.preventDefault();
+      var $slideAnchor = $(this).data('slide-anchor');
+      $.fn.fullpage.moveTo('portfolio', $slideAnchor);
+      _helpers.$header.addClass('in-video');
+      $playerControls.addClass(_helpers.css.enabled);
+    });
+
+    $playerExitBtn.on('click', function (ev) {
+      ev.preventDefault();
+      $.fn.fullpage.moveTo('portfolio', 0);
+      _helpers.$header.removeClass('in-video');
+      $playerControls.removeClass(_helpers.css.enabled);
+    });
+
+    $nextSectionBtn.on('click', function (ev) {
+      ev.preventDefault();
       $.fn.fullpage.moveSectionDown();
     });
 
-    if ($(window).width() <= 767) {
-      $.fn.fullpage.destroy('all');
-    }
-    if ($(window).height() <= 600) {
-      $.fn.fullpage.setAutoScrolling(false);
-    }
+    // if ($(window).width() <= 767) {
+    //   $.fn.fullpage.destroy('all');
+    // }
+    // if ($(window).height() <= 600) {
+    //   $.fn.fullpage.setAutoScrolling(false);
+    // }
   }
 }
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -12685,9 +12993,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 13 */,
-/* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */,
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12769,7 +13077,7 @@ var PublicAPI = exports.PublicAPI = function () {
 exports.default = window.PublicAPI = new PublicAPI();
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12814,7 +13122,7 @@ var Home = function () {
     value: function loadChunk() {
       return new Promise(function (resolve) {
         __webpack_require__.e/* require.ensure */(0).then((function (require) {
-          var loadedChunk = __webpack_require__(18).default;
+          var loadedChunk = __webpack_require__(20).default;
 
           resolve(loadedChunk);
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
@@ -12854,5 +13162,5 @@ var Home = function () {
 exports.default = Home;
 
 /***/ })
-],[3]);
+],[4]);
 //# sourceMappingURL=index.js.map

@@ -5,8 +5,9 @@
 	&__inner
 		display: flex
 		justify-content: space-between
-		&_full
-			flex-wrap: wrap
+		//&_wrap
+		//	flex-wrap: wrap
+		//	justify-content: center
 	&__block
 		&_left
 			flex: 0 1 620px
@@ -75,7 +76,185 @@
 	&:hover #{$parent}__svg .line-2
 		transform: translate(-110%, 110%)
 	&:hover #{$parent}__svg .line-3
-		//stroke-dashoffset: 400
 		stroke-dasharray: 0
 		opacity: 0
 	
+/* ===================================
+	 portfolio
+	 =================================== */
+.portfolio
+	&__block
+		display: flex
+		flex-wrap: wrap
+		justify-content: center
+	&__more
+		margin-top: 25px
+/* portfolio-item
+	----------------------------------- */
+.portfolio-item
+	position: relative
+	flex: 1 1 33.33333%
+	width: 33.33333%
+	color: $white
+	background: #eee
+	cursor: default
+	&__text
+		position: absolute
+		top: 40px
+		left: 50px
+		right: 50px
+		bottom: 0
+		z-index: 2
+	&__bg
+		padding-top: 57.5%
+		&::after
+			+coverdiv
+			background: rgba(#000, .4)
+			content: ''
+			z-index: 0
+		&-img
+			+coverdiv
+			+cover
+	&__title
+		margin-bottom: 20px
+		+f('pf700', 29)
+	&__descr
+	&__link
+		position: absolute
+		bottom: 0
+	&__play-btn
+		+vcenter
+		z-index: 5
+		padding: 0
+		.icon
+			font-size: 80px
+			fill: rgba(#fff, .4)
+			transition: fill .5s ease-in-out
+	.no-touch &:hover .icon-play-triangle
+		fill: rgba(#fff, .8)
+/* circles SVG's
+	----------------------------------- */
+.circles
+	width: 472px
+	height: 154px
+	fill: none
+	stroke: $orange
+	stroke-width: 36px
+	&_absolute
+		position: absolute
+		right: 2%
+		bottom: 29%
+	circle[data-circle-type='tr']
+		stroke-dasharray: 91
+		stroke-dashoffset: 91
+	circle[data-circle-type='tl-br']
+		stroke-dasharray: 91
+		stroke-dashoffset: 1
+	circle[data-circle-type='bl']
+		stroke-dasharray: 95
+		stroke-dashoffset: 103
+	circle[data-circle-type='br']
+		stroke-dasharray: 91
+		stroke-dashoffset: 1
+	circle[data-circle-type='tr-bl']
+		stroke-dasharray: 91
+		stroke-dashoffset: 91
+	circle[data-circle-type='l']
+		stroke-dasharray: 130
+		stroke-dashoffset: 1
+	circle[data-circle-type='r']
+		stroke-dasharray: 0
+		stroke-dashoffset: 91
+	circle[data-circle-type='tl']
+		stroke-dasharray: 182
+		stroke-dashoffset: 183
+		
+.circles-big
+	width: 640px
+	height: 620px
+	fill: none
+	stroke: $orange
+	stroke-width: 146px
+	circle
+		//animation: bigCircleRotateOut 1s linear both
+		//transform-origin: 50% 50%
+		//+gpu
+	//&.animated
+	//	circle
+	//		animation: bigCircleRotateIn 1s linear both
+	circle[data-circle-type='tl']
+		stroke-dasharray: 368
+		stroke-dashoffset: -368
+	//circle[data-circle-type='tr-bl']
+	//	stroke-dasharray: 0
+		stroke-dashoffset: 91
+
+/* ===================================
+	 screen-video
+	 =================================== */
+.screen-video
+	position: relative
+	&__inner
+		position: relative
+		width: 620px
+		height: 620px
+		overflow: hidden
+	&__svg
+		width: 100%
+		height: 100%
+		mask rect
+			fill: $white
+		> rect
+			fill: $white
+			-webkit-mask: url(#screen-video__mask)
+			mask: url(#screen-video__mask)
+		circle
+			stroke-width: 134px
+			fill: none
+			stroke: black
+	&__btn
+		display: none
+	&__circle-lg
+		stroke-dasharray: 738
+		stroke-dashoffset: 740
+	&__circle-sm
+		stroke-dasharray: 336
+		stroke-dashoffset: 0
+	&__el
+		position: absolute
+		z-index: -1
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		+cover-video
+	&__controls
+		position: absolute
+		left: 0
+		right: -7px
+		bottom: 0
+		z-index: 2
+		text-align: right
+		font-size: 0
+		&-btn
+			display: inline-block
+			padding: 0
+			&:not(:first-child)
+				margin-left: 20px
+		.icon
+			fill: $orange
+			font-size: 50px
+	&__line
+		position: absolute
+		z-index: 3
+		background: #000
+		&_v
+			width: 3px
+			height: 100%
+			top: -50%
+			left: calc(50% - 2px)
+		&_h
+			width: 100%
+			top: calc(50% - 3px)
+			left: 50%
+			height: 3px

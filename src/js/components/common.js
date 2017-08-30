@@ -11,6 +11,7 @@ import CTabs from './c-tabs';
 import Dot from './dot';
 import InitFullpage from './fullpageInit';
 import initScreenVideo from './screenVIdeo';
+import customScroll from './customScroll';
 
 export class Common {
   /**
@@ -22,6 +23,7 @@ export class Common {
     new Dot;
     new InitFullpage;
     new initScreenVideo;
+    new customScroll;
   }
 }
 

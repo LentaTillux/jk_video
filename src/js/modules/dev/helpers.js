@@ -181,6 +181,7 @@ export const css = {
   fixed: 'is-fixed',
   enabled: 'is-enabled',
   disabled: 'is-disabled',
+  transparent: 'is-transparent',
   image: 'has-image'
 };
 

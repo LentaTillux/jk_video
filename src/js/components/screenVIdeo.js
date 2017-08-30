@@ -5,17 +5,17 @@ export default function initScreenVideo() {
     const $this = $(this);
     const $playBtn = $this.find('.js-play-video');
     const $pauseBtn = $this.find('.js-pause-video');
-    const $video = $this.find('video');
+    const $video = $this.find('video')[0];
 
-    // if ($video.length) $video[0].play();
+    $video.play();
 
     $playBtn.on('click', function (ev) {
       ev.preventDefault();
-      $video[0].play();
+      $video.play();
     });
     $pauseBtn.on('click', function (ev) {
       ev.preventDefault();
-      $video[0].pause();
+      $video.pause();
     });
   });
 }

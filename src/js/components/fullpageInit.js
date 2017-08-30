@@ -23,7 +23,7 @@ export default function InitFullpage () {
       verticalCentered: true,
       keyboardScrolling: false,
       loopHorizontal: false,
-      controlArrows: false,
+      // controlArrows: false,
       onLeave: function (index, nextIndex, direction) {
         if (nextIndex === 1) {
           initScreenVideo();
@@ -32,7 +32,7 @@ export default function InitFullpage () {
       }
     });
 
-    // buttons
+    // buttonsЁ
     $playerInitBtn.on('click', function (ev) {
       ev.preventDefault();
       const $slideAnchor = $(this).data('slide-anchor');

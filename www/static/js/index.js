@@ -9821,7 +9821,7 @@ function InitFullpage() {
       verticalCentered: true,
       keyboardScrolling: false,
       loopHorizontal: false,
-      controlArrows: false,
+      // controlArrows: false,
       onLeave: function onLeave(index, nextIndex, direction) {
         if (nextIndex === 1) {
           (0, _screenVIdeo2.default)();
@@ -9830,7 +9830,7 @@ function InitFullpage() {
       }
     });
 
-    // buttons
+    // buttonsЁ
     $playerInitBtn.on('click', function (ev) {
       ev.preventDefault();
       var $slideAnchor = $(this).data('slide-anchor');

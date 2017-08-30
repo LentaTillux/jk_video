@@ -21,7 +21,7 @@ block main
 											circle.screen-video__circle-lg(data-circle-type='tl' r='470', cx='50%', cy='50%')
 									rect(x='0', y='0', width='100%', height='100%')
 
-								video.screen-video__el(autoplay='autoplay', muted='muted', preload='auto', loop='loop')
+								video.screen-video__el(y'muted', preload='auto', loop='loop')
 									source(src='http://mazwai.com/system/posts/videos/000/000/110/original/alessio_balza--humans.mp4?1410742308', type='video/mp4')
 									source(src='http://mazwai.com/system/posts/videos/000/000/110/original/alessio_balza--humans.mp4?1410742308', type='video/webm')
 
@@ -237,18 +237,6 @@ block main
 
 		//begin portfolio
 		+b.SECTION.section.fp-section(data-anchor='portfolio')
-			+b.fullscreen-controls
-				+e.BUTTON.btn.js-prev-slide(type='button')
-					+i('play-pause')
-				+e.BUTTON.btn.js-next-slide(type='button')
-					+i('play-pause')
-				+e.BUTTON.btn.js-play(type='button')
-					+i('play-triangle')
-				+e.BUTTON.btn.js-pause(type='button')
-					+i('pause')
-
-				+e.BUTTON.btn-exit.js-exit-player(type='button') Вернуться
-
 			+b.fp-slide
 				+b.portfolio.container
 					+e.block
@@ -301,28 +289,42 @@ block main
 						+b.A.more-link.link(href='#!') Смотреть все
 
 			+b.fullscreen.fp-slide
-				//+e.body
-				+e.VIDEO.video(autoplay='false' preload='auto')
-					source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
-					source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/webm')
-			+b.fullscreen.fp-slide
-				+e.VIDEO.video(autoplay='false' preload='auto')
-					source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
-					source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/webm')
-			+b.fullscreen.fp-slide
-				//+e.body
-				+e.VIDEO.video(autoplay='false' preload='auto')
-					source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
-			+b.fullscreen.fp-slide
-				+e.VIDEO.video(autoplay='false' preload='auto')
-					source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
-			+b.fullscreen.fp-slide
-				//+e.body
-				+e.VIDEO.video(autoplay='false' preload='auto')
-					source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
-			+b.fullscreen.fp-slide
-				+e.VIDEO.video(autoplay='false' preload='auto')
-					source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
+				+b.fullscreen-controls
+					+e.buttons
+						+e.BUTTON.btn.js-play(type='button')
+							+i('play-triangle')
+						+e.BUTTON.btn.js-pause(type='button')
+							+i('pause')
+
+					+e.BUTTON.btn-exit.js-exit-player(type='button') Вернуться
+
+				+e.slider.js-fullscreen-slider
+					+e.item
+						+e.text.js-custom-scroll
+							+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+						+e.VIDEO.video(preload='auto')
+							source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
+					+e.item
+						+e.text.js-custom-scroll
+							+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+						+e.VIDEO.video(preload='auto')
+							source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
+					+e.item
+						+e.VIDEO.video(preload='auto')
+							source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
+					+e.item
+						+e.VIDEO.video(preload='auto')
+							source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
+					+e.item
+						+e.VIDEO.video(preload='auto')
+							source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
+					+e.item
+						+e.VIDEO.video(preload='auto')
+							source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
 
 		//begin order
 		+b.SECTION.section.fp-section(data-anchor='order')

@@ -6,74 +6,78 @@
 	//&__body
 		+coverdiv
 		//background: #000
+	&__slider
+		min-height: 100vh
+		
+		.slick-dots
+			position: absolute
+			left: 50%
+			transform: translateX(-50%)
+			bottom: 150px
+			z-index: 20
+			font-size: 0
+			text-align: center
+			&::after
+				pointer-events: none
+				position: absolute
+				left: -10px
+				right: -10px
+				top: calc(50% - 4px)
+				z-index: 1
+				height: 3px
+				background: $orange
+				content: ''
+			li
+				display: inline-block
+				vertical-align: middle
+				margin: 0 20px
+				&.slick-active button
+					background: $orange
+			button
+				+hide-text
+				width: 26px
+				height: 26px
+				border-radius: 50%
+				background: $white
+	&__item
+		position: relative
+		height: 100vh
+		z-index: 100
+		&.slick-current
+			z-index: 101
+	&__text
+		max-width: 730px
+		height: 510px
+		position: relative
+		margin-top: 195px
+		padding: 60px 60px 165px 120px
+		z-index: 110
+		background: $orange
+		cursor: default
+		transition: transform 1s
+		&.is-disabled
+			transform: translateX(-100%)
+		&-title
+			//position: absolute
+			//top: 0
+			//left: 20px
+			max-width: 480px
+			margin-bottom: 35px
+			+f('pf700', 53)
+			color: $white
+		&-descr
+			color: $dark-gray
+			&:not(:first-child)
+				margin-top: 10px
 	&__video
 		position: absolute
 		top: 0
 		left: 0
 		width: 100%
 		height: 100%
-		+cover-video
 		z-index: 10
+		+cover-video
 		
-/* ===================================
-	 fullpage custom styles
-	 =================================== */
-
-.fp-slide
-	overflow: hidden
-
-.header
-	&.in-video + .fullpage-wrapper .fp-slidesNav
-		transform: translateY(0)
-		opacity: 1
-		visibility: visible
-.fp-slidesNav
-	opacity: 0
-	visibility: hidden
-	z-index: 15
-	transition: .2s 1s ease-in-out
-	transform: translateY(100%)
-	&.bottom
-		bottom: 140px
-	ul
-		&::after
-			pointer-events: none
-			position: absolute
-			left: -10px
-			right: -10px
-			top: calc(50% - 4px)
-			z-index: 1
-			height: 3px
-			background: $orange
-			content: ''
-	ul li
-		margin: 0 20px
-		width: 36px
-		height: 36px
-		&:first-child
-			display: none
-		&:hover a span
-			margin: 0
-			width: 26px
-			height: 26px
-		&:hover a.active span
-			width: 36px
-			height: 36px
-	ul li a.active span
-		width: 36px
-		height: 36px
-		background: $orange
-	ul li a span
-		transform: translate(-50%, -50%)
-		background: $white
-		width: 26px
-		height: 26px
-		margin: 0!important
-		transition: .4s ease
-	
-/* ===================================
-	 fullscreen-controls
-	 =================================== */
 .fullscreen-controls
 	display: flex
 	align-items: flex-start
@@ -104,7 +108,22 @@
 			margin-left: auto
 			+f('pf700')
 			color: $white
+		&_prev .icon
+			transform: rotate(180deg)
 	.icon
 		fill: $orange
 		font-size: 36px
-	
+		
+		
+/* ===================================
+	 fullpage custom styles
+	 =================================== */
+
+.fp-slide
+	overflow: hidden
+
+.header
+	&.in-video + .fullpage-wrapper .fp-slidesNav
+		transform: translateY(0)
+		opacity: 1
+		visibility: visible

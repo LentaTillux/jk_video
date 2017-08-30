@@ -7,7 +7,7 @@ export default function initScreenVideo() {
     const $pauseBtn = $this.find('.js-pause-video');
     const $video = $this.find('video');
 
-    // if ($video.length) $video[0].play();
+    if ($video.length) $video[0].play();
 
     $playBtn.on('click', function (ev) {
       ev.preventDefault();

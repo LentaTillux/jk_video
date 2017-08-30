@@ -1,7 +1,12 @@
-import 'perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min';
+import jqueryMousewheel from 'jquery-mousewheel';
+import mCustomScrollbar from 'malihu-custom-scrollbar-plugin';
 
 export default function customScroll() {
   const $scrollContainer = $('.js-custom-scroll');
 
-  $scrollContainer.perfectScrollbar();
+  $scrollContainer.mCustomScrollbar({
+    mouseWheel: true,
+    scrollEasing: 'linear',
+    scrollInertia: 600
+  });
 }

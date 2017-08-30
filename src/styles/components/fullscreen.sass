@@ -8,37 +8,6 @@
 		//background: #000
 	&__slider
 		min-height: 100vh
-		
-		.slick-dots
-			position: absolute
-			left: 50%
-			transform: translateX(-50%)
-			bottom: 150px
-			z-index: 20
-			font-size: 0
-			text-align: center
-			&::after
-				pointer-events: none
-				position: absolute
-				left: -10px
-				right: -10px
-				top: calc(50% - 4px)
-				z-index: 1
-				height: 3px
-				background: $orange
-				content: ''
-			li
-				display: inline-block
-				vertical-align: middle
-				margin: 0 20px
-				&.slick-active button
-					background: $orange
-			button
-				+hide-text
-				width: 26px
-				height: 26px
-				border-radius: 50%
-				background: $white
 	&__item
 		position: relative
 		height: 100vh
@@ -46,21 +15,37 @@
 		&.slick-current
 			z-index: 101
 	&__text
+		position: absolute
+		top: 195px
+		padding: 8px 0
+		left: 0
 		max-width: 730px
+		width: 100%
 		height: 510px
-		position: relative
-		margin-top: 195px
-		padding: 60px 60px 165px 120px
 		z-index: 110
 		background: $orange
 		cursor: default
-		transition: transform 1s
+		transition: transform .3s ease
+		+gpu
+		&::after, &::before
+			pointer-events: none
+			position: absolute
+			left: 0
+			right: 15px
+			z-index: 102
+			content: ''
+			background: $orange
+		&::after
+			height: 165px
+			bottom: 0
+		&::before
+			height: 65px
+			top: 0
+		&-in
+			padding: 60px 60px 165px 120px
 		&.is-disabled
 			transform: translateX(-100%)
 		&-title
-			//position: absolute
-			//top: 0
-			//left: 20px
 			max-width: 480px
 			margin-bottom: 35px
 			+f('pf700', 53)
@@ -79,21 +64,32 @@
 		+cover-video
 		
 .fullscreen-controls
-	display: flex
-	align-items: flex-start
 	position: absolute
-	left: 120px
-	right: 140px
-	bottom: 115px
+	left: 0
+	right: 0
+	bottom: 0
+	padding-bottom: 80px
 	z-index: 10
 	opacity: 0
 	visibility: hidden
 	transform: translateY(100%)
-	transition: .2s 1s ease-in-out
+	transition: .2s .7s ease-in-out
+	$parent: &
 	&.is-enabled
 		opacity: 1
 		visibility: visible
 		transform: translateY(0)
+	&.is-transparent
+		opacity: 0
+		#{$parent}__buttons,
+		.slick-dots
+			pointer-events: none
+	&__inner
+		display: flex
+		justify-content: space-between
+		align-items: flex-start
+		max-width: 1800px
+		margin: 0 auto
 	&__btn
 		display: inline-flex
 		align-items: center
@@ -105,7 +101,7 @@
 		&:not(:first-child)
 			margin-left: 20px
 		&-exit
-			margin-left: auto
+			order: 1
 			+f('pf700')
 			color: $white
 		&_prev .icon
@@ -114,6 +110,37 @@
 		fill: $orange
 		font-size: 36px
 		
+	.slick-dots
+		position: relative
+		height: 40px
+		font-size: 0
+		text-align: center
+		+vertical
+		&.is-transition button
+			transition: .35s cubic-bezier(0.6, -0.28, 0.735, 0.045)
+		&::after
+			pointer-events: none
+			position: absolute
+			left: -10px
+			right: -10px
+			top: calc(50% - 1px)
+			z-index: 1
+			height: 3px
+			background: $orange
+			content: ''
+		li
+			display: inline-block
+			vertical-align: middle
+			margin: 0 20px
+			&.slick-active button
+				background: $orange
+				transform: scale(1.4)
+		button
+			+hide-text
+			width: 26px
+			height: 26px
+			border-radius: 50%
+			background: $white
 		
 /* ===================================
 	 fullpage custom styles

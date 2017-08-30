@@ -36,7 +36,8 @@ block main
 					+e.block._right
 						+e.H2.title.title-lg Мы - глаза Вашего праздника
 						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
-						+e.A.link.link(href='#!') Задать вопрос
+						+e.more
+							+e.A.link.link(href='#!') Задать вопрос
 
 		//begin about
 		+b.SECTION.section.fp-section(data-anchor='about')
@@ -290,39 +291,68 @@ block main
 
 			+b.fullscreen.fp-slide
 				+b.fullscreen-controls
-					+e.buttons
-						+e.BUTTON.btn.js-play(type='button')
-							+i('play-triangle')
-						+e.BUTTON.btn.js-pause(type='button')
-							+i('pause')
+					+e.inner
+						+e.buttons
+							+e.BUTTON.btn.js-play(type='button')
+								+i('play-triangle')
+							+e.BUTTON.btn.js-pause(type='button')
+								+i('pause')
 
-					+e.BUTTON.btn-exit.js-exit-player(type='button') Вернуться
+						+e.BUTTON.btn-exit.js-exit-player(type='button') Вернуться
 
 				+e.slider.js-fullscreen-slider
 					+e.item
 						+e.text.js-custom-scroll
-							+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
-							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
-							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.text-in
+								+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
 						+e.VIDEO.video(preload='auto')
 							source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
 					+e.item
 						+e.text.js-custom-scroll
-							+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
-							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
-							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.text-in
+								+e.H3.text-title Рекламный ролик Интернет-магазина КУВАЛДА.РУ
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
 						+e.VIDEO.video(preload='auto')
 							source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
 					+e.item
+						+e.text.js-custom-scroll
+							+e.text-in
+								+e.H3.text-title IKEA
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
 						+e.VIDEO.video(preload='auto')
 							source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
 					+e.item
+						+e.text.js-custom-scroll
+							+e.text-in
+								+e.H3.text-title Рекламные ролики для десерт-кафе
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
 						+e.VIDEO.video(preload='auto')
 							source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
 					+e.item
+						+e.text.js-custom-scroll
+							+e.text-in
+								+e.H3.text-title Премьера нового Mercedes-Benz CLS
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
 						+e.VIDEO.video(preload='auto')
 							source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
+
 					+e.item
+						+e.text.js-custom-scroll
+							+e.text-in
+								+e.H3.text-title Открытие магазина BURTON
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
 						+e.VIDEO.video(preload='auto')
 							source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
 
@@ -332,8 +362,8 @@ block main
 				+e.inner
 					+e.block._left
 						+b.SVG.circles-big.js-anim-svg
-							circle.circles__body-1(data-circle-type='tl' r='235', cx='330', cy='309')
-							//circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
+							circle.circles__body-1(data-circle-type='tl' r='235', cx='50%', cy='50%')
+							circle.circles__body-2(data-circle-type='tl' r='235', cx='-0.5%', cy='50%')
 					+e.block._right
 						+e.H2.title.title-lg Хотите пригласить нашу команду на Ваш праздник?
 						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
@@ -342,4 +372,63 @@ block main
 							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
 							circle.circles__body-3(data-circle-type='tl' r='58', cx='472', cy='77')
 
-						+e.A.link.link(href='#!') Пригласить
+						+e.more
+							+e.A.link.link(href='#!') Пригласить
+
+		//begin prices
+		+b.SECTION.section.fp-section(data-anchor='prices')
+			.container
+				+e.inner
+					+e.block._left
+						+b.SVG.circles-triple.js-anim-svg
+							circle.circles-triple__body-1(data-circle-type='tl' r='255', cx='50%', cy='-23%')
+							circle.circles-triple__body-2(data-circle-type='tl' r='120', cx='50%', cy='50%')
+							circle.circles-triple__body-3(data-circle-type='tl' r='255', cx='50%', cy='123.6%')
+					+e.block._right
+						+e.H2.title.title-lg Что по цене?
+						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
+						+b.SVG.circles
+							circle.circles__body-1(data-circle-type='r' r='58', cx='0', cy='77')
+							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
+							circle.circles__body-3(data-circle-type='l' r='58', cx='472', cy='77')
+
+						+e.more
+							+e.A.link.link(href='#!') Узнать
+
+		//begin contacts
+		+b.SECTION.section.fp-section(data-anchor='contacts')
+			.container
+				+e.inner
+					+e.block._left
+						+e.IMG(src='static/img/map.png' alt='image')
+					+e.block._right
+						+e.H2.title.title-lg Контакты
+						+b.contacts-block
+							+e.item
+								+e.item-pic
+									+i('loc')
+								+e.P.item-text Россия, Самара, ул. Московское шоссе, 17
+							+e.item
+								+e.item-pic
+									+i('tel')
+								+e.item-text
+									+e.A.item-link(href='#!') +7 (927) 001-20-08
+									| ,
+									= ' '
+									+e.A.item-link(href='#!') +7 (846) 379-53-68
+							+e.item
+								+e.item-pic
+									+i('mail')
+								+e.item-text
+									+e.A.item-link._font(href='mailto:hello@jk-event.ru') hello@jk-event.ru
+
+						+b.SVG.circles
+							circle.circles__body-1(data-circle-type='r' r='58', cx='0', cy='77')
+							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
+							circle.circles__body-3(data-circle-type='l' r='58', cx='472', cy='77')
+
+						+e.more
+							+e.P.more-text Мы в соцсетях
+							//-socials
+							-socialsClass = '_gray'
+							include ../components/socials

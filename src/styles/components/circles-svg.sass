@@ -10,7 +10,7 @@
 		stroke: $orange
 		stroke-width: 14
 		stroke-dasharray: 534
-		transition: stroke-dashoffset 1s, stroke-dasharray 1s
+		transition: .5s
 		-webkit-animation-play-state: running
 		/* firefox bug fix - won't rotate at 90deg angles
 		-moz-transform: rotate(-57deg) translate(-120px, 30px)
@@ -79,3 +79,80 @@
 	
 	to
 		stroke-dashoffset: 460
+		
+/* circles SVG's
+	----------------------------------- */
+.circles
+	width: 472px
+	height: 154px
+	fill: none
+	stroke: $orange
+	stroke-width: 36px
+	&_absolute
+		position: absolute
+		right: 2%
+		bottom: 29%
+	circle[data-circle-type='tr']
+		stroke-dasharray: 91
+		stroke-dashoffset: 91
+	circle[data-circle-type='tl-br']
+		stroke-dasharray: 91
+		stroke-dashoffset: 1
+	circle[data-circle-type='bl']
+		stroke-dasharray: 95
+		stroke-dashoffset: 103
+	circle[data-circle-type='br']
+		stroke-dasharray: 91
+		stroke-dashoffset: 1
+	circle[data-circle-type='tr-bl']
+		stroke-dasharray: 91
+		stroke-dashoffset: 91
+	circle[data-circle-type='l']
+		stroke-dasharray: 280
+		stroke-dashoffset: 0
+	circle[data-circle-type='r']
+		stroke-dasharray: 0
+		stroke-dashoffset: 91
+	circle[data-circle-type='tl']
+		stroke-dasharray: 182
+		stroke-dashoffset: 183
+
+.circles-big
+	width: 640px
+	height: 620px
+	fill: none
+	stroke: $orange
+	stroke-width: 146px
+	circle
+	//animation: bigCircleRotateOut 1s linear both
+	//transform-origin: 50% 50%
+	//+gpu
+	//&.animated
+	//	circle
+	//		animation: bigCircleRotateIn 1s linear both
+	circle[data-circle-type='tl']
+		stroke-dasharray: 369
+		stroke-dashoffset: -369
+//circle[data-circle-type='tr-bl']
+//	stroke-dasharray: 0
+	stroke-dashoffset: 91
+
+.circles-triple
+	width: 436px
+	height: 615px
+	circle
+		fill: none
+		stroke: $orange
+		
+	&__body-1
+		stroke-dashoffset: -190
+		stroke-dasharray: 420
+		stroke-width: 78px
+	&__body-2
+		stroke-dashoffset: 94
+		stroke-dasharray: 188
+		stroke-width: 78px
+	&__body-3
+		stroke-dashoffset: -150
+		stroke-dasharray: 420
+		stroke-width: 78px

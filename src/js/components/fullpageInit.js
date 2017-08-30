@@ -5,15 +5,9 @@ import { $window, $body, $header, css, Resp } from '../modules/dev/helpers';
 
 export default function InitFullpage () {
   const $fullpage = $('.js-fullpage');
-  const $videoSlider = $('.js-fullscreen-slider');
-  const $nextSectionBtn = $('.js-next-section');
   // const $animSVG = $('.js-anim-svg');
-  const $playerInitBtn = $('.js-init-player');
-  const $playerExitBtn = $('.js-exit-player');
-  const $playerControls = $('.fullscreen-controls');
-  const $playBtn = $('.js-play');
-  const $pauseBtn = $('.js-pause');
 
+  // fullpage settings
   if ($fullpage.length) {
     $fullpage.fullpage({
       sectionSelector: 'fp-section',
@@ -28,48 +22,51 @@ export default function InitFullpage () {
       keyboardScrolling: false,
       loopHorizontal: false,
       controlArrows: false,
-      onLeave: function (index, nextIndex, direction) {
-        if (nextIndex === 1) {
-          initScreenVideo();
+      afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+        if (slideIndex === 1) {
+          $.fn.fullpage.setMouseWheelScrolling(false);
+          $.fn.fullpage.setAllowScrolling(false);
+        } else {
+          $.fn.fullpage.setMouseWheelScrolling(true);
+          $.fn.fullpage.setAllowScrolling(true);
         }
-        // $animSVG.toggleClass('animated');
       }
+      // onLeave: function (index, nextIndex, direction) {
+      //   if (nextIndex === 1) {
+      //     initScreenVideo();
+      //   }
+        // $animSVG.toggleClass('animated');
+      // }
     });
 
-    // buttons
-    $playerInitBtn.on('click', function (ev) {
-      ev.preventDefault();
+    const $playerInitBtn = $('.js-init-player');
+    const $playerExitBtn = $('.js-exit-player');
+    const $nextSectionBtn = $('.js-next-section');
+    // init player
+    $playerInitBtn.on('click', function () {
       const $slideAnchor = $(this).data('slide-anchor') - 1;
       $.fn.fullpage.moveTo('portfolio', 1);
       $header.addClass('in-video');
-      $playerControls.addClass(css.enabled);
+      $playerControls.addClass(css.enabled, setTimeout(() => {
+        $('.slick-dots').addClass('is-transition');
+      }, 900));
 
       $videoSlider.slick('slickGoTo',$slideAnchor);
     });
-
-    $playerExitBtn.on('click', function (ev) {
-      ev.preventDefault();
+    // exit player
+    $playerExitBtn.on('click', function () {
+      const $video = $videoSlider.find('video')[0];
+      const $textBlock = $videoSlider.find('.slick-current .fullscreen__text');
       $.fn.fullpage.moveTo('portfolio', 0);
       $header.removeClass('in-video');
       $playerControls.removeClass(css.enabled);
+      $('.slick-dots').removeClass('is-transition');
+      $video.currentTime = 0;
+      disableHideControls();
+      $textBlock.mCustomScrollbar('scrollTo', 'top');
     });
-
-    $playBtn.on('click', function (ev) {
-      ev.preventDefault();
-      $videoSlider.find('.slick-current video')[0].play();
-      $videoSlider.find('.fullscreen__text').addClass(css.disabled);
-      $header.find('.header__contacts').addClass(css.disabled);
-    });
-
-    $pauseBtn.on('click', function (ev) {
-      ev.preventDefault();
-      $videoSlider.find('.slick-current video')[0].pause();
-      $videoSlider.find('.fullscreen__text').removeClass(css.disabled);
-      $header.find('.header__contacts').removeClass(css.disabled);
-    });
-
-    $nextSectionBtn.on('click', function (ev) {
-      ev.preventDefault();
+    // scroll next sect
+    $nextSectionBtn.on('click', function () {
       $.fn.fullpage.moveSectionDown();
     });
 
@@ -81,6 +78,12 @@ export default function InitFullpage () {
     // }
   }
 
+  // video slider
+  const $videoSlider = $('.js-fullscreen-slider');
+  const $playerControls = $('.fullscreen-controls');
+  const $playBtn = $('.js-play');
+  const $pauseBtn = $('.js-pause');
+
   $videoSlider.slick({
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -89,17 +92,80 @@ export default function InitFullpage () {
     dots: true,
     infinite: true,
     arrows: true,
+    fade: true,
     speed: 600,
     cssEase: 'ease',
     useTransform: true,
     adaptiveHeight: true,
     appendArrows: '.fullscreen-controls__buttons',
+    appendDots:'.fullscreen-controls__inner',
     prevArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_prev"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg></button>',
     nextArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_next"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg></button>'
   });
-  $videoSlider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
-    $videoSlider.find('.slick-current video')[0].pause();
+
+  $videoSlider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+    const $currentVideo = $videoSlider.find('.slick-current video')[0];
+    const $video = $videoSlider.find('video')[0];
+    const $textBlock = $videoSlider.find('.slick-current .fullscreen__text');
+    $currentVideo.pause();
+    disableHideControls();
     $videoSlider.find('.fullscreen__text').removeClass(css.disabled);
-    $header.find('.header__contacts').removeClass(css.disabled);
+    $header.removeClass(css.disabled);
+    $video.currentTime = 0;
+    $textBlock.mCustomScrollbar('scrollTo', 'top');
   });
+
+  $playBtn.on('click', function () {
+    const $currentVideo = $videoSlider.find('.slick-current video')[0];
+    const $textBlock = $videoSlider.find('.slick-current .fullscreen__text');
+
+    $currentVideo.play();
+    $textBlock.addClass(css.disabled);
+    $header.addClass(css.disabled);
+    $textBlock.mCustomScrollbar('scrollTo', 'top');
+
+    if (!$currentVideo.paused) {
+      $playerControls.addClass(css.transparent);
+      hideControls();
+    }
+  });
+
+  $pauseBtn.on('click', function () {
+    const $currentVideo = $videoSlider.find('.slick-current video')[0];
+    const $textBlock = $videoSlider.find('.slick-current .fullscreen__text');
+
+    $currentVideo.pause();
+    $textBlock.removeClass(css.disabled);
+    $header.removeClass(css.disabled);
+    $textBlock.mCustomScrollbar('scrollTo', 'top');
+
+    if ($currentVideo.paused) {
+      $playerControls.removeClass(css.transparent);
+      disableHideControls();
+    }
+  });
+
+  // $videoSlider.on('click', function () {
+  //   disableHideControls();
+  //   $playerControls.removeClass(css.transparent, setTimeout(() => {
+  //     $playerControls.addClass(css.transparent);
+  //   }, 1000));
+  // });
+
+  function hideControls() {
+    $playerControls.on('mouseenter', function () {
+      const $this = $(this);
+      $this.removeClass(css.transparent);
+    });
+
+    $playerControls.on('mouseleave', function () {
+      const $this = $(this);
+      $this.addClass(css.transparent);
+    });
+  }
+
+  function disableHideControls() {
+    $playerControls.off('mouseenter mouseleave');
+  }
+
 }

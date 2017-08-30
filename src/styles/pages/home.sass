@@ -21,7 +21,15 @@
 	&__descr
 		max-width: 500px
 		color: $gray
-		
+	&__more
+		display: flex
+		align-items: center
+		&-text
+			margin-right: 50px
+			+f('pf700')
+			color: $orange
+	&__link
+	
 /* circle-item
 	----------------------------------- */
 .circle-item
@@ -132,62 +140,6 @@
 			transition: fill .5s ease-in-out
 	.no-touch &:hover .icon-play-triangle
 		fill: rgba(#fff, .8)
-/* circles SVG's
-	----------------------------------- */
-.circles
-	width: 472px
-	height: 154px
-	fill: none
-	stroke: $orange
-	stroke-width: 36px
-	&_absolute
-		position: absolute
-		right: 2%
-		bottom: 29%
-	circle[data-circle-type='tr']
-		stroke-dasharray: 91
-		stroke-dashoffset: 91
-	circle[data-circle-type='tl-br']
-		stroke-dasharray: 91
-		stroke-dashoffset: 1
-	circle[data-circle-type='bl']
-		stroke-dasharray: 95
-		stroke-dashoffset: 103
-	circle[data-circle-type='br']
-		stroke-dasharray: 91
-		stroke-dashoffset: 1
-	circle[data-circle-type='tr-bl']
-		stroke-dasharray: 91
-		stroke-dashoffset: 91
-	circle[data-circle-type='l']
-		stroke-dasharray: 130
-		stroke-dashoffset: 1
-	circle[data-circle-type='r']
-		stroke-dasharray: 0
-		stroke-dashoffset: 91
-	circle[data-circle-type='tl']
-		stroke-dasharray: 182
-		stroke-dashoffset: 183
-		
-.circles-big
-	width: 640px
-	height: 620px
-	fill: none
-	stroke: $orange
-	stroke-width: 146px
-	circle
-		//animation: bigCircleRotateOut 1s linear both
-		//transform-origin: 50% 50%
-		//+gpu
-	//&.animated
-	//	circle
-	//		animation: bigCircleRotateIn 1s linear both
-	circle[data-circle-type='tl']
-		stroke-dasharray: 368
-		stroke-dashoffset: -368
-	//circle[data-circle-type='tr-bl']
-	//	stroke-dasharray: 0
-		stroke-dashoffset: 91
 
 /* ===================================
 	 screen-video
@@ -211,7 +163,7 @@
 		circle
 			stroke-width: 134px
 			fill: none
-			stroke: black
+			stroke: #000
 	&__btn
 		display: none
 	&__circle-lg
@@ -258,3 +210,29 @@
 			top: calc(50% - 3px)
 			left: 50%
 			height: 3px
+			
+/* ===================================
+	 contacts-block
+	 =================================== */
+.contacts-block
+	margin-top: 60px
+	margin-bottom: 90px
+	&__item
+		display: flex
+		color: $gray
+		&:not(:first-child)
+			margin-top: 20px
+		&-pic
+			width: 30px
+			text-align: center
+			.icon
+				fill: $orange
+				font-size: 28px
+				&-loc
+					font-size: 29px
+		&-link
+			+f('pf700')
+			&_font
+				+f('pf300')
+		&-text
+			padding-left: 20px

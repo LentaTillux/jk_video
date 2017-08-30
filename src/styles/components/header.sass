@@ -5,8 +5,10 @@
 	right: 0
 	padding-top: 100px
 	background: $white
-	z-index: 10
-	transition: background .7s ease
+	z-index: 101
+	transition: .5s ease
+	&.is-disabled
+		transform: translateX(100%)
 	$parent: &
 	&__container
 		position: relative
@@ -19,15 +21,15 @@
 		transition: .5s ease
 	&__contacts
 		display: flex
-		transition: .5s
-		&.is-disabled
-			transform: translateX(122%)
 		&-item
 			position: relative
 			margin-right: 170px
 		&-tel
 			+f('pf700', 23)
 			color: $dark-gray
+			transition: .5s
+			.no-touch &:hover
+				color: $orange
 			&:hover + #{$parent}__contacts-svg .svg-circle__outer
 				stroke-dasharray: 450
 				
@@ -54,6 +56,8 @@
 			transform: translateX(-200%)
 		&__contacts-tel
 			color: $white
+			.no-touch &:hover
+				color: $orange
 			
 .nav
 	position: absolute

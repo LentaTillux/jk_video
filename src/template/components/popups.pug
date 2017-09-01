@@ -1,0 +1,22 @@
+mixin popup(el)
+	case el.name
+
+		when 'invite'
+			//begin invite popup
+			+b.popup(data-popup-id='invitePopup', tabindex='-1', role='dialog')
+				+e.container
+					+e.close.js-popup-close
+						+i('close')
+					+e.H3.title Отправить заявку
+					+e.FORM.form(action='#!' method='POST')
+						+e.form-inner
+							+e.form-field
+								+i('user')
+								+e.INPUT.form-input.input(type='text' placeholder='Ваше имя' required name='')
+							+e.form-field
+								+i('tel')
+								+e.INPUT.form-input.input(type='tel' placeholder='Телефон' required name='')
+							+e.form-field
+								+i('mail')
+								+e.INPUT.form-input.input(type='email' placeholder='Почта' required name='')
+						+e.BUTTON.form-btn.btn(type='button') Отправить

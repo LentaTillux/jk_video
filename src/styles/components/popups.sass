@@ -1,0 +1,90 @@
+.popup
+	position: fixed
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	opacity: 0
+	visibility: hidden
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+	z-index: 1050
+	overflow: auto
+	outline: 0
+	text-align: center
+	font-size: 0
+	transform: translate3d(0, 0, 0)
+	background-color: rgba(#000, .9)
+	-webkit-transition: opacity .3s ease, -webkit-transform .5s ease
+	transition: opacity .3s ease, -webkit-transform .5s ease
+	-o-transition: opacity .3s ease, -o-transform .5s ease
+	-moz-transition: opacity .3s ease, transform .5s ease, -moz-transform .5s ease
+	transition: opacity .3s ease, transform .5s ease
+	transition: opacity .3s ease, transform .5s ease, -webkit-transform .5s ease, -moz-transform .5s ease, -o-transform .5s ease
+	will-change: opacity, transform
+	&:after
+		content: ''
+		display: inline-block
+		vertical-align: middle
+		width: 0
+		height: 100%
+	&.opened
+		opacity: 1
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"
+		visibility: visible
+	&__close
+		position: absolute
+		top: -8px
+		right: -8px
+		width: 28px
+		height: 28px
+		display: flex
+		justify-content: center
+		align-items: center
+		cursor: pointer
+		border-radius: 50%
+		background: $orange
+		+trs
+		.no-touch &:hover
+			background: #D32F2F
+		.no-touch &:active
+			background: #B71C1C
+		.icon
+			fill: $white
+			font-size: 12px
+	&__container
+		display: inline-block
+		vertical-align: middle
+		width: 100%
+		max-width: 600px
+		position: relative
+		padding: 40px
+		background: $white
+		box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2)
+		margin: 30px auto
+		transition: opacity 1s cubic-bezier(0.65, 0.05, 0.36, 1), transform 0.4s cubic-bezier(0.65, 0.05, 0.36, 1), visibility 1s, -webkit-transform 0.4s cubic-bezier(0.65, 0.05, 0.36, 1)
+		transform: translate3d(0, -100px, 0)
+		will-change: transform, opacity
+		
+	&__title
+		margin-bottom: 40px
+		font-size: 52px
+		+f('pf700')
+	&__form
+		&-inner
+			max-width: 400px
+			margin: 0 auto 30px
+		&-field
+			&:not(:first-child)
+				margin-top: 20px
+
+body.popup-opened
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	overflow: hidden
+
+.popup.opened .popup__container
+	-webkit-transform: translate3d(0, 0, 0)
+	-moz-transform: translate3d(0, 0, 0)
+	transform: translate3d(0, 0, 0)

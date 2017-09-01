@@ -1,4 +1,5 @@
 .c-tabs
+	$parent: &
 	&__tabs-nav
 		position: relative
 		display: flex
@@ -46,3 +47,13 @@
 			flex-wrap: wrap
 			justify-content: space-between
 			padding-bottom: 140px
+	&__block
+		display: flex
+		flex-wrap: wrap
+		justify-content: center
+			
+	&_portfolio #{$parent}__tabs-nav
+		justify-content: space-between
+	&_portfolio #{$parent}__tabs-el + #{$parent}__tabs-el
+		margin-left: 0
+		

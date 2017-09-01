@@ -153,18 +153,17 @@
 		stroke: $orange
 	svg
 		position: absolute
-		transition: transform 2s 2s ease, opacity .3s ease
 		
 	&__svg-1
 		&.is-visible
-			animation: fadeInDown 1s ease
+			animation: fadeInDown 1s ease, movingTop 5s .9s ease-in-out infinite
 	&__svg-2
 		&.is-visible
 			animation: bounceIn 1s .8s ease
 		
 	&__svg-3
 		&.is-visible
-			animation: fadeInUp 1s ease
+			animation: fadeInUp 1s ease, movingBottom 5s .9s ease-in-out infinite
 	&__body-1
 		stroke-dashoffset: -190
 		stroke-dasharray: 420

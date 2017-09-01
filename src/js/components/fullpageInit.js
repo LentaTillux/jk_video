@@ -52,14 +52,6 @@ export default function InitFullpage () {
         if (nextIndex !== 5) {
           $animSVG.removeClass(css.visible);
         }
-
-        // if (nextIndex === 4 || nextIndex === 5) {
-        //   $animSVG.addClass(css.visible);
-        // }
-        // else {
-        //   $animSVG.removeClass(css.visible);
-        // }
-
       }
     });
 
@@ -75,7 +67,7 @@ export default function InitFullpage () {
         $('.slick-dots').addClass('is-transition');
       }, 900));
 
-      $videoSlider.slick('slickGoTo',$slideAnchor);
+      $videoSlider.slick('slickGoTo', $slideAnchor);
     });
     // exit player
     $playerExitBtn.on('click', function () {

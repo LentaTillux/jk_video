@@ -47,12 +47,6 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
     padding-left: 365px
     padding-right: 55px
     
-//.content
-  //padding-bottom: 200px
-
-//.fp-tableCell
-//  padding-top: 120px
-
 // titles
 .title-lg
   +f('pf700', 65)
@@ -80,3 +74,30 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
     transition: .4s ease
     +gpu
     content: ''
+
+.btn
+  padding: 0 30px
+  height: 50px
+  line-height: 50px
+  border-radius: 30px
+  color: $white
+  +f('pf400')
+  background: $orange
+  font-size: 23px
+  +trs
+  .no-touch &:hover
+    background: darken($orange, 12)
+  
+.input
+  padding: 0 20px
+  height: 50px
+  line-height: 50px
+  width: 100%
+  +f('pf400')
+  font-size: 23px
+  border-radius: 30px!important
+  border: 1px solid $dark-gray
+  transition: .5s
+  +placeholder-color($dark-gray)
+  &:focus
+    border-color: $orange

@@ -246,55 +246,204 @@ block main
 		//begin portfolio
 		+b.SECTION.section.fp-section(data-anchor='portfolio')
 			+b.fp-slide
-				+b.portfolio.container._portfolio
-					+e.block
-						-
-							portfolioList = [{
-							title: 'Презентация нового Land Rover DISCOVERY SPORT',
-							descr: 'Разработка концепции и организация мероприятия',
-							img: 1,
-							sldAnchor: 1
-							}, {
-							title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
-							descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
-							img: 2,
-							sldAnchor: 2
-							}, {
-							title: 'IKEA',
-							descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
-							img: 1,
-							sldAnchor: 3
-							}, {
-							title: 'Рекламные ролики для десерт-кафе',
-							descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
-							img: 3,
-							sldAnchor: 4
-							}, {
-							title: 'Премьера нового Mercedes-Benz CLS',
-							descr: 'Разработка концепции и организация мероприятия',
-							img: 3,
-							sldAnchor: 5
-							}, {
-							title: 'Открытие магазина BURTON',
-							descr: 'Организация открытия магазина Burton',
-							img: 2,
-							sldAnchor: 6
-							}]
-						mixin portfolioEl(el)
-							+b.portfolio-item
-								+e.text
-									+e.title= el.title
-									+e.P.descr= el.descr
-									+e.A.link.link(href='#!') Подробнее
-								+e.bg
-									+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
-								+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
-									+i('play-triangle')
-						each el in portfolioList
-							+portfolioEl(el)
+				.container.container_portfolio
+					+b.c-tabs._portfolio
+						+e.tabs-nav
+							+e.tabs-el.is-active Рекламное видео
+							+e.tabs-el Презентационное видео
+							+e.tabs-el Репортажное/отчетное
+							+e.tabs-el Интернет и соц. сети
+						+e.tabs-for
+							+e.tab
+								+e.block
+									-
+										portfolioList = [{
+										title: 'Презентация нового Land Rover DISCOVERY SPORT',
+										descr: 'Разработка концепции и организация мероприятия',
+										img: 1,
+										sldAnchor: 1
+										}, {
+										title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+										descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+										img: 2,
+										sldAnchor: 2
+										}, {
+										title: 'IKEA',
+										descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+										img: 1,
+										sldAnchor: 3
+										}, {
+										title: 'Рекламные ролики для десерт-кафе',
+										descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+										img: 3,
+										sldAnchor: 4
+										}, {
+										title: 'Премьера нового Mercedes-Benz CLS',
+										descr: 'Разработка концепции и организация мероприятия',
+										img: 3,
+										sldAnchor: 5
+										}, {
+										title: 'Открытие магазина BURTON',
+										descr: 'Организация открытия магазина Burton',
+										img: 2,
+										sldAnchor: 6
+										}]
+									mixin portfolioEl(el)
+										+b.portfolio-item
+											+e.text
+												+e.title= el.title
+												+e.P.descr= el.descr
+												+e.A.link.link(href='#!') Подробнее
+											+e.bg
+												+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+											+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+												+i('play-triangle')
+									each el in portfolioList
+										+portfolioEl(el)
+							+e.tab
+								+e.block
+									-
+										portfolioList = [{
+										title: 'Презентация нового Land Rover DISCOVERY SPORT',
+										descr: 'Разработка концепции и организация мероприятия',
+										img: 1,
+										sldAnchor: 1
+										}, {
+										title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+										descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+										img: 2,
+										sldAnchor: 2
+										}, {
+										title: 'IKEA',
+										descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+										img: 1,
+										sldAnchor: 3
+										}, {
+										title: 'Рекламные ролики для десерт-кафе',
+										descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+										img: 3,
+										sldAnchor: 4
+										}, {
+										title: 'Премьера нового Mercedes-Benz CLS',
+										descr: 'Разработка концепции и организация мероприятия',
+										img: 3,
+										sldAnchor: 5
+										}, {
+										title: 'Открытие магазина BURTON',
+										descr: 'Организация открытия магазина Burton',
+										img: 2,
+										sldAnchor: 6
+										}]
+									mixin portfolioEl(el)
+										+b.portfolio-item
+											+e.text
+												+e.title= el.title
+												+e.P.descr= el.descr
+												+e.A.link.link(href='#!') Подробнее
+											+e.bg
+												+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+											+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+												+i('play-triangle')
+									each el in portfolioList
+										+portfolioEl(el)
+							+e.tab
+								+e.block
+									-
+										portfolioList = [{
+										title: 'Презентация нового Land Rover DISCOVERY SPORT',
+										descr: 'Разработка концепции и организация мероприятия',
+										img: 1,
+										sldAnchor: 1
+										}, {
+										title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+										descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+										img: 2,
+										sldAnchor: 2
+										}, {
+										title: 'IKEA',
+										descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+										img: 1,
+										sldAnchor: 3
+										}, {
+										title: 'Рекламные ролики для десерт-кафе',
+										descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+										img: 3,
+										sldAnchor: 4
+										}, {
+										title: 'Премьера нового Mercedes-Benz CLS',
+										descr: 'Разработка концепции и организация мероприятия',
+										img: 3,
+										sldAnchor: 5
+										}, {
+										title: 'Открытие магазина BURTON',
+										descr: 'Организация открытия магазина Burton',
+										img: 2,
+										sldAnchor: 6
+										}]
+									mixin portfolioEl(el)
+										+b.portfolio-item
+											+e.text
+												+e.title= el.title
+												+e.P.descr= el.descr
+												+e.A.link.link(href='#!') Подробнее
+											+e.bg
+												+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+											+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+												+i('play-triangle')
+									each el in portfolioList
+										+portfolioEl(el)
 
-					+e.more
-						+b.A.more-link.link(href='#!') Смотреть все
+							+e.tab
+								+e.block
+									-
+										portfolioList = [{
+										title: 'Презентация нового Land Rover DISCOVERY SPORT',
+										descr: 'Разработка концепции и организация мероприятия',
+										img: 1,
+										sldAnchor: 1
+										}, {
+										title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+										descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+										img: 2,
+										sldAnchor: 2
+										}, {
+										title: 'IKEA',
+										descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+										img: 1,
+										sldAnchor: 3
+										}, {
+										title: 'Рекламные ролики для десерт-кафе',
+										descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+										img: 3,
+										sldAnchor: 4
+										}, {
+										title: 'Премьера нового Mercedes-Benz CLS',
+										descr: 'Разработка концепции и организация мероприятия',
+										img: 3,
+										sldAnchor: 5
+										}, {
+										title: 'Открытие магазина BURTON',
+										descr: 'Организация открытия магазина Burton',
+										img: 2,
+										sldAnchor: 6
+										}]
+									mixin portfolioEl(el)
+										+b.portfolio-item
+											+e.text
+												+e.title= el.title
+												+e.P.descr= el.descr
+												+e.A.link.link(href='#!') Подробнее
+											+e.bg
+												+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+											+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+												+i('play-triangle')
+									each el in portfolioList
+										+portfolioEl(el)
+
+
+
+					+b.section__more._portfolio
+						+e.A.more-link.link(href='#!') Смотреть все
 
 			+b.fullscreen.fp-slide
 				+b.fullscreen-controls
@@ -317,6 +466,7 @@ block main
 								path(d='M.44,11.57,12.11,21.89c.36.32.89-.21.53-.53L1,11c-.36-.32-.89.21-.53.53Z')
 
 				+e.slider.js-fullscreen-slider
+
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
@@ -327,6 +477,7 @@ block main
 
 						+e.VIDEO.video(preload='auto')
 							source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
+
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
@@ -337,6 +488,7 @@ block main
 
 						+e.VIDEO.video(preload='auto')
 							source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
+
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
@@ -347,6 +499,7 @@ block main
 
 						+e.VIDEO.video(preload='auto')
 							source(src='http://mazwai.com/system/posts/videos/000/000/008/original/grand_theory--after_the_rain__Wait_for_me.mp4?1400447132', type='video/mp4')
+
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
@@ -357,6 +510,7 @@ block main
 
 						+e.VIDEO.video(preload='auto')
 							source(src='https://player.vimeo.com/external/155409815.hd.mp4?s=a760d6e2f3ab87366f0771bbb9e8e9a1c8a36a39&profile_id=119&oauth2_token_id=430206341', type='video/mp4')
+
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
@@ -395,7 +549,7 @@ block main
 							circle.circles__body-3(data-circle-type='tl' r='58', cx='472', cy='77')
 
 						+e.more
-							+e.A.link.link(href='#!') Пригласить
+							+e.BUTTON.btn.link(data-popup-target='invitePopup' type='button') Пригласить
 
 		//begin prices
 		+b.SECTION.section.fp-section(data-anchor='prices')
@@ -457,3 +611,8 @@ block main
 							//-socials
 							-socialsClass = '_gray'
 							include ../components/socials
+
+	include ../components/popups
+	block modals
+		//promo ty
+		+popup({name: 'invite'})

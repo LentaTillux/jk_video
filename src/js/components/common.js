@@ -7,6 +7,7 @@
 import './noTouch';
 import objectFitVideos from 'object-fit-videos';
 import objectFitImages from 'object-fit-images';
+import Popup from 'vintage-popup';
 import CTabs from './c-tabs';
 import Dot from './dot';
 import InitFullpage from './fullpageInit';
@@ -36,3 +37,8 @@ $tabs.each((index, el) => {
   const tab = new CTabs($(el));
   tab.init();
 });
+
+/** pop-ups */
+const $popup = $('[data-popup-target]');
+Popup.expose($);
+$popup.popup();

@@ -588,9 +588,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 __webpack_require__(6);
 
-__webpack_require__(22);
+__webpack_require__(23);
 
-var _home = __webpack_require__(23);
+var _home = __webpack_require__(24);
 
 var _home2 = _interopRequireDefault(_home);
 
@@ -644,15 +644,19 @@ var _objectFitImages = __webpack_require__(9);
 
 var _objectFitImages2 = _interopRequireDefault(_objectFitImages);
 
-var _cTabs = __webpack_require__(10);
+var _vintagePopup = __webpack_require__(10);
+
+var _vintagePopup2 = _interopRequireDefault(_vintagePopup);
+
+var _cTabs = __webpack_require__(11);
 
 var _cTabs2 = _interopRequireDefault(_cTabs);
 
-var _dot = __webpack_require__(12);
+var _dot = __webpack_require__(13);
 
 var _dot2 = _interopRequireDefault(_dot);
 
-var _fullpageInit = __webpack_require__(14);
+var _fullpageInit = __webpack_require__(15);
 
 var _fullpageInit2 = _interopRequireDefault(_fullpageInit);
 
@@ -660,7 +664,7 @@ var _screenVIdeo = __webpack_require__(3);
 
 var _screenVIdeo2 = _interopRequireDefault(_screenVIdeo);
 
-var _customScroll = __webpack_require__(19);
+var _customScroll = __webpack_require__(20);
 
 var _customScroll2 = _interopRequireDefault(_customScroll);
 
@@ -704,6 +708,11 @@ $tabs.each(function (index, el) {
   var tab = new _cTabs2.default($(el));
   tab.init();
 });
+
+/** pop-ups */
+var $popup = $('[data-popup-target]');
+_vintagePopup2.default.expose($);
+$popup.popup();
 
 /***/ }),
 /* 7 */
@@ -1237,6 +1246,13 @@ module.exports = fix;
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var __WEBPACK_AMD_DEFINE_RESULT__;!function(){function t(p,i){return void 0===this||Object.getPrototypeOf(this)!==t.prototype?new t(p,i):(e=$(window),o=$(document),n=$("body"),s=$("html, body"),this.options=i=$.extend(!0,{openedClass:"opened",openedBodyClass:"popup-opened",closeBtnSelector:".popup__close",targetPopupId:p.data("popup-target"),eventsNameSpace:"popup",lockScreen:!0,lockScreenEl:document.body,preventDefault:!1,closeOnBgClick:!0,closeOnEsc:!0,closeOnResize:!1,openOnClick:!0,beforeOpen:null,afterOpen:null,beforeClose:null,afterClose:null,remote:{url:p.data("popup-remote")}},i),this.$button=p,this.$popup=$('[data-popup-id="'+i.targetPopupId+'"]'),this.defaultEvents="click."+i.eventsNameSpace+" tap."+i.eventsNameSpace,this.activate(),this)}var e,o,n,s,p=/iPad|iPhone|iPod/.test(navigator.platform),i=!1,l=!1;t.VERSION="0.1.72",t.getScrollbarWidth=function(){if(o.height()<=e.height())return 0;var t,n,s=document.createElement("div"),p=document.createElement("div");return s.style.visibility="hidden",s.style.width="100px",document.body.appendChild(s),t=s.offsetWidth,s.style.overflow="scroll",p.style.width="100%",s.appendChild(p),n=p.offsetWidth,s.parentNode.removeChild(s),t-n},t.lockScreen=function(e){if(!p){var o=$(e),n=parseInt(o.css("padding-right"),10)+t.getScrollbarWidth();o.css("padding-right",n+"px")}},t.unlockScreen=function(e){if(!p){var o=$(e),n=parseInt(o.css("padding-right"),10)-t.getScrollbarWidth();o.css("padding-right",n+"px")}},t.prototype.checkAndCloseAllPopups=function(){var t=n.find("[data-popup-id]"),e=t.filter("."+this.options.openedClass);if(e.length){var o=e.data("popup");this.prevPopupScrollTop=o.scrollTop,o.close(!0)}return this},t.prototype.checkAndRunCallback=function(t){return"function"==typeof t?t.call(null,this):void 0!=t&&console.warn("Callback should be a function."),this},t.prototype.open=function(o){return o&&(this.actionsWithRemoteData(o),this.registerCloseBtnClick()),this.checkAndRunCallback(this.options.beforeOpen),this.scrollTop=this.prevPopupScrollTop||e.scrollTop(),this.$popup.data("popupScrollTop",this.scrollTop),this.options.lockScreen&&t.lockScreen(this.options.lockScreenEl),n.css("top",-this.scrollTop).addClass(this.options.openedBodyClass),this.$popup.addClass(this.options.openedClass),this.checkAndRunCallback(this.options.afterOpen),this},t.prototype.close=function(e){return this.checkAndRunCallback(this.options.beforeClose),e||(this.options.lockScreen&&t.unlockScreen(this.options.lockScreenEl),n.css({top:""}).removeClass(this.options.openedBodyClass),s.scrollTop(this.$popup.data("popupScrollTop")),this.prevScrollTop&&(this.prevScrollTop=!1)),this.$popup.removeClass(this.options.openedClass),this.checkAndRunCallback(this.options.afterClose),this},t.prototype.actionsWithRemoteData=function(t){if(t.replaces instanceof Array)for(var e=0,o=t.replaces.length;e<o;e++)$(t.replaces[e].what).replaceWith(t.replaces[e].data);if(t.append instanceof Array)for(e=0,o=t.append.length;e<o;e++)$(t.append[e].what).append(t.append[e].data);if(t.content instanceof Array)for(e=0,o=t.content.length;e<o;e++)$(t.content[e].what).html(t.content[e].data);t.js&&n.append(t.js),t.refresh&&window.location.reload(!0),t.redirect&&(window.location.href=t.redirect)},t.prototype.registerOpenOnClick=function(){var t=this;return this.$button.unbind(this.defaultEvents).on(this.defaultEvents,function(e){if(t.options.preventDefault&&e.preventDefault(),t.checkAndCloseAllPopups(),t.options.remote.url){var o=t.options.remote;return $.ajax({url:o.url,method:"get",cache:"false",dataType:"json",data:o.data,beforeSend:o.onBeforeSend,success:function(e){t.open(e)},complete:o.onComplete,error:o.onError}),this}t.open(!1)}),this},t.prototype.registerCloseOnResize=function(){var o=this,s="resize."+this.options.eventsNameSpace;return i||(e.on(s,function(){n.hasClass(o.options.openedBodyClass)&&t.closeAllPopups(o.options.openedClass)}),i=!0),this},t.prototype.registerCloseOnEsc=function(){var e=this,s="keyup."+this.options.eventsNameSpace;return l||(o.on(s,function(o){27==o.keyCode&&n.hasClass(e.options.openedBodyClass)&&t.closeAllPopups(e.options.openedClass)}),l=!0),this},t.prototype.registerCloseOnBgClick=function(){var t=this;return t.$popup.on(this.defaultEvents,function(e){e.target===t.$popup.get(0)&&t.close()}),this},t.prototype.registerCloseBtnClick=function(){var t=this,e=t.$popup.find(this.options.closeBtnSelector);return e.unbind&&e.on?(e.unbind(this.defaultEvents).on(this.defaultEvents,function(){t.close()}),this):(console.warn("Close button was not found"),this)},t.prototype.activate=function(){return this.$popup.data("popup")?(this.$popup.data("popup",this),this.options.openOnClick&&this.registerOpenOnClick(),this):(this.registerCloseBtnClick(),this.$popup.data("popup",this),this.options.closeOnEsc&&this.registerCloseOnEsc(),this.options.closeOnBgClick&&this.registerCloseOnBgClick(),this.options.closeOnResize&&this.registerCloseOnResize(),this.options.openOnClick&&this.registerOpenOnClick(),this)},t.prototype.kill=function(){this.$button.unbind(this.defaultEvents),this.$popup.data("popup",null)},t.kill=function(t){$(t).data("popup").kill()},t.closeAllPopups=function(t){t=t||"opened";var e=n.find("[data-popup-id]"),o=e.filter("."+t);if(o.length){var s=o.data("popup");s.close.call(s,!1)}};var r=t.expose=function(e){$=e,$.fn.popup=function(e){var o=[];return this.each(function(){var n=$(this);o.push(new t(n,e))}),1===o.length?o[0]:o}};"object"==typeof module&&"object"==typeof module.exports?module.exports=t: true?!(__WEBPACK_AMD_DEFINE_RESULT__ = function(){return t}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):window.Popup=t,r($)}();
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -1246,7 +1262,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _gsap = __webpack_require__(11);
+var _gsap = __webpack_require__(12);
 
 var _helpers = __webpack_require__(0);
 
@@ -1340,7 +1356,7 @@ var CTabs = function () {
 exports.default = CTabs;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -9272,7 +9288,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9284,7 +9300,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dotdotdot = __webpack_require__(13);
+var _dotdotdot = __webpack_require__(14);
 
 var _dotdotdot2 = _interopRequireDefault(_dotdotdot);
 
@@ -9342,7 +9358,7 @@ var Dot = function () {
 exports.default = Dot;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /*
@@ -10014,7 +10030,7 @@ exports.default = Dot;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10025,11 +10041,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = InitFullpage;
 
-var _fullpage = __webpack_require__(15);
+var _fullpage = __webpack_require__(16);
 
 var _fullpage2 = _interopRequireDefault(_fullpage);
 
-var _slickCarousel = __webpack_require__(18);
+var _slickCarousel = __webpack_require__(19);
 
 var _slickCarousel2 = _interopRequireDefault(_slickCarousel);
 
@@ -10090,13 +10106,6 @@ function InitFullpage() {
         if (nextIndex !== 5) {
           $animSVG.removeClass(_helpers.css.visible);
         }
-
-        // if (nextIndex === 4 || nextIndex === 5) {
-        //   $animSVG.addClass(css.visible);
-        // }
-        // else {
-        //   $animSVG.removeClass(css.visible);
-        // }
       }
     });
 
@@ -10231,7 +10240,7 @@ function InitFullpage() {
 }
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13363,9 +13372,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 16 */,
 /* 17 */,
-/* 18 */
+/* 18 */,
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -16366,7 +16375,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16381,7 +16390,7 @@ var _jqueryMousewheel = __webpack_require__(4);
 
 var _jqueryMousewheel2 = _interopRequireDefault(_jqueryMousewheel);
 
-var _malihuCustomScrollbarPlugin = __webpack_require__(20);
+var _malihuCustomScrollbarPlugin = __webpack_require__(21);
 
 var _malihuCustomScrollbarPlugin2 = _interopRequireDefault(_malihuCustomScrollbarPlugin);
 
@@ -16398,7 +16407,7 @@ function customScroll() {
 }
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -16452,7 +16461,7 @@ and dependencies (minified).
 	}
 }(function($){
 (function(init){
-	var _rjs="function"==="function" && __webpack_require__(21), /* RequireJS */
+	var _rjs="function"==="function" && __webpack_require__(22), /* RequireJS */
 		_njs=typeof module !== "undefined" && module.exports, /* NodeJS */
 		_dlp=("https:"==document.location.protocol) ? "https:" : "http:", /* location protocol */
 		_url="cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js";
@@ -18864,7 +18873,7 @@ and dependencies (minified).
 }))}));
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -18873,7 +18882,7 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18955,7 +18964,7 @@ var PublicAPI = exports.PublicAPI = function () {
 exports.default = window.PublicAPI = new PublicAPI();
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19000,7 +19009,7 @@ var Home = function () {
     value: function loadChunk() {
       return new Promise(function (resolve) {
         __webpack_require__.e/* require.ensure */(0).then((function (require) {
-          var loadedChunk = __webpack_require__(25).default;
+          var loadedChunk = __webpack_require__(26).default;
 
           resolve(loadedChunk);
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);

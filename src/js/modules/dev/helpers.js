@@ -182,7 +182,8 @@ export const css = {
   enabled: 'is-enabled',
   disabled: 'is-disabled',
   transparent: 'is-transparent',
-  image: 'has-image'
+  image: 'has-image',
+  visible: 'is-visible'
 };
 
 /**

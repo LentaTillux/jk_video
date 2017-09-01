@@ -1,15 +1,12 @@
 .svg-circle
 	$parent: &
 	svg
-		position: absolute
-		top: 0
-		left: 0
 	
 	&__outer
 		fill: transparent
 		stroke: $orange
-		stroke-width: 14
-		stroke-dasharray: 534
+		stroke-width: 10
+		stroke-dasharray: 518
 		transition: .5s
 		-webkit-animation-play-state: running
 		/* firefox bug fix - won't rotate at 90deg angles
@@ -90,8 +87,21 @@
 	stroke-width: 36px
 	&_absolute
 		position: absolute
-		right: 2%
-		bottom: 29%
+		right: 13.4%
+		bottom: 20%
+	&_screen
+		margin: 30px 0 75px
+	&_order
+		margin-top: 20px
+		margin-bottom: 80px
+	&_prices
+		margin-top: 180px
+		margin-bottom: 80px
+	&_contacts
+		margin-bottom: 80px
+	circle
+		&.is-visible
+			animation: rotateIn 1s ease
 	circle[data-circle-type='tr']
 		stroke-dasharray: 91
 		stroke-dashoffset: 91
@@ -123,27 +133,38 @@
 	fill: none
 	stroke: $orange
 	stroke-width: 146px
-	circle
-	//animation: bigCircleRotateOut 1s linear both
-	//transform-origin: 50% 50%
-	//+gpu
-	//&.animated
-	//	circle
-	//		animation: bigCircleRotateIn 1s linear both
 	circle[data-circle-type='tl']
 		stroke-dasharray: 369
 		stroke-dashoffset: -369
-//circle[data-circle-type='tr-bl']
-//	stroke-dasharray: 0
-	stroke-dashoffset: 91
-
+	&__body-1
+		&.is-visible
+			animation: rotateIn 1s ease
+	&__body-2
+		-webkit-backface-visibility: visible !important
+		backface-visibility: visible !important
+		&.is-visible
+			animation: rotateInOut 1s ease
 .circles-triple
-	width: 436px
-	height: 615px
+	position: relative
+	width: 100%
+	height: 100%
 	circle
 		fill: none
 		stroke: $orange
+	svg
+		position: absolute
+		transition: transform 2s 2s ease, opacity .3s ease
 		
+	&__svg-1
+		&.is-visible
+			animation: fadeInDown 1s ease
+	&__svg-2
+		&.is-visible
+			animation: bounceIn 1s .8s ease
+		
+	&__svg-3
+		&.is-visible
+			animation: fadeInUp 1s ease
 	&__body-1
 		stroke-dashoffset: -190
 		stroke-dasharray: 420
@@ -156,3 +177,32 @@
 		stroke-dashoffset: -150
 		stroke-dasharray: 420
 		stroke-width: 78px
+		
+// mouse
+.mouse-svg
+	width: 34px
+	height: 40px
+	fill: $orange
+	transition: .6s cubic-bezier(0.46, 0, 0.07, 1)
+	
+.round-svg
+	width: 84px
+	height: 84px
+	fill: none
+	stroke: $orange
+	stroke-width: 4px
+	transition: .6s cubic-bezier(0.46, 0, 0.07, 1)
+	&[data-circle='25']
+		stroke-dasharray: 233
+		stroke-dashoffset: 34
+		transform: rotate(-90deg)
+		&:hover
+			stroke-dasharray: 300
+	&[data-circle='75']
+		stroke-dasharray: 233
+		stroke-dashoffset: 34
+		&:hover
+			stroke-dasharray: 300
+			
+.icon-arr-down
+	transition: .6s cubic-bezier(0.46, 0, 0.07, 1)

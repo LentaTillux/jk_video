@@ -1,7 +1,7 @@
 // basic styles
 body
   min-width: 320px
-  +f('pn400', 23)
+  +f('pf400', 23)
   background: $white
   color: $dark-gray
   &.is-locked
@@ -24,13 +24,35 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
 // layout
 .out
   overflow: hidden
-  min-height: 100vh
+  height: 100vh
 
 .container
-  max-width: 1730px
+  max-width: 1760px
   margin: 0 auto
-  padding-left: 300px
-  
+  padding-top: 120px
+  padding-left: 280px
+  padding-right: 15px
+  &_about
+    padding-top: 80px
+  &_portfolio
+    padding-top: 170px
+    padding-left: 365px
+    padding-right: 60px
+  &_order
+    padding-top: 130px
+    padding-left: 370px
+    padding-right: 55px
+  &_prices
+    padding-top: 140px
+    padding-left: 365px
+    padding-right: 55px
+    
+//.content
+  //padding-bottom: 200px
+
+//.fp-tableCell
+//  padding-top: 120px
+
 // titles
 .title-lg
   +f('pf700', 65)
@@ -42,7 +64,8 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
 .link
   display: inline-flex
   position: relative
-  padding-bottom: 5px
+  padding-bottom: 12px
+  margin-left: 5px
   color: $orange
   +f('pf700')
   .no-touch &:hover::after

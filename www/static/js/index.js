@@ -232,7 +232,8 @@ var css = exports.css = {
   enabled: 'is-enabled',
   disabled: 'is-disabled',
   transparent: 'is-transparent',
-  image: 'has-image'
+  image: 'has-image',
+  visible: 'is-visible'
 };
 
 /**
@@ -682,9 +683,9 @@ var Common = exports.Common = function () {
       (0, _objectFitVideos2.default)();
       (0, _objectFitImages2.default)();
       new _dot2.default();
-      new _fullpageInit2.default();
-      new _screenVIdeo2.default();
-      new _customScroll2.default();
+      (0, _fullpageInit2.default)();
+      (0, _screenVIdeo2.default)();
+      (0, _customScroll2.default)();
     }
   }]);
 
@@ -10042,7 +10043,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function InitFullpage() {
   var $fullpage = $('.js-fullpage');
-  // const $animSVG = $('.js-anim-svg');
+  var $animSVG = $('.js-anim-svg');
+  var $animSVGSecond = $('.js-anim-svg-2');
 
   // fullpage settings
   if ($fullpage.length) {
@@ -10067,13 +10069,35 @@ function InitFullpage() {
           $.fn.fullpage.setMouseWheelScrolling(true);
           $.fn.fullpage.setAllowScrolling(true);
         }
+      },
+      onLeave: function onLeave(index, nextIndex, direction) {
+        if (nextIndex === 1) {
+          _helpers.$header.removeClass('is-inside');
+        } else {
+          _helpers.$header.addClass('is-inside');
+        }
+
+        if (nextIndex === 4) {
+          $animSVGSecond.addClass(_helpers.css.visible);
+        }
+        if (nextIndex !== 4) {
+          $animSVGSecond.removeClass(_helpers.css.visible);
+        }
+
+        if (nextIndex === 5) {
+          $animSVG.addClass(_helpers.css.visible);
+        }
+        if (nextIndex !== 5) {
+          $animSVG.removeClass(_helpers.css.visible);
+        }
+
+        // if (nextIndex === 4 || nextIndex === 5) {
+        //   $animSVG.addClass(css.visible);
+        // }
+        // else {
+        //   $animSVG.removeClass(css.visible);
+        // }
       }
-      // onLeave: function (index, nextIndex, direction) {
-      //   if (nextIndex === 1) {
-      //     initScreenVideo();
-      //   }
-      // $animSVG.toggleClass('animated');
-      // }
     });
 
     var $playerInitBtn = $('.js-init-player');
@@ -10136,8 +10160,8 @@ function InitFullpage() {
     adaptiveHeight: true,
     appendArrows: '.fullscreen-controls__buttons',
     appendDots: '.fullscreen-controls__inner',
-    prevArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_prev"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg></button>',
-    nextArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_next"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg></button>'
+    prevArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_prev"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="75"><circle r="42" cx="50%" cy="50%"></circle></svg></button>',
+    nextArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_next"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="25"><circle r="42" cx="50%" cy="50%"></circle></svg></button>'
   });
 
   $videoSlider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {

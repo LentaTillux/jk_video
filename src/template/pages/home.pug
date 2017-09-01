@@ -4,7 +4,7 @@ block variables
 	- var title = 'JK Video';
 
 block main
-	main.js-fullpage(data-page='home')
+	main.content.js-fullpage(data-page='home')
 
 		//begin screen
 		+b.SECTION.section.fp-section(data-anchor='screen')
@@ -19,9 +19,11 @@ block main
 											rect(x='0', y='0', width='100%', height='100%')
 											circle.screen-video__circle-sm(data-circle-type='tl' r='214', cx='50%', cy='50%')
 											circle.screen-video__circle-lg(data-circle-type='tl' r='470', cx='50%', cy='50%')
-									rect(x='0', y='0', width='100%', height='100%')
+									g
+										rect(x='0', y='0', width='100%', height='100%')
+									rect(mask='url(#screen-video__mask)' x='0', y='0', width='100%', height='100%')
 
-								video.screen-video__el(y'muted', preload='auto', loop='loop')
+								video.screen-video__el(preload='auto' loop)
 									source(src='http://mazwai.com/system/posts/videos/000/000/110/original/alessio_balza--humans.mp4?1410742308', type='video/mp4')
 									source(src='http://mazwai.com/system/posts/videos/000/000/110/original/alessio_balza--humans.mp4?1410742308', type='video/webm')
 
@@ -33,15 +35,20 @@ block main
 							.screen-video__line.screen-video__line_v
 							.screen-video__line.screen-video__line_h
 
-					+e.block._right
+					+e.block._right._screen
 						+e.H2.title.title-lg Мы - глаза Вашего праздника
 						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
+
+						+b.SVG.circles._screen
+							circle.circles__body-1(data-circle-type='br' r='58', cx='0', cy='77')
+							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
+							circle.circles__body-3(data-circle-type='tl' r='58', cx='472', cy='77')
 						+e.more
 							+e.A.link.link(href='#!') Задать вопрос
 
 		//begin about
 		+b.SECTION.section.fp-section(data-anchor='about')
-			.container
+			.container.container_about
 				//begin tabs
 				+b.c-tabs
 					+e.tabs-for
@@ -239,7 +246,7 @@ block main
 		//begin portfolio
 		+b.SECTION.section.fp-section(data-anchor='portfolio')
 			+b.fp-slide
-				+b.portfolio.container
+				+b.portfolio.container._portfolio
 					+e.block
 						-
 							portfolioList = [{
@@ -295,15 +302,25 @@ block main
 						+e.buttons
 							+e.BUTTON.btn.js-play(type='button')
 								+i('play-triangle')
+								svg.round-svg(viewBox='0 0 88 88' data-circle='25')
+									circle(r='42', cx='50%', cy='50%')
 							+e.BUTTON.btn.js-pause(type='button')
 								+i('pause')
+								svg.round-svg(viewBox='0 0 88 88' data-circle='75')
+									circle(r='42', cx='50%', cy='50%')
 
-						+e.BUTTON.btn-exit.js-exit-player(type='button') Вернуться
+						+e.BUTTON.btn-exit.js-exit-player(type='button')
+							+e.SPAN Вернуться
+							svg.icon(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 190.38 21.99')
+								line(fill='#fff' x1='0.38', y1='11.13', x2='190.38', y2='11.13')
+								path(d='M.64,11.39,11.39.64a.38.38,0,0,0-.53-.53L.11,10.86a.38.38,0,0,0,.53.53Z')
+								path(d='M.44,11.57,12.11,21.89c.36.32.89-.21.53-.53L1,11c-.36-.32-.89.21-.53.53Z')
 
 				+e.slider.js-fullscreen-slider
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
+								+i('arr-down')
 								+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
@@ -313,6 +330,7 @@ block main
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
+								+i('arr-down')
 								+e.H3.text-title Рекламный ролик Интернет-магазина КУВАЛДА.РУ
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
@@ -322,6 +340,7 @@ block main
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
+								+i('arr-down')
 								+e.H3.text-title IKEA
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
@@ -331,6 +350,7 @@ block main
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
+								+i('arr-down')
 								+e.H3.text-title Рекламные ролики для десерт-кафе
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
@@ -340,6 +360,7 @@ block main
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
+								+i('arr-down')
 								+e.H3.text-title Премьера нового Mercedes-Benz CLS
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
@@ -350,6 +371,7 @@ block main
 					+e.item
 						+e.text.js-custom-scroll
 							+e.text-in
+								+i('arr-down')
 								+e.H3.text-title Открытие магазина BURTON
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
 								+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
@@ -358,16 +380,16 @@ block main
 
 		//begin order
 		+b.SECTION.section.fp-section(data-anchor='order')
-			.container
+			.container.container_order
 				+e.inner
 					+e.block._left
-						+b.SVG.circles-big.js-anim-svg
-							circle.circles__body-1(data-circle-type='tl' r='235', cx='50%', cy='50%')
-							circle.circles__body-2(data-circle-type='tl' r='235', cx='-0.5%', cy='50%')
+						+b.SVG.circles-big
+							circle.circles-big__body-1.js-anim-svg-2(data-circle-type='tl' r='235', cx='50%', cy='50%')
+							circle.circles-big__body-2.js-anim-svg-2(data-circle-type='tl' r='235', cx='-0.5%', cy='50%')
 					+e.block._right
 						+e.H2.title.title-lg Хотите пригласить нашу команду на Ваш праздник?
 						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
-						+b.SVG.circles
+						+b.SVG.circles._order
 							circle.circles__body-1(data-circle-type='br' r='58', cx='0', cy='77')
 							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
 							circle.circles__body-3(data-circle-type='tl' r='58', cx='472', cy='77')
@@ -377,17 +399,20 @@ block main
 
 		//begin prices
 		+b.SECTION.section.fp-section(data-anchor='prices')
-			.container
+			.container.container_prices
 				+e.inner
-					+e.block._left
-						+b.SVG.circles-triple.js-anim-svg
-							circle.circles-triple__body-1(data-circle-type='tl' r='255', cx='50%', cy='-23%')
-							circle.circles-triple__body-2(data-circle-type='tl' r='120', cx='50%', cy='50%')
-							circle.circles-triple__body-3(data-circle-type='tl' r='255', cx='50%', cy='123.6%')
-					+e.block._right
+					+e.block._prices-img
+						+b.circles-triple
+							+b.SVG.circles-triple__svg-1.js-anim-svg(viewBox='0 0 436 615')
+								circle.circles-triple__body-1(data-circle-type='tl' r='255', cx='50%', cy='-23%')
+							+b.SVG.circles-triple__svg-2.js-anim-svg(viewBox='0 0 436 615')
+								circle.circles-triple__body-2(data-circle-type='tl' r='120', cx='50%', cy='50%')
+							+b.SVG.circles-triple__svg-3.js-anim-svg(viewBox='0 0 436 615')
+								circle.circles-triple__body-3(data-circle-type='tl' r='255', cx='50%', cy='123.6%')
+					+e.block._right._prices
 						+e.H2.title.title-lg Что по цене?
 						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
-						+b.SVG.circles
+						+b.SVG.circles._prices
 							circle.circles__body-1(data-circle-type='r' r='58', cx='0', cy='77')
 							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
 							circle.circles__body-3(data-circle-type='l' r='58', cx='472', cy='77')
@@ -399,9 +424,9 @@ block main
 		+b.SECTION.section.fp-section(data-anchor='contacts')
 			.container
 				+e.inner
-					+e.block._left
+					+e.block._contacts-left
 						+e.IMG(src='static/img/map.png' alt='image')
-					+e.block._right
+					+e.block._contacts-right
 						+e.H2.title.title-lg Контакты
 						+b.contacts-block
 							+e.item
@@ -422,10 +447,10 @@ block main
 								+e.item-text
 									+e.A.item-link._font(href='mailto:hello@jk-event.ru') hello@jk-event.ru
 
-						+b.SVG.circles
-							circle.circles__body-1(data-circle-type='r' r='58', cx='0', cy='77')
+						+b.SVG.circles._contacts
+							circle.circles__body-1(data-circle-type='tl' r='58', cx='0', cy='77')
 							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
-							circle.circles__body-3(data-circle-type='l' r='58', cx='472', cy='77')
+							circle.circles__body-3(data-circle-type='bl' r='58', cx='472', cy='77')
 
 						+e.more
 							+e.P.more-text Мы в соцсетях

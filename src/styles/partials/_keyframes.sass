@@ -9,3 +9,75 @@
 		transform: rotate(0)
 	100%
 		transform: rotate(-90deg)
+		
+@keyframes arrBouncing
+	0%
+		transform: translateY(0)
+	50%
+		transform: translateY(-20px)
+	100%
+		transform: translateY(0)
+	
+@keyframes longArrLeftBounce
+	0%
+		transform: translateX(0)
+	50%
+		transform: translateX(-15px)
+	100%
+		transform: translateX(0)
+		
+@keyframes fadeInDown
+	0%
+		opacity: 0
+		transform: translate3d(0, -100%, 0)
+	100%
+		opacity: 1
+		transform: none
+		
+@keyframes fadeInUp
+	0%
+		opacity: 0
+		transform: translate3d(0, 100%, 0)
+	100%
+		opacity: 1
+		transform: none
+		
+@keyframes bounceIn
+	from, 20%, 40%, 60%, 80%, to
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1)
+	
+	0%
+		transform: scale3d(1, 1, 1)
+	
+	20%
+		transform: scale3d(1.06, 1.06, 1.06)
+	
+	
+	to
+		transform: scale3d(1, 1, 1)
+		
+@keyframes rotateIn
+	from
+		transform-origin: center
+		transform: rotate3d(0, 0, 1, -200deg)
+	
+	to
+		transform-origin: center
+		transform: none
+		
+@keyframes rotateInOut
+	from
+		transform-origin: center
+		transform: rotate3d(0, 0, 1, 240deg)
+	
+	to
+		transform-origin: center
+		transform: none
+		
+@keyframes zoomIn
+	from
+		opacity: 0
+		transform: scale3d(0.3, 0.3, 0.3)
+	
+	50%
+		opacity: 1

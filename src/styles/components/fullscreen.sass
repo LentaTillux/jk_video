@@ -3,9 +3,6 @@
 	 =================================== */
 .fullscreen
 	position: relative
-	//&__body
-		+coverdiv
-		//background: #000
 	&__slider
 		min-height: 100vh
 	&__item
@@ -25,7 +22,7 @@
 		z-index: 110
 		background: $orange
 		cursor: default
-		transition: transform .3s ease
+		transition: transform .4s ease
 		+gpu
 		&::after, &::before
 			pointer-events: none
@@ -39,19 +36,29 @@
 			height: 165px
 			bottom: 0
 		&::before
-			height: 65px
+			height: 60px
 			top: 0
 		&-in
-			padding: 60px 60px 165px 120px
+			position: relative
+			padding: 42px 50px 165px 120px
+			.icon-arr-down
+				position: fixed
+				font-size: 35px
+				z-index: 103
+				top: 83%
+				left: 110px
+				fill: $white
+				animation: arrBouncing 2s ease-in-out infinite
 		&.is-disabled
 			transform: translateX(-100%)
 		&-title
-			max-width: 480px
-			margin-bottom: 35px
+			margin-bottom: 27px
 			+f('pf700', 53)
+			line-height: 62px
 			color: $white
 		&-descr
 			color: $dark-gray
+			line-height: 27px
 			&:not(:first-child)
 				margin-top: 10px
 	&__video
@@ -68,7 +75,7 @@
 	left: 0
 	right: 0
 	bottom: 0
-	padding-bottom: 80px
+	padding-bottom: 110px
 	z-index: 10
 	opacity: 0
 	visibility: hidden
@@ -86,32 +93,52 @@
 			pointer-events: none
 	&__inner
 		display: flex
-		justify-content: space-between
 		align-items: flex-start
-		max-width: 1800px
+		max-width: 1680px
 		margin: 0 auto
+	&__buttons
+		font-size: 0
+		margin-right: 120px
 	&__btn
+		position: relative
 		display: inline-flex
 		align-items: center
 		justify-content: center
 		width: 84px
 		height: 84px
-		border: 3px solid $orange
-		border-radius: 50%
 		&:not(:first-child)
 			margin-left: 20px
 		&-exit
+			position: relative
+			text-align: right
+			margin-left: auto
 			order: 1
 			+f('pf700')
 			color: $white
+			span
+				display: block
+			.icon
+				fill: $white!important
+				stroke: $white
+				width: 200px
+				height: 24px
+				+trs
+			&:hover .icon
+				animation: longArrLeftBounce .4s ease
+				fill: $orange!important
+				
 		&_prev .icon
 			transform: rotate(180deg)
+			
+		.round-svg
+			+vcenter
 	.icon
 		fill: $orange
 		font-size: 36px
 		
 	.slick-dots
 		position: relative
+		margin-top: 20px
 		height: 40px
 		font-size: 0
 		text-align: center
@@ -121,8 +148,8 @@
 		&::after
 			pointer-events: none
 			position: absolute
-			left: -10px
-			right: -10px
+			left: -40px
+			right: -40px
 			top: calc(50% - 1px)
 			z-index: 1
 			height: 3px

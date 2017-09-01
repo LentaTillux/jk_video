@@ -5,19 +5,30 @@
 	&__inner
 		display: flex
 		justify-content: space-between
-		//&_wrap
-		//	flex-wrap: wrap
-		//	justify-content: center
+		//padding-top: 120px
 	&__block
 		&_left
 			flex: 0 1 620px
 		&_right
 			flex: 0 1 600px
-		&_full
-			display: flex
-			flex: 1 1 100%
-			width: 100%
-			margin: 0 -30px 100px
+		&_prices-img
+			flex: 0 1 440px
+			padding-top: 30px
+		&_prices
+			padding-top: 20px
+		&_contacts
+			&-left
+				flex: 0 1 700px
+				padding-left: 60px
+				padding-top: 100px
+			&-right
+				flex: 0 1 650px
+				padding-top: 40px
+		&_screen
+			margin-right: 35px
+			margin-top: 60px
+	&__title
+		margin-bottom: 55px
 	&__descr
 		max-width: 500px
 		color: $gray
@@ -96,7 +107,8 @@
 		flex-wrap: wrap
 		justify-content: center
 	&__more
-		margin-top: 25px
+		margin-top: 35px
+		
 /* portfolio-item
 	----------------------------------- */
 .portfolio-item
@@ -114,7 +126,7 @@
 		bottom: 0
 		z-index: 2
 	&__bg
-		padding-top: 57.5%
+		padding-top: 61.4%
 		&::after
 			+coverdiv
 			background: rgba(#000, .4)
@@ -158,12 +170,14 @@
 			fill: $white
 		> rect
 			fill: $white
-			-webkit-mask: url(#screen-video__mask)
-			mask: url(#screen-video__mask)
 		circle
 			stroke-width: 134px
 			fill: none
 			stroke: #000
+		g
+			fill-opacity: .5
+			> rect
+				fill: red
 	&__btn
 		display: none
 	&__circle-lg
@@ -192,10 +206,10 @@
 			display: inline-block
 			padding: 0
 			&:not(:first-child)
-				margin-left: 20px
+				margin-left: 35px
 		.icon
 			fill: $orange
-			font-size: 50px
+			font-size: 60px
 	&__line
 		position: absolute
 		z-index: 3
@@ -203,10 +217,13 @@
 		&_v
 			width: 3px
 			height: 100%
-			top: -50%
+			max-height: 394px
+			top: -84px
+			//transform: translateY(50%)
 			left: calc(50% - 2px)
 		&_h
 			width: 100%
+			max-width: 394px
 			top: calc(50% - 3px)
 			left: 50%
 			height: 3px

@@ -1,29 +1,43 @@
 .header
 	position: fixed
-	top: 0
+	top: 10%
+	transform: translateY(-10%)
 	left: 0
 	right: 0
-	padding-top: 100px
-	background: $white
 	z-index: 101
-	transition: .5s ease
+	transition: 1.5s ease
+	&.is-inside
+		&::after
+			opacity: 1
+		.round-svg, .mouse-svg
+			pointer-events: none
+			visibility: hidden
+			opacity: 0
+		.icon-arr-down
+			bottom: 25%
+		.nav__next-section
+			bottom: -35%
+	
 	&.is-disabled
 		transform: translateX(100%)
 	$parent: &
 	&__container
 		position: relative
 		display: flex
-		justify-content: space-between
-		align-items: center
-		max-width: 1730px
+		align-items: flex-start
+		max-width: 1760px
 		margin: 0 auto
+		padding: 0 15px
 	&__logo
 		transition: .5s ease
 	&__contacts
 		display: flex
+		margin-left: auto
+		padding-top: 56px
+		padding-right: 46px
 		&-item
 			position: relative
-			margin-right: 170px
+			margin-right: 205px
 		&-tel
 			+f('pf700', 23)
 			color: $dark-gray
@@ -36,7 +50,7 @@
 		&-svg
 			position: absolute
 			top: calc(50% - 40px)
-			right: 0
+			right: -50px
 
 	&.in-video
 		background: transparent
@@ -61,15 +75,15 @@
 			
 .nav
 	position: absolute
-	bottom: -230%
-	left: 20px
+	bottom: -200%
+	left: 8px
 	z-index: 1
 	transition: .5s ease
 	&__list
 		$parent: &
 		&-item
 			&:not(:first-child)
-				margin-top: 30px
+				margin-top: 15px
 			&.active #{$parent}-link
 				color: $orange
 			&.active #{$parent}-link::after,
@@ -108,3 +122,21 @@
 				position: absolute
 				right: 0
 				top: 0
+				
+	&__next-section
+		position: absolute
+		bottom: -74%
+		left: 30px
+		transition: 0.6s cubic-bezier(0.46, 0, 0.07, 1)
+		font-size: 0
+		.icon-arr-down
+			position: absolute
+			bottom: -60px
+			left: calc(50% - 20px)
+			font-size: 40px
+			fill: $orange
+		.mouse-svg
+			position: absolute
+			top: calc(50% - 20px)
+			left: calc(50% - 16px)
+			pointer-events: none

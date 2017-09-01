@@ -5,7 +5,8 @@ import { $window, $body, $header, css, Resp } from '../modules/dev/helpers';
 
 export default function InitFullpage () {
   const $fullpage = $('.js-fullpage');
-  // const $animSVG = $('.js-anim-svg');
+  const $animSVG = $('.js-anim-svg');
+  const $animSVGSecond = $('.js-anim-svg-2');
 
   // fullpage settings
   if ($fullpage.length) {
@@ -30,13 +31,36 @@ export default function InitFullpage () {
           $.fn.fullpage.setMouseWheelScrolling(true);
           $.fn.fullpage.setAllowScrolling(true);
         }
+      },
+      onLeave: function (index, nextIndex, direction) {
+        if (nextIndex === 1) {
+          $header.removeClass('is-inside');
+        } else {
+          $header.addClass('is-inside');
+        }
+
+        if (nextIndex === 4) {
+          $animSVGSecond.addClass(css.visible);
+        }
+        if (nextIndex !== 4) {
+          $animSVGSecond.removeClass(css.visible);
+        }
+
+        if (nextIndex === 5) {
+          $animSVG.addClass(css.visible);
+        }
+        if (nextIndex !== 5) {
+          $animSVG.removeClass(css.visible);
+        }
+
+        // if (nextIndex === 4 || nextIndex === 5) {
+        //   $animSVG.addClass(css.visible);
+        // }
+        // else {
+        //   $animSVG.removeClass(css.visible);
+        // }
+
       }
-      // onLeave: function (index, nextIndex, direction) {
-      //   if (nextIndex === 1) {
-      //     initScreenVideo();
-      //   }
-        // $animSVG.toggleClass('animated');
-      // }
     });
 
     const $playerInitBtn = $('.js-init-player');
@@ -99,8 +123,8 @@ export default function InitFullpage () {
     adaptiveHeight: true,
     appendArrows: '.fullscreen-controls__buttons',
     appendDots:'.fullscreen-controls__inner',
-    prevArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_prev"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg></button>',
-    nextArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_next"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg></button>'
+    prevArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_prev"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="75"><circle r="42" cx="50%" cy="50%"></circle></svg></button>',
+    nextArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_next"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="25"><circle r="42" cx="50%" cy="50%"></circle></svg></button>'
   });
 
   $videoSlider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {

@@ -21,9 +21,9 @@ export class Common {
     objectFitVideos();
     objectFitImages();
     new Dot;
-    new InitFullpage;
-    new initScreenVideo;
-    new customScroll;
+    InitFullpage();
+    initScreenVideo();
+    customScroll();
   }
 }
 

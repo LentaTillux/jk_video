@@ -3,6 +3,22 @@ if socialsList ? socialsList : socialsList = ['vk', 'facebook', 'instagram', 'vi
 
 //begin socials
 +b.socials(class= socialsClass ? socialsClass : '')
-	for socItem in socialsList
-		+e.A.link(href='#!' target='_blank')
-			+i(socItem)
+	-
+		socialsList = [{
+		icon: 'vk',
+		href: 'https://vk.com/jk_event'
+		}, {
+		icon: 'facebook',
+		href: 'https://www.facebook.com/JK-Events-255213877911345/'
+		}, {
+		icon: 'instagram',
+		href: 'https://www.instagram.com/jk_event/'
+		}, {
+		icon: 'vimeo',
+		href: 'https://vimeo.com/user9451354'
+		}]
+	mixin socItem(item)
+		+e.A.link(href=`${item.href}` target='_blank')
+			+i(item.icon)
+	each item in socialsList
+		+socItem(item)

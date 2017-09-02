@@ -668,6 +668,8 @@ var _customScroll = __webpack_require__(20);
 
 var _customScroll2 = _interopRequireDefault(_customScroll);
 
+var _helpers = __webpack_require__(0);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -713,6 +715,13 @@ $tabs.each(function (index, el) {
 var $popup = $('[data-popup-target]');
 _vintagePopup2.default.expose($);
 $popup.popup();
+
+/** preloader */
+var $preloader = $('.preloader');
+
+_helpers.$window.on('load', function () {
+  $preloader.fadeOut('slow');
+});
 
 /***/ }),
 /* 7 */

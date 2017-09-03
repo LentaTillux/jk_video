@@ -1,0 +1,545 @@
+//begin portfolio
++b.SECTION.section.fp-section(data-anchor='portfolio')
+	+b.fp-slide
+		.container.container_portfolio
+			+b.c-tabs._portfolio
+				+e.tabs-nav
+					+e.tabs-el.is-active Рекламное видео
+					+e.tabs-el Презентационное видео
+					+e.tabs-el Репортажное/отчетное
+					+e.tabs-el Интернет и соц. сети
+				+e.tabs-for
+					+e.tab
+						+e.block
+							-
+								portfolioList = [{
+								title: 'Презентация нового Land Rover DISCOVERY SPORT',
+								descr: 'Разработка концепции и организация мероприятия',
+								img: 1,
+								sldAnchor: 1
+								}, {
+								title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+								descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+								img: 2,
+								sldAnchor: 2
+								}, {
+								title: 'IKEA',
+								descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+								img: 1,
+								sldAnchor: 3
+								}, {
+								title: 'Рекламные ролики для десерт-кафе',
+								descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+								img: 3,
+								sldAnchor: 4
+								}, {
+								title: 'Премьера нового Mercedes-Benz CLS',
+								descr: 'Разработка концепции и организация мероприятия',
+								img: 3,
+								sldAnchor: 5
+								}, {
+								title: 'Открытие магазина BURTON',
+								descr: 'Организация открытия магазина Burton',
+								img: 2,
+								sldAnchor: 6
+								}]
+							mixin portfolioEl(el)
+								+b.portfolio-item
+									+e.text
+										+e.title= el.title
+										+e.P.descr= el.descr
+										+e.A.link.link(href='#!') Подробнее
+									+e.bg
+										+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+									+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+										+i('play-triangle')
+							each el in portfolioList
+								+portfolioEl(el)
+					+e.tab
+						+e.block
+							-
+								portfolioList = [{
+								title: 'Презентация нового Land Rover DISCOVERY SPORT',
+								descr: 'Разработка концепции и организация мероприятия',
+								img: 1,
+								sldAnchor: 1
+								}, {
+								title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+								descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+								img: 2,
+								sldAnchor: 2
+								}, {
+								title: 'IKEA',
+								descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+								img: 1,
+								sldAnchor: 3
+								}, {
+								title: 'Рекламные ролики для десерт-кафе',
+								descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+								img: 3,
+								sldAnchor: 4
+								}, {
+								title: 'Премьера нового Mercedes-Benz CLS',
+								descr: 'Разработка концепции и организация мероприятия',
+								img: 3,
+								sldAnchor: 5
+								}, {
+								title: 'Открытие магазина BURTON',
+								descr: 'Организация открытия магазина Burton',
+								img: 2,
+								sldAnchor: 6
+								}]
+							mixin portfolioEl(el)
+								+b.portfolio-item
+									+e.text
+										+e.title= el.title
+										+e.P.descr= el.descr
+										+e.A.link.link(href='#!') Подробнее
+									+e.bg
+										+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+									+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+										+i('play-triangle')
+							each el in portfolioList
+								+portfolioEl(el)
+					+e.tab
+						+e.block
+							-
+								portfolioList = [{
+								title: 'Презентация нового Land Rover DISCOVERY SPORT',
+								descr: 'Разработка концепции и организация мероприятия',
+								img: 1,
+								sldAnchor: 1
+								}, {
+								title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+								descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+								img: 2,
+								sldAnchor: 2
+								}, {
+								title: 'IKEA',
+								descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+								img: 1,
+								sldAnchor: 3
+								}, {
+								title: 'Рекламные ролики для десерт-кафе',
+								descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+								img: 3,
+								sldAnchor: 4
+								}, {
+								title: 'Премьера нового Mercedes-Benz CLS',
+								descr: 'Разработка концепции и организация мероприятия',
+								img: 3,
+								sldAnchor: 5
+								}, {
+								title: 'Открытие магазина BURTON',
+								descr: 'Организация открытия магазина Burton',
+								img: 2,
+								sldAnchor: 6
+								}]
+							mixin portfolioEl(el)
+								+b.portfolio-item
+									+e.text
+										+e.title= el.title
+										+e.P.descr= el.descr
+										+e.A.link.link(href='#!') Подробнее
+									+e.bg
+										+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+									+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+										+i('play-triangle')
+							each el in portfolioList
+								+portfolioEl(el)
+
+					+e.tab
+						+e.block
+							-
+								portfolioList = [{
+								title: 'Презентация нового Land Rover DISCOVERY SPORT',
+								descr: 'Разработка концепции и организация мероприятия',
+								img: 1,
+								sldAnchor: 1
+								}, {
+								title: 'Рекламный ролик Интернет-магазина КУВАЛДА.РУ',
+								descr: 'Разработка идеи и сценария для Интернет-магазина kuvalda.ru',
+								img: 2,
+								sldAnchor: 2
+								}, {
+								title: 'IKEA',
+								descr: 'Съемка корпоративных видеороликов, видеожурналов создание анимационных роликов',
+								img: 1,
+								sldAnchor: 3
+								}, {
+								title: 'Рекламные ролики для десерт-кафе',
+								descr: 'Разработка и продакшн серии рекламных роликов для десерт-кафе "Carrie»',
+								img: 3,
+								sldAnchor: 4
+								}, {
+								title: 'Премьера нового Mercedes-Benz CLS',
+								descr: 'Разработка концепции и организация мероприятия',
+								img: 3,
+								sldAnchor: 5
+								}, {
+								title: 'Открытие магазина BURTON',
+								descr: 'Организация открытия магазина Burton',
+								img: 2,
+								sldAnchor: 6
+								}]
+							mixin portfolioEl(el)
+								+b.portfolio-item
+									+e.text
+										+e.title= el.title
+										+e.P.descr= el.descr
+										+e.A.link.link(href='#!') Подробнее
+									+e.bg
+										+e.bg-img(style=`background-image: url(static/img/portfolio-img-${el.img}.jpg)`)
+									+e.BUTTON.play-btn.js-init-player(type='button' data-slide-anchor=`${el.sldAnchor}`)
+										+i('play-triangle')
+							each el in portfolioList
+								+portfolioEl(el)
+
+
+
+			+b.section__more._portfolio
+				+e.A.more-link.link(href='#!') Смотреть все
+
+	+b.fullscreen.fp-slide
+		+e.inner(data-fullscreen-inner='1')
+			+b.fullscreen-controls
+				+e.inner
+					+e.buttons
+						+e.BUTTON.btn.js-play(type='button')
+							+i('play-triangle')
+							svg.round-svg(viewBox='0 0 88 88' data-circle='25')
+								circle(r='42', cx='50%', cy='50%')
+						+e.BUTTON.btn.js-pause(type='button')
+							+i('pause')
+							svg.round-svg(viewBox='0 0 88 88' data-circle='75')
+								circle(r='42', cx='50%', cy='50%')
+					+e.BUTTON.btn-exit.js-exit-player(type='button')
+						+e.SPAN Вернуться
+						svg.icon(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 190.38 21.99')
+							line(fill='#fff' x1='0.38', y1='11.13', x2='190.38', y2='11.13')
+							path(d='M.64,11.39,11.39.64a.38.38,0,0,0-.53-.53L.11,10.86a.38.38,0,0,0,.53.53Z')
+							path(d='M.44,11.57,12.11,21.89c.36.32.89-.21.53-.53L1,11c-.36-.32-.89.21-.53.53Z')
+
+			+e.slider.js-fullscreen-slider
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4?1442362275', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Рекламный ролик Интернет-магазина КУВАЛДА.РУ
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title IKEA
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4?1442362275', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Рекламные ролики для десерт-кафе
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Премьера нового Mercedes-Benz CLS
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Открытие магазина BURTON
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+		+e.inner(data-fullscreen-inner='2')
+			+b.fullscreen-controls
+				+e.inner
+					+e.buttons
+						+e.BUTTON.btn.js-play(type='button')
+							+i('play-triangle')
+							svg.round-svg(viewBox='0 0 88 88' data-circle='25')
+								circle(r='42', cx='50%', cy='50%')
+						+e.BUTTON.btn.js-pause(type='button')
+							+i('pause')
+							svg.round-svg(viewBox='0 0 88 88' data-circle='75')
+								circle(r='42', cx='50%', cy='50%')
+					+e.BUTTON.btn-exit.js-exit-player(type='button')
+						+e.SPAN Вернуться
+						svg.icon(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 190.38 21.99')
+							line(fill='#fff' x1='0.38', y1='11.13', x2='190.38', y2='11.13')
+							path(d='M.64,11.39,11.39.64a.38.38,0,0,0-.53-.53L.11,10.86a.38.38,0,0,0,.53.53Z')
+							path(d='M.44,11.57,12.11,21.89c.36.32.89-.21.53-.53L1,11c-.36-.32-.89.21-.53.53Z')
+
+			+e.slider.js-fullscreen-slider
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4?1442362275', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Рекламный ролик Интернет-магазина КУВАЛДА.РУ
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title IKEA
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4?1442362275', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Рекламные ролики для десерт-кафе
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Премьера нового Mercedes-Benz CLS
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Открытие магазина BURTON
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+		+e.inner(data-fullscreen-inner='3')
+			+b.fullscreen-controls
+				+e.inner
+					+e.buttons
+						+e.BUTTON.btn.js-play(type='button')
+							+i('play-triangle')
+							svg.round-svg(viewBox='0 0 88 88' data-circle='25')
+								circle(r='42', cx='50%', cy='50%')
+						+e.BUTTON.btn.js-pause(type='button')
+							+i('pause')
+							svg.round-svg(viewBox='0 0 88 88' data-circle='75')
+								circle(r='42', cx='50%', cy='50%')
+					+e.BUTTON.btn-exit.js-exit-player(type='button')
+						+e.SPAN Вернуться
+						svg.icon(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 190.38 21.99')
+							line(fill='#fff' x1='0.38', y1='11.13', x2='190.38', y2='11.13')
+							path(d='M.64,11.39,11.39.64a.38.38,0,0,0-.53-.53L.11,10.86a.38.38,0,0,0,.53.53Z')
+							path(d='M.44,11.57,12.11,21.89c.36.32.89-.21.53-.53L1,11c-.36-.32-.89.21-.53.53Z')
+
+			+e.slider.js-fullscreen-slider
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4?1442362275', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Рекламный ролик Интернет-магазина КУВАЛДА.РУ
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title IKEA
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4?1442362275', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Рекламные ролики для десерт-кафе
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Премьера нового Mercedes-Benz CLS
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Открытие магазина BURTON
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+		+e.inner(data-fullscreen-inner='4')
+			+b.fullscreen-controls
+				+e.inner
+					+e.buttons
+						+e.BUTTON.btn.js-play(type='button')
+							+i('play-triangle')
+							svg.round-svg(viewBox='0 0 88 88' data-circle='25')
+								circle(r='42', cx='50%', cy='50%')
+						+e.BUTTON.btn.js-pause(type='button')
+							+i('pause')
+							svg.round-svg(viewBox='0 0 88 88' data-circle='75')
+								circle(r='42', cx='50%', cy='50%')
+					+e.BUTTON.btn-exit.js-exit-player(type='button')
+						+e.SPAN Вернуться
+						svg.icon(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 190.38 21.99')
+							line(fill='#fff' x1='0.38', y1='11.13', x2='190.38', y2='11.13')
+							path(d='M.64,11.39,11.39.64a.38.38,0,0,0-.53-.53L.11,10.86a.38.38,0,0,0,.53.53Z')
+							path(d='M.44,11.57,12.11,21.89c.36.32.89-.21.53-.53L1,11c-.36-.32-.89.21-.53.53Z')
+
+			+e.slider.js-fullscreen-slider
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Презентация нового Land Rover DISCOVERY SPORT
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4?1442362275', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Рекламный ролик Интернет-магазина КУВАЛДА.РУ
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title IKEA
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/183/original/a_sky_full_of_stars.mp4?1442362275', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Рекламные ролики для десерт-кафе
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Премьера нового Mercedes-Benz CLS
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')
+
+				+e.item
+					+e.text.js-custom-scroll
+						+e.text-in
+							+i('arr-down')
+							+e.H3.text-title Открытие магазина BURTON
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+							+e.P.text-descr Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки. Разработка концепции и организация мероприятия. Предоставление промо персонала и хостес. Букинг артистов. Продакшн и брендинг площадки.
+					+e.VIDEO.video(preload='auto')
+						source(src='http://mazwai.com/system/posts/videos/000/000/215/original/magic_kingdom.mp4?1453572971', type='video/mp4')

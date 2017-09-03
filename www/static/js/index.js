@@ -10073,6 +10073,10 @@ function InitFullpage() {
   var $animSVG = $('.js-anim-svg');
   var $animSVGSecond = $('.js-anim-svg-2');
 
+  // $window.on('resize', function () {
+  //   if (Resp.isDesk) console.log('desk');
+  // });
+
   // fullpage settings
   if ($fullpage.length) {
     $fullpage.fullpage({
@@ -10125,34 +10129,6 @@ function InitFullpage() {
       }
     });
 
-    var $playerInitBtn = $('.js-init-player');
-    var $playerExitBtn = $('.js-exit-player');
-
-    // init player
-    $playerInitBtn.on('click', function () {
-      var $slideAnchor = $(this).data('slide-anchor') - 1;
-      $.fn.fullpage.moveTo('portfolio', 1);
-      _helpers.$header.addClass('in-video');
-      $playerControls.addClass(_helpers.css.enabled, setTimeout(function () {
-        $('.slick-dots').addClass('is-transition');
-      }, 900));
-
-      $videoSlider.slick('slickGoTo', $slideAnchor);
-    });
-
-    // exit player
-    $playerExitBtn.on('click', function () {
-      var $video = $videoSlider.find('video')[0];
-      var $textBlock = $videoSlider.find('.slick-current .fullscreen__text');
-      $.fn.fullpage.moveTo('portfolio', 0);
-      _helpers.$header.removeClass('in-video');
-      $playerControls.removeClass(_helpers.css.enabled);
-      $('.slick-dots').removeClass('is-transition');
-      $video.currentTime = 0;
-      disableHideControls();
-      $textBlock.mCustomScrollbar('scrollTo', 'top');
-    });
-
     // scroll next sect
     $nextSectionBtn.on('click', function () {
       $.fn.fullpage.moveSectionDown();
@@ -10171,74 +10147,141 @@ function InitFullpage() {
   var $playerControls = $('.fullscreen-controls');
   var $playBtn = $('.js-play');
   var $pauseBtn = $('.js-pause');
+  var $playerInitBtn = $('.js-init-player');
+  var $playerExitBtn = $('.js-exit-player');
+  var $tabsBtn = $('.c-tabs__tabs-el');
+  var $fullscreenInner = $('[data-fullscreen-inner]');
 
-  $videoSlider.slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    draggable: false,
-    accessibility: false,
-    dots: true,
-    infinite: true,
-    arrows: true,
-    fade: true,
-    speed: 600,
-    cssEase: 'ease',
-    useTransform: true,
-    adaptiveHeight: true,
-    appendArrows: '.fullscreen-controls__buttons',
-    appendDots: '.fullscreen-controls__inner',
-    prevArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_prev"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="75"><circle r="42" cx="50%" cy="50%"></circle></svg></button>',
-    nextArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_next"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="25"><circle r="42" cx="50%" cy="50%"></circle></svg></button>'
+  // bind tabs buttons with hidden sliders
+  bindTabsAndSliders();
+
+  function bindTabsAndSliders() {
+    $fullscreenInner.not(':first').hide();
+    $fullscreenInner.first().addClass(_helpers.css.active);
+    $fullscreenInner.first().find($videoSlider).addClass(_helpers.css.active);
+    $tabsBtn.on('click', function () {
+      var $thisIndex = $(this).index();
+      var $currentVideoSlider = $fullscreenInner.eq($thisIndex).find($videoSlider);
+      $fullscreenInner.removeClass(_helpers.css.active);
+      $fullscreenInner.hide().eq($thisIndex).show().addClass(_helpers.css.active);
+      $currentVideoSlider.parent('.fullscreen__inner').siblings().find($videoSlider).removeClass(_helpers.css.active);
+      $currentVideoSlider.slick('setPosition').addClass(_helpers.css.active);
+    });
+  }
+
+  // // init player
+  $playerInitBtn.on('click', function () {
+    var $slideAnchor = $(this).data('slide-anchor') - 1;
+    $.fn.fullpage.moveTo('portfolio', 1);
+    _helpers.$header.addClass('in-video');
+
+    $fullscreenInner.each(function () {
+      var $this = $(this);
+      if ($this.hasClass(_helpers.css.active)) {
+        var $thisSlider = $this.find($videoSlider);
+        $this.find($playerControls).addClass(_helpers.css.enabled);
+        $thisSlider.slick('slickGoTo', $slideAnchor);
+        setTimeout(function () {
+          $thisSlider.find('.slick-dots').addClass('is-transition');
+        }, 900);
+      }
+    });
   });
 
-  $videoSlider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-    var $currentVideo = $videoSlider.find('.slick-current video')[0];
-    var $video = $videoSlider.find('video')[0];
-    var $textBlock = $videoSlider.find('.slick-current .fullscreen__text');
-    $currentVideo.pause();
-    disableHideControls();
-    $videoSlider.find('.fullscreen__text').removeClass(_helpers.css.disabled);
-    _helpers.$header.removeClass(_helpers.css.disabled);
-    $video.currentTime = 0;
-    $textBlock.mCustomScrollbar('scrollTo', 'top');
-  });
+  // exit player
+  $playerExitBtn.each(function () {
+    $(this).on('click', function () {
+      var $thisSlider = $(this).closest('.fullscreen-controls').next($videoSlider);
+      var $thisControls = $(this).closest('.fullscreen-controls');
+      var $video = $thisSlider.find('video')[0];
+      var $textBlock = $thisSlider.find('.slick-current .fullscreen__text');
 
-  $playBtn.on('click', function () {
-    var $currentVideo = $videoSlider.find('.slick-current video')[0];
-    var $textBlock = $videoSlider.find('.slick-current .fullscreen__text');
-
-    $currentVideo.play();
-    $textBlock.addClass(_helpers.css.disabled);
-    _helpers.$header.addClass(_helpers.css.disabled);
-    $textBlock.mCustomScrollbar('scrollTo', 'top');
-
-    if (!$currentVideo.paused) {
-      $playerControls.addClass(_helpers.css.transparent);
-      hideControls();
-    }
-  });
-
-  $pauseBtn.on('click', function () {
-    var $currentVideo = $videoSlider.find('.slick-current video')[0];
-    var $textBlock = $videoSlider.find('.slick-current .fullscreen__text');
-
-    $currentVideo.pause();
-    $textBlock.removeClass(_helpers.css.disabled);
-    _helpers.$header.removeClass(_helpers.css.disabled);
-    $textBlock.mCustomScrollbar('scrollTo', 'top');
-
-    if ($currentVideo.paused) {
-      $playerControls.removeClass(_helpers.css.transparent);
       disableHideControls();
+      $.fn.fullpage.moveTo('portfolio', 0);
+      _helpers.$header.removeClass('in-video is-disabled');
+      $thisSlider.find('.slick-dots').removeClass('is-transition');
+      $video.currentTime = 0;
+      $thisControls.removeClass('is-enabled is-transparent');
+      $textBlock.mCustomScrollbar('scrollTo', 'top');
+    });
+  });
+
+  $videoSlider.each(function (index, item) {
+    var sliderId = 'fullscreen-slider-' + (index + 1);
+    var $dots = $(this).prev('.fullscreen-controls').find('.fullscreen-controls__inner');
+    var $arrows = $(this).prev('.fullscreen-controls').find('.fullscreen-controls__buttons');
+    this.id = sliderId;
+    $(this).slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      draggable: false,
+      accessibility: false,
+      dots: true,
+      infinite: true,
+      arrows: true,
+      fade: true,
+      speed: 600,
+      cssEase: 'ease',
+      useTransform: true,
+      adaptiveHeight: true,
+      slide: '#' + sliderId + ' .fullscreen__item',
+      appendDots: $dots,
+      appendArrows: $arrows,
+      prevArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_prev"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="75"><circle r="42" cx="50%" cy="50%"></circle></svg></button>',
+      nextArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_next"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="25"><circle r="42" cx="50%" cy="50%"></circle></svg></button>'
+    });
+  });
+
+  $videoSlider.each(function () {
+    var $this = $(this);
+    if ($this.hasClass(_helpers.css.active)) {
+      $this.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        var $currentVideo = $this.find('.slick-current video')[0];
+        var $video = $this.find('video')[0];
+        var $textBlock = $this.find('.slick-current .fullscreen__text');
+        $currentVideo.pause();
+        disableHideControls();
+        $this.find('.fullscreen__text').removeClass(_helpers.css.disabled);
+        _helpers.$header.removeClass(_helpers.css.disabled);
+        $video.currentTime = 0;
+        $textBlock.mCustomScrollbar('scrollTo', 'top');
+      });
     }
   });
 
-  // $videoSlider.on('click', function () {
-  //   disableHideControls();
-  //   $playerControls.removeClass(css.transparent, setTimeout(() => {
-  //     $playerControls.addClass(css.transparent);
-  //   }, 1000));
-  // });
+  $playBtn.each(function () {
+    $(this).on('click', function () {
+      var $currentVideo = $(this).closest('.fullscreen-controls').next().find('.slick-current video')[0];
+      var $textBlock = $(this).closest('.fullscreen-controls').next().find('.slick-current .fullscreen__text');
+
+      $currentVideo.play();
+      $textBlock.addClass(_helpers.css.disabled);
+      _helpers.$header.addClass(_helpers.css.disabled);
+      $textBlock.mCustomScrollbar('scrollTo', 'top');
+
+      if (!$currentVideo.paused) {
+        $playerControls.addClass(_helpers.css.transparent);
+        hideControls();
+      }
+    });
+  });
+
+  $pauseBtn.each(function () {
+    $(this).on('click', function () {
+      var $currentVideo = $(this).closest('.fullscreen-controls').next().find('.slick-current video')[0];
+      var $textBlock = $(this).closest('.fullscreen-controls').next().find('.slick-current .fullscreen__text');
+
+      $currentVideo.pause();
+      $textBlock.removeClass(_helpers.css.disabled);
+      _helpers.$header.removeClass(_helpers.css.disabled);
+      $textBlock.mCustomScrollbar('scrollTo', 'top');
+
+      if ($currentVideo.paused) {
+        $playerControls.removeClass(_helpers.css.transparent);
+        disableHideControls();
+      }
+    });
+  });
 
   function hideControls() {
     $playerControls.on('mouseenter', function () {
@@ -10254,6 +10297,7 @@ function InitFullpage() {
 
   function disableHideControls() {
     $playerControls.off('mouseenter mouseleave');
+    $playerControls.removeClass('is-transparent');
   }
 }
 

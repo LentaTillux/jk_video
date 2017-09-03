@@ -4,7 +4,8 @@
 	transform: translateY(-10%)
 	left: 0
 	right: 0
-	z-index: 101
+	z-index: 2
+	height: 100px
 	transition: 1.5s ease
 	&.is-inside
 		&::after
@@ -17,15 +18,13 @@
 			bottom: 25%
 		.nav__next-section
 			bottom: -35%
-	
-	&.is-disabled
-		transform: translateX(100%)
 	$parent: &
 	&__container
 		position: relative
 		display: flex
 		align-items: flex-start
 		max-width: 1760px
+		height: 100%
 		margin: 0 auto
 		padding: 0 15px
 	&__logo
@@ -51,9 +50,10 @@
 			position: absolute
 			top: calc(50% - 40px)
 			right: -50px
-
+	&.is-disabled
+		transform: translateX(100%)
 	&.in-video
-		background: transparent
+		z-index: 1000
 		.svg-circle__outer
 			stroke: $white
 		.socials__link .icon
@@ -75,7 +75,7 @@
 			
 .nav
 	position: absolute
-	bottom: -200%
+	bottom: -490%
 	left: 8px
 	z-index: 1
 	transition: .5s ease
@@ -125,10 +125,14 @@
 				
 	&__next-section
 		position: absolute
-		bottom: -74%
+		bottom: -50%
 		left: 30px
 		transition: 0.6s cubic-bezier(0.46, 0, 0.07, 1)
 		font-size: 0
+		&.is-transparent
+			opacity: 0
+			pointer-events: none
+			visibility: hidden
 		.icon-arr-down
 			position: absolute
 			bottom: -60px

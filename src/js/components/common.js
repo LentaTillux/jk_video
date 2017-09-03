@@ -46,7 +46,8 @@ $popup.popup();
 
 /** preloader */
 const $preloader = $('.preloader');
-
-$window.on('load', function () {
-  $preloader.fadeOut('slow');
-});
+setTimeout(function() {
+  $preloader.fadeOut('slow', function() {
+    $(this).remove();
+  });
+}, 1500);

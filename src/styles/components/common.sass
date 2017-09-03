@@ -47,6 +47,10 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
     padding-left: 365px
     padding-right: 55px
     
+.content
+  position: relative
+  z-index: 1
+  
 // titles
 .title-lg
   +f('pf700', 65)
@@ -89,15 +93,15 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, img, mark, ul, li
     background: darken($orange, 12)
   
 .input
-  padding: 0 20px
+  padding: 0 20px 0 50px
   height: 50px
   line-height: 50px
   width: 100%
-  +f('pf400')
-  font-size: 23px
+  +f('pf400', 23)
   border-radius: 30px!important
   border: 1px solid $dark-gray
   transition: .5s
   +placeholder-color($dark-gray)
   &:focus
     border-color: $orange
+    box-shadow: 0 0 1px $orange

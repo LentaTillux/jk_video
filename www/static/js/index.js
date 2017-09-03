@@ -718,10 +718,11 @@ $popup.popup();
 
 /** preloader */
 var $preloader = $('.preloader');
-
-_helpers.$window.on('load', function () {
-  $preloader.fadeOut('slow');
-});
+setTimeout(function () {
+  $preloader.fadeOut('slow', function () {
+    $(this).remove();
+  });
+}, 1500);
 
 /***/ }),
 /* 7 */
@@ -10068,6 +10069,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function InitFullpage() {
   var $fullpage = $('.js-fullpage');
+  var $nextSectionBtn = $('.js-next-section');
   var $animSVG = $('.js-anim-svg');
   var $animSVGSecond = $('.js-anim-svg-2');
 
@@ -10115,12 +10117,17 @@ function InitFullpage() {
         if (nextIndex !== 5) {
           $animSVG.removeClass(_helpers.css.visible);
         }
+        if (nextIndex === 6) {
+          $nextSectionBtn.addClass(_helpers.css.transparent);
+        } else {
+          $nextSectionBtn.removeClass(_helpers.css.transparent);
+        }
       }
     });
 
     var $playerInitBtn = $('.js-init-player');
     var $playerExitBtn = $('.js-exit-player');
-    var $nextSectionBtn = $('.js-next-section');
+
     // init player
     $playerInitBtn.on('click', function () {
       var $slideAnchor = $(this).data('slide-anchor') - 1;
@@ -10132,6 +10139,7 @@ function InitFullpage() {
 
       $videoSlider.slick('slickGoTo', $slideAnchor);
     });
+
     // exit player
     $playerExitBtn.on('click', function () {
       var $video = $videoSlider.find('video')[0];
@@ -10144,6 +10152,7 @@ function InitFullpage() {
       disableHideControls();
       $textBlock.mCustomScrollbar('scrollTo', 'top');
     });
+
     // scroll next sect
     $nextSectionBtn.on('click', function () {
       $.fn.fullpage.moveSectionDown();

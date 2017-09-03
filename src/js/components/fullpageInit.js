@@ -3,8 +3,9 @@ import slick from 'slick-carousel';
 import initScreenVideo from './screenVIdeo';
 import { $window, $body, $header, css, Resp } from '../modules/dev/helpers';
 
-export default function InitFullpage () {
+export default function InitFullpage() {
   const $fullpage = $('.js-fullpage');
+  const $nextSectionBtn = $('.js-next-section');
   const $animSVG = $('.js-anim-svg');
   const $animSVGSecond = $('.js-anim-svg-2');
 
@@ -23,7 +24,7 @@ export default function InitFullpage () {
       keyboardScrolling: false,
       loopHorizontal: false,
       controlArrows: false,
-      afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+      afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
         if (slideIndex === 1) {
           $.fn.fullpage.setMouseWheelScrolling(false);
           $.fn.fullpage.setAllowScrolling(false);
@@ -52,12 +53,17 @@ export default function InitFullpage () {
         if (nextIndex !== 5) {
           $animSVG.removeClass(css.visible);
         }
+        if (nextIndex === 6) {
+          $nextSectionBtn.addClass(css.transparent);
+        } else {
+          $nextSectionBtn.removeClass(css.transparent);
+        }
       }
     });
 
     const $playerInitBtn = $('.js-init-player');
     const $playerExitBtn = $('.js-exit-player');
-    const $nextSectionBtn = $('.js-next-section');
+
     // init player
     $playerInitBtn.on('click', function () {
       const $slideAnchor = $(this).data('slide-anchor') - 1;
@@ -69,6 +75,7 @@ export default function InitFullpage () {
 
       $videoSlider.slick('slickGoTo', $slideAnchor);
     });
+
     // exit player
     $playerExitBtn.on('click', function () {
       const $video = $videoSlider.find('video')[0];
@@ -81,6 +88,7 @@ export default function InitFullpage () {
       disableHideControls();
       $textBlock.mCustomScrollbar('scrollTo', 'top');
     });
+
     // scroll next sect
     $nextSectionBtn.on('click', function () {
       $.fn.fullpage.moveSectionDown();
@@ -114,7 +122,7 @@ export default function InitFullpage () {
     useTransform: true,
     adaptiveHeight: true,
     appendArrows: '.fullscreen-controls__buttons',
-    appendDots:'.fullscreen-controls__inner',
+    appendDots: '.fullscreen-controls__inner',
     prevArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_prev"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="75"><circle r="42" cx="50%" cy="50%"></circle></svg></button>',
     nextArrow: '<button type="button" class="fullscreen-controls__btn fullscreen-controls__btn_next"><svg class="icon icon-play-pause"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play-pause"></use></svg><svg class="round-svg" viewBox="0 0 88 88" data-circle="25"><circle r="42" cx="50%" cy="50%"></circle></svg></button>'
   });

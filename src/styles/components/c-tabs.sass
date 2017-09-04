@@ -35,7 +35,7 @@
 			background: $orange
 			+trs-ease
 		&.is-active
-			pointer-events: none
+			//pointer-events: none
 			color: $orange
 			&::after
 				left: 0
@@ -53,6 +53,30 @@
 			+xs
 				margin-left: 0
 				margin-top: 15px
+		&:hover #{$parent}__tabs-descr
+			opacity: 1
+			visibility: visible
+			transform: translateY(0)
+			
+		//&:last-child #{$parent}__tabs-descr
+			left: auto
+			right: -1px
+	&__tabs-descr
+		position: absolute
+		left: calc(50% - 160px)
+		top: 100%
+		padding: 20px
+		min-width: 320px
+		background: $orange
+		z-index: 10
+		color: $white
+		font-size: 20px
+		box-shadow: 0 0 10px rgba($dark-gray, .8)
+		opacity: 0
+		visibility: hidden
+		transform: translateY(25%)
+		pointer-events: none
+		transition: opacity .4s ease, transform .4s ease, visibility 1s ease
 	&__tab
 		display: none
 		&:first-child

@@ -9,16 +9,19 @@ export default function InitFullpage() {
   const $animSVG = $('.js-anim-svg');
   const $animSVGSecond = $('.js-anim-svg-2');
 
+  $window.on('resize load', function () {
+    if (Resp.isMobile) {
+      $.fn.fullpage.setAutoScrolling(false);
+      $.fn.fullpage.setFitToSection(false);
+    }
+  });
+
   // fullpage settings
   if ($fullpage.length) {
     $fullpage.fullpage({
       sectionSelector: 'fp-section',
       slideSelector: 'fp-slide',
       menu: '.js-fp-nav',
-      // fixedElements: '.header',
-      // slidesNavigation: true,
-      // paddingTop: '125px',
-      // scrollOverflow: true,
       scrollingSpeed: 1000,
       verticalCentered: true,
       keyboardScrolling: false,
@@ -64,13 +67,6 @@ export default function InitFullpage() {
     // scroll next sect
     $nextSectionBtn.on('click', function () {
       $.fn.fullpage.moveSectionDown();
-    });
-
-    $window.on('resize load', function () {
-      if (Resp.isMobile) {
-        $.fn.fullpage.setAutoScrolling(false);
-        $.fn.fullpage.setFitToSection(false);
-      }
     });
   }
 

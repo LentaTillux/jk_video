@@ -14,6 +14,7 @@ import InitFullpage from './fullpageInit';
 import initScreenVideo from './screenVIdeo';
 import customScroll from './customScroll';
 import initMobMenu from './mobMenu';
+import { changeText } from '../modules/dev/helpers';
 
 export class Common {
   /**
@@ -44,3 +45,11 @@ $tabs.each((index, el) => {
 const $popup = $('[data-popup-target]');
 Popup.expose($);
 $popup.popup();
+
+/** btn with toggling text */
+const $togglingBtn = $('.js-toggling-btn');
+$togglingBtn.on('click', function () {
+  const $this = $(this);
+  $this.prev('.section__list-wrap').slideToggle();
+  changeText($togglingBtn);
+});

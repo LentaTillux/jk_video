@@ -270,3 +270,12 @@ export const throttle = (fn, threshold = 250, scope) => {
     }
   };
 };
+
+/**
+ * Toggle text
+ *
+ * @param {Object} el
+ */
+export const changeText = (el) => {
+  $(el).text($(el).text() === $(el).data('default-text') ? $(el).data('change-text') : $(el).data('default-text'));
+};

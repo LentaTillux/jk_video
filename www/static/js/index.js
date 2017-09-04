@@ -334,6 +334,15 @@ var throttle = exports.throttle = function throttle(fn) {
   };
 };
 
+/**
+ * Toggle text
+ *
+ * @param {Object} el
+ */
+var changeText = exports.changeText = function changeText(el) {
+  $(el).text($(el).text() === $(el).data('default-text') ? $(el).data('change-text') : $(el).data('default-text'));
+};
+
 /***/ }),
 /* 1 */,
 /* 2 */,
@@ -700,6 +709,8 @@ var _mobMenu = __webpack_require__(23);
 
 var _mobMenu2 = _interopRequireDefault(_mobMenu);
 
+var _helpers = __webpack_require__(0);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -746,6 +757,14 @@ $tabs.each(function (index, el) {
 var $popup = $('[data-popup-target]');
 _vintagePopup2.default.expose($);
 $popup.popup();
+
+/** btn with toggling text */
+var $togglingBtn = $('.js-toggling-btn');
+$togglingBtn.on('click', function () {
+  var $this = $(this);
+  $this.prev('.section__list-wrap').slideToggle();
+  (0, _helpers.changeText)($togglingBtn);
+});
 
 /***/ }),
 /* 7 */
@@ -10096,16 +10115,19 @@ function InitFullpage() {
   var $animSVG = $('.js-anim-svg');
   var $animSVGSecond = $('.js-anim-svg-2');
 
+  _helpers.$window.on('resize load', function () {
+    if (_helpers.Resp.isMobile) {
+      $.fn.fullpage.setAutoScrolling(false);
+      $.fn.fullpage.setFitToSection(false);
+    }
+  });
+
   // fullpage settings
   if ($fullpage.length) {
     $fullpage.fullpage({
       sectionSelector: 'fp-section',
       slideSelector: 'fp-slide',
       menu: '.js-fp-nav',
-      // fixedElements: '.header',
-      // slidesNavigation: true,
-      // paddingTop: '125px',
-      // scrollOverflow: true,
       scrollingSpeed: 1000,
       verticalCentered: true,
       keyboardScrolling: false,
@@ -10151,13 +10173,6 @@ function InitFullpage() {
     // scroll next sect
     $nextSectionBtn.on('click', function () {
       $.fn.fullpage.moveSectionDown();
-    });
-
-    _helpers.$window.on('resize load', function () {
-      if (_helpers.Resp.isMobile) {
-        $.fn.fullpage.setAutoScrolling(false);
-        $.fn.fullpage.setFitToSection(false);
-      }
     });
   }
 

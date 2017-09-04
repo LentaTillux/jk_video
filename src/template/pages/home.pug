@@ -9,11 +9,11 @@ block main
 		//begin screen
 		+b.SECTION.section.fp-section(data-anchor='screen')
 			.container
-				+e.inner
-					+e.block._left
+				+e.inner._screen
+					+e.block._left._screen-left
 						+b.screen-video
 							+e.inner
-								svg.screen-video__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 1920 1080', width='1920px', height='1080px', preserveaspectratio='xMidYMid slice')
+								svg.screen-video__svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 1920 1080', preserveaspectratio='xMidYMid slice')
 									defs
 										mask#screen-video__mask(x='0', y='0', width='100%', height='100%')
 											rect(x='0', y='0', width='100%', height='100%')
@@ -35,11 +35,11 @@ block main
 							.screen-video__line.screen-video__line_v
 							.screen-video__line.screen-video__line_h
 
-					+e.block._right._screen
+					+e.block._right._screen-right
 						+e.H2.title.title-lg Мы - глаза Вашего праздника
 						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
 
-						+b.SVG.circles._screen
+						+b.SVG.circles._screen(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 472 154')
 							circle.circles__body-1(data-circle-type='br' r='58', cx='0', cy='77')
 							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
 							circle.circles__body-3(data-circle-type='tl' r='58', cx='472', cy='77')
@@ -238,8 +238,8 @@ block main
 							-activeIndex = 1
 							+e.tabs-el(class= index === activeIndex - 1 ? 'is-active' : '')= tabsNavItem
 
-				+b.SVG.circles._absolute
-					circle.circles__body-1(data-circle-type='tr' r='58', cx='0', cy='77')
+				+b.SVG.circles._absolute(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 472 154')
+					circle.circles__body-1(data-circle-type='tr' r='58', cx='0', cy='76')
 					circle.circles__body-2(data-circle-type='tl-br' r='58', cx='240', cy='77')
 					circle.circles__body-3(data-circle-type='bl' r='58', cx='472', cy='77')
 
@@ -249,14 +249,14 @@ block main
 		+b.SECTION.section.fp-section(data-anchor='order')
 			.container.container_order
 				+e.inner
-					+e.block._left
-						+b.SVG.circles-big
+					+e.block._left._order-left
+						+b.SVG.circles-big(viewBox='0 0 640 620')
 							circle.circles-big__body-1.js-anim-svg-2(data-circle-type='tl' r='235', cx='50%', cy='50%')
 							circle.circles-big__body-2.js-anim-svg-2(data-circle-type='tl' r='235', cx='-0.5%', cy='50%')
 					+e.block._right
 						+e.H2.title.title-lg Хотите пригласить нашу команду на Ваш праздник?
 						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
-						+b.SVG.circles._order
+						+b.SVG.circles._order(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 472 154')
 							circle.circles__body-1(data-circle-type='br' r='58', cx='0', cy='77')
 							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
 							circle.circles__body-3(data-circle-type='tl' r='58', cx='472', cy='77')
@@ -267,8 +267,8 @@ block main
 		//begin prices
 		+b.SECTION.section.fp-section(data-anchor='prices')
 			.container.container_prices
-				+e.inner
-					+e.block._prices-img
+				+e.inner._prices
+					+e.block._prices-left
 						+b.circles-triple
 							+b.SVG.circles-triple__svg-1.js-anim-svg(viewBox='0 0 436 615')
 								circle.circles-triple__body-1(data-circle-type='tl' r='255', cx='50%', cy='-19%')
@@ -279,7 +279,7 @@ block main
 					+e.block._right._prices
 						+e.H2.title.title-lg Что по цене?
 						+e.P.descr От 10000 р. запечатлим все важные события Вашей жизни
-						+b.SVG.circles._prices
+						+b.SVG.circles._prices(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 472 154')
 							circle.circles__body-1(data-circle-type='r' r='58', cx='0', cy='77')
 							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
 							circle.circles__body-3(data-circle-type='l' r='58', cx='472', cy='77')
@@ -314,7 +314,7 @@ block main
 								+e.item-text
 									+e.A.item-link._font(href='mailto:hello@jk-event.ru') hello@jk-event.ru
 
-						+b.SVG.circles._contacts
+						+b.SVG.circles._contacts(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 472 154')
 							circle.circles__body-1(data-circle-type='tl' r='58', cx='0', cy='77')
 							circle.circles__body-2(data-circle-type='tr-bl' r='58', cx='240', cy='77')
 							circle.circles__body-3(data-circle-type='bl' r='58', cx='472', cy='77')
@@ -329,16 +329,3 @@ block main
 	include ../components/popups
 	block popups
 		+popup({name: 'invite'})
-
-	//begin preloader
-	+b.preloader
-		svg.preloader__img(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', viewbox='0 0 100 100', enable-background='new 0 0 100 100', xml:space='preserve')
-			path(fill='#fff', d='M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3\
-			c-8.4-21.3,2-45.4,23.3-53.8L31.6,3.5z')
-				animatetransform(attributename='transform', attributetype='XML', type='rotate', dur='2s', from='0 50 50', to='360 50 50', repeatcount='indefinite')
-			path(fill='#fff', d='M42.3,39.6c5.7-4.3,13.9-3.1,18.1,2.7c4.3,5.7,3.1,13.9-2.7,18.1l4.1,5.5c8.8-6.5,10.6-19,4.1-27.7\
-				c-6.5-8.8-19-10.6-27.7-4.1L42.3,39.6z')
-				animatetransform(attributename='transform', attributetype='XML', type='rotate', dur='1s', from='0 50 50', to='-360 50 50', repeatcount='indefinite')
-			path(fill='#fff', d='M82,35.7C74.1,18,53.4,10.1,35.7,18S10.1,46.6,18,64.3l7.6-3.4c-6-13.5,0-29.3,13.5-35.3s29.3,0,35.3,13.5\
-				L82,35.7z')
-				animatetransform(attributename='transform', attributetype='XML', type='rotate', dur='2s', from='0 50 50', to='360 50 50', repeatcount='indefinite')

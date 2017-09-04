@@ -1,0 +1,94 @@
+.hamburger
+	display: none
+	position: fixed
+	top: 20px
+	left: 20px
+	z-index: 100
+	pointer-events: auto
+	-webkit-tap-highlight-color: transparent
+	cursor: pointer
+	font: inherit
+	color: inherit
+	text-transform: none
+	text-align: center
+	background-color: $orange
+	border: 0
+	transition: background .25s linear, transform .25s linear
+	width: 50px
+	height: 50px
+	border-radius: 50%
+	box-shadow: 0 0 30px rgba($orange, .6)
+	+sm
+		display: block
+	+xs
+		top: 10px
+		left: auto
+		right: 10px
+	&__box
+		width: 26px
+		height: 100%
+		display: inline-block
+		vertical-align: middle
+	&__inner
+		display: block
+		top: 50%
+		margin-top: -1px
+		width: 26px
+		height: 2px
+		background-color: $white
+		position: absolute
+		transition-property: -webkit-transform
+		transition-property: transform
+		transition-property: transform, -webkit-transform
+		transition-duration: 0.15s
+		transition-timing-function: ease
+		+sm
+			background-color: $white
+		&::before, &::after
+			width: 26px
+			height: 2px
+			background-color: $white
+			position: absolute
+			transition: transform .15s linear, background .25s linear
+			transition-timing-function: ease
+			+sm
+				background-color: $white
+		&::before, &::after
+			content: ""
+			display: block
+		&::before
+			top: -7px
+		&::after
+			bottom: -7px
+	&.is-active
+		background: $white
+	&.is-active &__inner
+		background-color: $orange
+	&.is-active &__inner:before,
+	&.is-active &__inner:after
+		background-color: $orange
+	&_spin &__inner
+		transition-duration: 0.3s
+		transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+		&::before
+			transition: top 0.1s 0.34s ease-in, opacity 0.1s ease-in
+		&::after
+			transition: bottom 0.1s 0.34s ease-in, -webkit-transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+			transition: bottom 0.1s 0.34s ease-in, transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+			transition: bottom 0.1s 0.34s ease-in, transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+	&.is-active &__inner
+		-webkit-transform: rotate(225deg)
+		transform: rotate(225deg)
+		transition-delay: 0.14s
+		transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1)
+		&::before
+			top: 0
+			opacity: 0
+			transition: top 0.1s ease-out, opacity 0.1s 0.14s ease-out
+		&::after
+			bottom: 0
+			-webkit-transform: rotate(-90deg)
+			transform: rotate(-90deg)
+			transition: bottom 0.1s ease-out, -webkit-transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1)
+			transition: bottom 0.1s ease-out, transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1)
+			transition: bottom 0.1s ease-out, transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1)

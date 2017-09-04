@@ -184,6 +184,20 @@ var Resp = exports.Resp = function () {
     }
 
     /**
+     * Detect desktop device.
+     *
+     * @get
+     * @static
+     * @return {Boolean}
+     */
+
+  }, {
+    key: 'isNotMobile',
+    get: function get() {
+      return window.matchMedia('(min-width: 767px)').matches;
+    }
+
+    /**
      * Detect tablet device.
      *
      * @get
@@ -209,6 +223,20 @@ var Resp = exports.Resp = function () {
     key: 'isMobile',
     get: function get() {
       return window.matchMedia('(max-width: 767px)').matches;
+    }
+
+    /**
+     * Detect mobile device.
+     *
+     * @get
+     * @static
+     * @return {Boolean}
+     */
+
+  }, {
+    key: 'isMobileTablet',
+    get: function get() {
+      return window.matchMedia('(min-width: 320px) and (max-width: 1023px)').matches;
     }
   }]);
 
@@ -588,9 +616,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 __webpack_require__(6);
 
-__webpack_require__(23);
+__webpack_require__(24);
 
-var _home = __webpack_require__(24);
+var _home = __webpack_require__(25);
 
 var _home2 = _interopRequireDefault(_home);
 
@@ -668,7 +696,9 @@ var _customScroll = __webpack_require__(20);
 
 var _customScroll2 = _interopRequireDefault(_customScroll);
 
-var _helpers = __webpack_require__(0);
+var _mobMenu = __webpack_require__(23);
+
+var _mobMenu2 = _interopRequireDefault(_mobMenu);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -692,6 +722,7 @@ var Common = exports.Common = function () {
       (0, _fullpageInit2.default)();
       (0, _screenVIdeo2.default)();
       (0, _customScroll2.default)();
+      (0, _mobMenu2.default)();
     }
   }]);
 
@@ -715,14 +746,6 @@ $tabs.each(function (index, el) {
 var $popup = $('[data-popup-target]');
 _vintagePopup2.default.expose($);
 $popup.popup();
-
-/** preloader */
-var $preloader = $('.preloader');
-setTimeout(function () {
-  $preloader.fadeOut('slow', function () {
-    $(this).remove();
-  });
-}, 1500);
 
 /***/ }),
 /* 7 */
@@ -10073,10 +10096,6 @@ function InitFullpage() {
   var $animSVG = $('.js-anim-svg');
   var $animSVGSecond = $('.js-anim-svg-2');
 
-  // $window.on('resize', function () {
-  //   if (Resp.isDesk) console.log('desk');
-  // });
-
   // fullpage settings
   if ($fullpage.length) {
     $fullpage.fullpage({
@@ -10134,12 +10153,12 @@ function InitFullpage() {
       $.fn.fullpage.moveSectionDown();
     });
 
-    // if ($(window).width() <= 767) {
-    //   $.fn.fullpage.destroy('all');
-    // }
-    // if ($(window).height() <= 600) {
-    //   $.fn.fullpage.setAutoScrolling(false);
-    // }
+    _helpers.$window.on('resize load', function () {
+      if (_helpers.Resp.isMobile) {
+        $.fn.fullpage.setAutoScrolling(false);
+        $.fn.fullpage.setFitToSection(false);
+      }
+    });
   }
 
   // video slider
@@ -10151,6 +10170,8 @@ function InitFullpage() {
   var $playerExitBtn = $('.js-exit-player');
   var $tabsBtn = $('.c-tabs__tabs-el');
   var $fullscreenInner = $('[data-fullscreen-inner]');
+  var $orientationOverlay = $('.orient-overlay');
+  var $orientationOverlayExit = $orientationOverlay.find('.orient-overlay__btn');
 
   // bind tabs buttons with hidden sliders
   bindTabsAndSliders();
@@ -10174,6 +10195,12 @@ function InitFullpage() {
     var $slideAnchor = $(this).data('slide-anchor') - 1;
     $.fn.fullpage.moveTo('portfolio', 1);
     _helpers.$header.addClass('in-video');
+
+    if (_helpers.Resp.isMobileTablet) {
+      if (window.matchMedia('(orientation: portrait)').matches) {
+        $orientationOverlay.show();
+      }
+    }
 
     $fullscreenInner.each(function () {
       var $this = $(this);
@@ -10297,8 +10324,24 @@ function InitFullpage() {
 
   function disableHideControls() {
     $playerControls.off('mouseenter mouseleave');
-    $playerControls.removeClass('is-transparent');
+    $playerControls.removeClass(_helpers.css.transparent);
   }
+
+  $orientationOverlayExit.on('click', function () {
+    $.fn.fullpage.moveTo('portfolio', 0);
+    $(this).closest($orientationOverlay).fadeOut();
+    _helpers.$header.removeClass('in-video is-disabled');
+  });
+
+  window.addEventListener('orientationchange', function () {
+
+    if (window.matchMedia('(orientation: landscape)').matches) {
+      $orientationOverlay.hide();
+    }
+    if (window.matchMedia('(orientation: portrait)').matches) {
+      $orientationOverlay.show();
+    }
+  });
 }
 
 /***/ }),
@@ -18953,6 +18996,47 @@ module.exports = __webpack_amd_options__;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = initMobMenu;
+
+var _helpers = __webpack_require__(0);
+
+function initMobMenu() {
+  var $menuBtn = $('.js-hamburger');
+  var $menu = $('.nav');
+  var $menuLink = $menu.find('.nav__list-link');
+
+  if (_helpers.Resp.isMobileTablet) initMobMenu();
+
+  function initMobMenu() {
+
+    $menuBtn.on('click', function (ev) {
+      ev.preventDefault();
+      $(this).toggleClass(_helpers.css.active);
+      $menu.toggleClass(_helpers.css.active);
+    });
+
+    $menuLink.on('click', function (ev) {
+      $menu.removeClass(_helpers.css.active);
+      $menuBtn.removeClass(_helpers.css.active);
+
+      // const el = $(this).attr('href');
+      // console.log(el);
+      // $scrolledElements.animate({ scrollTop: $(el).offset().top }, 2000);
+      // return false;
+    });
+  }
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -19026,7 +19110,7 @@ var PublicAPI = exports.PublicAPI = function () {
 exports.default = window.PublicAPI = new PublicAPI();
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19070,8 +19154,8 @@ var Home = function () {
     key: 'loadChunk',
     value: function loadChunk() {
       return new Promise(function (resolve) {
-        __webpack_require__.e/* require.ensure */(0).then((function (require) {
-          var loadedChunk = __webpack_require__(26).default;
+        __webpack_require__.e/* require.ensure */(0/* empty */).then((function (require) {
+          var loadedChunk = __webpack_require__(27).default;
 
           resolve(loadedChunk);
         }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);

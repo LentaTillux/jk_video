@@ -145,6 +145,17 @@ export class Resp {
   }
 
   /**
+   * Detect desktop device.
+   *
+   * @get
+   * @static
+   * @return {Boolean}
+   */
+  static get isNotMobile() {
+    return window.matchMedia(`(min-width: 767px)`).matches;
+  }
+
+  /**
    * Detect tablet device.
    *
    * @get
@@ -164,6 +175,17 @@ export class Resp {
    */
   static get isMobile() {
     return window.matchMedia(`(max-width: 767px)`).matches;
+  }
+
+  /**
+   * Detect mobile device.
+   *
+   * @get
+   * @static
+   * @return {Boolean}
+   */
+  static get isMobileTablet() {
+    return window.matchMedia(`(min-width: 320px) and (max-width: 1023px)`).matches;
   }
 }
 

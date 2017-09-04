@@ -1,10 +1,19 @@
 .c-tabs
 	$parent: &
+	+xs
+		display: flex
+		flex-direction: column
 	&__tabs-nav
 		position: relative
 		display: flex
 		justify-content: flex-start
 		margin-bottom: 40px
+		+sm
+			justify-content: center
+		+xs
+			flex-direction: column
+			text-align: center
+			order: -1
 	&__tabs-for
 	&__tabs-el
 		position: relative
@@ -14,6 +23,8 @@
 		line-height: 1
 		color: $dark-gray
 		+trs-ease
+		+xs
+			font-size: 20px
 		&::after
 			content: ''
 			position: absolute
@@ -37,7 +48,11 @@
 			color: $orange
 		& + &
 			margin-left: 58px
-	
+			+md
+				margin-left: 20px
+			+xs
+				margin-left: 0
+				margin-top: 15px
 	&__tab
 		display: none
 		&:first-child
@@ -47,13 +62,23 @@
 			flex-wrap: wrap
 			justify-content: space-between
 			padding-bottom: 140px
+			+big
+				padding-bottom: 80px
+			+sm
+				padding-bottom: 30px
+			+xs
+				flex-direction: column
+	
 	&__block
 		display: flex
 		flex-wrap: wrap
 		justify-content: center
-			
+		
 	&_portfolio #{$parent}__tabs-nav
 		justify-content: space-between
+		margin-bottom: 25px
+		+lg
+			margin-bottom: 10px
 	&_portfolio #{$parent}__tabs-el + #{$parent}__tabs-el
 		margin-left: 0
 		

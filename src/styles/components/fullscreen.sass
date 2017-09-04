@@ -7,7 +7,7 @@
 	&__inner
 		+coverdiv
 	&__slider
-		//min-height: 100vh
+		height: 100vh
 	&__item
 		position: relative
 		height: 100vh
@@ -27,6 +27,12 @@
 		cursor: default
 		transition: transform .4s ease
 		+gpu
+		+big
+			top: 65px
+		+lg
+			max-width: 480px
+			height: 360px
+		+md
 		&::after, &::before
 			pointer-events: none
 			position: absolute
@@ -38,12 +44,19 @@
 		&::after
 			height: 165px
 			bottom: 0
+			+lg
+				height: 90px
 		&::before
 			height: 60px
 			top: 0
+			+lg
+				height: 30px
 		&-in
 			position: relative
 			padding: 42px 50px 165px 120px
+			+lg
+				padding: 25px 15px 100px 40px
+				
 			.icon-arr-down
 				position: fixed
 				font-size: 35px
@@ -52,6 +65,9 @@
 				left: 110px
 				fill: $white
 				animation: arrBouncing 2s ease-in-out infinite
+				+lg
+					top: 86%
+					left: 35px
 		&.is-disabled
 			transform: translateX(-100%)
 		&-title
@@ -59,6 +75,10 @@
 			+f('pf700', 53)
 			line-height: 62px
 			color: $white
+			+lg
+				margin-bottom: 10px
+				font-size: 40px
+				line-height: 1
 		&-descr
 			color: $dark-gray
 			line-height: 27px
@@ -84,6 +104,8 @@
 	visibility: hidden
 	transform: translateY(100%)
 	transition: .2s .7s ease-in-out
+	+big
+		padding-bottom: 50px
 	$parent: &
 	&.is-enabled
 		opacity: 1
@@ -97,11 +119,17 @@
 	&__inner
 		display: flex
 		align-items: flex-start
-		max-width: 1680px
+		max-width: 1710px
 		margin: 0 auto
+		padding: 0 15px
+		+lg
+			align-items: center
+			padding: 0 40px
 	&__buttons
 		font-size: 0
 		margin-right: 120px
+		+md
+			margin-right: 80px
 	&__btn
 		position: relative
 		display: inline-flex
@@ -109,6 +137,9 @@
 		justify-content: center
 		width: 84px
 		height: 84px
+		+lg
+			width: 70px
+			height: 70px
 		&:not(:first-child)
 			margin-left: 20px
 		&-exit
@@ -126,6 +157,8 @@
 				width: 200px
 				height: 24px
 				+trs
+				+lg
+					width: 140px
 			&:hover .icon
 				animation: longArrLeftBounce .4s ease
 				fill: $orange!important
@@ -146,6 +179,8 @@
 		font-size: 0
 		text-align: center
 		+vertical
+		+lg
+			margin-top: 0
 		&.is-transition button
 			transition: .35s cubic-bezier(0.6, -0.28, 0.735, 0.045)
 		&::after
@@ -158,10 +193,14 @@
 			height: 3px
 			background: $orange
 			content: ''
+			+lg
+				height: 2px
 		li
 			display: inline-block
 			vertical-align: middle
 			margin: 0 20px
+			+lg
+				margin: 0 15px
 			&.slick-active button
 				background: $orange
 				transform: scale(1.4)
@@ -171,16 +210,64 @@
 			height: 26px
 			border-radius: 50%
 			background: $white
+			+lg
+				width: 20px
+				height: 20px
 		
 /* ===================================
 	 fullpage custom styles
 	 =================================== */
-
+.fp-slides
+	+xs
+		overflow-y: auto
+		overflow-x: hidden
 .fp-slide
 	overflow: hidden
+//.fp-tableCell
+//	+xs
+//		display: block!important
+//		height: auto!important
 
 .header
 	&.in-video + .fullpage-wrapper .fp-slidesNav
 		transform: translateY(0)
 		opacity: 1
 		visibility: visible
+
+.orient-overlay
+	position: absolute
+	display: none
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	z-index: 1000
+	background: $orange
+	&__inner
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		left: 0
+		width: 100%
+		z-index: 100
+		text-align: center
+	&__text
+		max-width: 500px
+		margin: 0 auto
+		text-align: center
+		font-size: 44px
+		color: $white
+	&__btn
+		color: $white
+		font-size: 25px
+		span
+			display: block
+		.icon
+			display: block
+			fill: #fff
+			stroke: #fff
+			width: 200px
+			height: 24px
+	img
+		margin: 0 auto
+		display: block

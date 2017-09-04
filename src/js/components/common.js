@@ -13,7 +13,7 @@ import Dot from './dot';
 import InitFullpage from './fullpageInit';
 import initScreenVideo from './screenVIdeo';
 import customScroll from './customScroll';
-import {$window} from "../modules/dev/helpers";
+import initMobMenu from './mobMenu';
 
 export class Common {
   /**
@@ -26,6 +26,7 @@ export class Common {
     InitFullpage();
     initScreenVideo();
     customScroll();
+    initMobMenu();
   }
 }
 
@@ -43,11 +44,3 @@ $tabs.each((index, el) => {
 const $popup = $('[data-popup-target]');
 Popup.expose($);
 $popup.popup();
-
-/** preloader */
-const $preloader = $('.preloader');
-setTimeout(function() {
-  $preloader.fadeOut('slow', function() {
-    $(this).remove();
-  });
-}, 1500);

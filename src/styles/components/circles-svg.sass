@@ -80,25 +80,61 @@
 /* circles SVG's
 	----------------------------------- */
 .circles
-	width: 472px
-	height: 154px
+	width: 100%
+	max-width: 472px
 	fill: none
 	stroke: $orange
 	stroke-width: 36px
+	+lg
+		max-width: 370px
+	+md
+		max-width: 280px
+	+sm
+		max-width: 370px
+		margin: 20px auto
+		display: block
 	&_absolute
 		position: absolute
 		right: 13.4%
 		bottom: 20%
+		+big
+			right: 3%
+			bottom: 12%
+		+md
+			right: 5%
+			bottom: 20%
+		+sm
+			right: calc(50% - 185px)
+			bottom: 2%
+		+xs
+			position: static
 	&_screen
 		margin: 30px 0 75px
+		+lg
+			margin: 50px 0 40px
+		+sm
+			margin: 50px auto 40px
+		+xs
+			margin: 30px auto
 	&_order
 		margin-top: 20px
 		margin-bottom: 80px
+		+lg
+			margin-bottom: 40px
 	&_prices
 		margin-top: 180px
 		margin-bottom: 80px
+		+big
+			margin-top: 80px
+			margin-bottom: 40px
+		+sm
+			margin: 60px auto 50px
+		+xs
+			margin: 35px auto
 	&_contacts
 		margin-bottom: 80px
+		+big
+			margin-bottom: 30px
 	circle
 		&.is-visible
 			animation: rotateIn 1s ease
@@ -128,8 +164,8 @@
 		stroke-dashoffset: 183
 
 .circles-big
-	width: 640px
-	height: 620px
+	width: 100%
+	height: 100%
 	fill: none
 	stroke: $orange
 	stroke-width: 146px
@@ -191,6 +227,9 @@
 	stroke: $orange
 	stroke-width: 4px
 	transition: .6s cubic-bezier(0.46, 0, 0.07, 1)
+	+lg
+		width: 70px
+		height: 70px
 	&[data-circle='25']
 		stroke-dasharray: 233
 		stroke-dashoffset: 34

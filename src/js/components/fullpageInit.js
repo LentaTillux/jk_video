@@ -1,17 +1,13 @@
 import fullpage from 'fullpage.js';
 import slick from 'slick-carousel';
 import initScreenVideo from './screenVIdeo';
-import {$window, $body, $header, css, Resp} from '../modules/dev/helpers';
+import { $window, $body, $header, css, Resp } from '../modules/dev/helpers';
 
 export default function InitFullpage() {
   const $fullpage = $('.js-fullpage');
   const $nextSectionBtn = $('.js-next-section');
   const $animSVG = $('.js-anim-svg');
   const $animSVGSecond = $('.js-anim-svg-2');
-
-  // $window.on('resize', function () {
-  //   if (Resp.isDesk) console.log('desk');
-  // });
 
   // fullpage settings
   if ($fullpage.length) {
@@ -70,12 +66,12 @@ export default function InitFullpage() {
       $.fn.fullpage.moveSectionDown();
     });
 
-    // if ($(window).width() <= 767) {
-    //   $.fn.fullpage.destroy('all');
-    // }
-    // if ($(window).height() <= 600) {
-    //   $.fn.fullpage.setAutoScrolling(false);
-    // }
+    $window.on('resize load', function () {
+      if (Resp.isMobile) {
+        $.fn.fullpage.setAutoScrolling(false);
+        $.fn.fullpage.setFitToSection(false);
+      }
+    });
   }
 
   // video slider
@@ -87,6 +83,8 @@ export default function InitFullpage() {
   const $playerExitBtn = $('.js-exit-player');
   const $tabsBtn = $('.c-tabs__tabs-el');
   const $fullscreenInner = $('[data-fullscreen-inner]');
+  const $orientationOverlay = $('.orient-overlay');
+  const $orientationOverlayExit = $orientationOverlay.find('.orient-overlay__btn');
 
   // bind tabs buttons with hidden sliders
   bindTabsAndSliders();
@@ -110,6 +108,12 @@ export default function InitFullpage() {
     const $slideAnchor = $(this).data('slide-anchor') - 1;
     $.fn.fullpage.moveTo('portfolio', 1);
     $header.addClass('in-video');
+
+    if (Resp.isMobileTablet) {
+      if (window.matchMedia('(orientation: portrait)').matches) {
+        $orientationOverlay.show();
+      }
+    }
 
     $fullscreenInner.each(function () {
       const $this = $(this);
@@ -233,7 +237,23 @@ export default function InitFullpage() {
 
   function disableHideControls() {
     $playerControls.off('mouseenter mouseleave');
-    $playerControls.removeClass('is-transparent');
+    $playerControls.removeClass(css.transparent);
   }
+
+  $orientationOverlayExit.on('click', function () {
+    $.fn.fullpage.moveTo('portfolio', 0);
+    $(this).closest($orientationOverlay).fadeOut();
+    $header.removeClass('in-video is-disabled');
+  });
+
+  window.addEventListener('orientationchange', function () {
+
+    if (window.matchMedia('(orientation: landscape)').matches) {
+      $orientationOverlay.hide();
+    }
+    if (window.matchMedia('(orientation: portrait)').matches) {
+      $orientationOverlay.show();
+    }
+  });
 
 }

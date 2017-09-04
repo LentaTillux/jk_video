@@ -7,6 +7,16 @@
 	z-index: 2
 	height: 100px
 	transition: 1.5s ease
+	+lg
+		top: 2%
+		transform: translateY(2%)
+	+xs
+		position: relative
+		top: auto
+		left: auto
+		right: auto
+		height: auto
+		padding: 10px 0
 	&.is-inside
 		&::after
 			opacity: 1
@@ -27,20 +37,60 @@
 		height: 100%
 		margin: 0 auto
 		padding: 0 15px
+		+xs
+			padding: 0 10px
 	&__logo
 		transition: .5s ease
+		+lg
+			width: 130px
+			height: 130px
+			margin-left: 20px
+			+gpu
+		+md
+			margin-left: 0
+		+sm
+			display: block
+			width: 100px
+			height: 100px
+			margin-left: 100px
+		+xs
+			margin-left: 0
+			width: 80px
+			height: 80px
+		 
 	&__contacts
 		display: flex
 		margin-left: auto
 		padding-top: 56px
 		padding-right: 46px
+		+lg
+			padding-top: 45px
+			padding-right: 35px
+		+sm
+			padding-top: 37px
+		+xs
+			padding-top: 10px
+			padding-right: 60px
+			flex-direction: column
 		&-item
 			position: relative
 			margin-right: 205px
+			+lg
+				margin-right: 120px
+			+md
+				margin-right: 90px
+			+xs
+				margin-right: 0
 		&-tel
 			+f('pf700', 23)
 			color: $dark-gray
 			transition: .5s
+			+md
+				font-size: 20px
+			+xs
+				display: block
+				margin-bottom: 10px
+				font-size: 16px
 			.no-touch &:hover
 				color: $orange
 			&:hover + #{$parent}__contacts-svg .svg-circle__outer
@@ -50,6 +100,8 @@
 			position: absolute
 			top: calc(50% - 40px)
 			right: -50px
+			+xs
+				display: none
 	&.is-disabled
 		transform: translateX(100%)
 	&.in-video
@@ -79,13 +131,52 @@
 	left: 8px
 	z-index: 1
 	transition: .5s ease
+	&.is-active
+		transform: translateX(-100vw)
+	+rhmin(950)
+		bottom: -525%
+	+big
+		left: 30px
+		bottom: -460%
+	+lg
+		bottom: -320%
+	+md
+		left: 15px
+	+sm
+		position: fixed
+		top: 110px
+		left: 100vw
+		bottom: 0
+		height: calc(100vh - 110px)
+		width: 100vw
+		transition: transform .6s ease-in-out
+		background: rgba($orange, .9)
+	+xs
+		overflow-y: auto
+		top: 100px
+		height: calc(100vh - 100px)
 	&__list
+		+sm
+			display: flex
+			flex-direction: column
+			height: 100%
+			justify-content: center
+			align-items: stretch
+			max-width: 250px
+			margin: 0 auto
+			text-align: center
 		$parent: &
 		&-item
 			&:not(:first-child)
 				margin-top: 15px
+				+lg
+					margin-top: 8px
+				+sm
+					margin-top: 25px
 			&.active #{$parent}-link
 				color: $orange
+				+sm
+					color: $white
 			&.active #{$parent}-link::after,
 			&.active #{$parent}-link::before
 				height: 6em
@@ -103,6 +194,12 @@
 			padding: 15px 30px
 			transition: .7s ease
 			overflow: hidden
+			+lg
+				padding: 12px 20px
+			+sm
+				padding: 15px 30px
+				color: $white
+				font-size: 20px
 			&::after, &::before
 				display: block
 				content: ''
@@ -116,12 +213,16 @@
 				position: absolute
 				left: 0
 				bottom: 0
+				+sm
+				    border-color: $white
 			&::after
 				border-top: 3px solid $orange
 				border-right: 3px solid $orange
 				position: absolute
 				right: 0
 				top: 0
+				+sm
+				    border-color: $white
 				
 	&__next-section
 		position: absolute
@@ -129,6 +230,13 @@
 		left: 30px
 		transition: 0.6s cubic-bezier(0.46, 0, 0.07, 1)
 		font-size: 0
+		+big
+			bottom: -30%
+		+lg
+			bottom: -37%
+			left: 20px
+		+sm
+			display: none
 		&.is-transparent
 			opacity: 0
 			pointer-events: none

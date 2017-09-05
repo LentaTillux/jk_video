@@ -16,7 +16,7 @@
 		left: auto
 		right: auto
 		height: auto
-		padding: 10px 0
+		padding: 15px 0
 	&.is-inside
 		&::after
 			opacity: 1
@@ -54,10 +54,9 @@
 			height: 100px
 			margin-left: 100px
 		+xs
-			margin-left: 0
 			width: 80px
 			height: 80px
-		 
+			margin: 0 auto 0 0
 	&__contacts
 		display: flex
 		margin-left: auto
@@ -69,9 +68,12 @@
 		+sm
 			padding-top: 37px
 		+xs
-			padding-top: 10px
-			padding-right: 60px
+			display: flex
+			padding: 0 62px 0 0
+			margin-left: 0
+			margin-right: auto
 			flex-direction: column
+			align-items: flex-start
 		&-item
 			position: relative
 			margin-right: 205px
@@ -90,7 +92,7 @@
 			+xs
 				display: block
 				margin-bottom: 10px
-				font-size: 16px
+				font-size: 17px
 			.no-touch &:hover
 				color: $orange
 			&:hover + #{$parent}__contacts-svg .svg-circle__outer
@@ -132,7 +134,7 @@
 	z-index: 1
 	transition: .5s ease
 	&.is-active
-		transform: translateX(-100vw)
+		transform: translateX(100vw)
 	+rhmin(950)
 		bottom: -525%
 	+big
@@ -144,10 +146,10 @@
 		left: 15px
 	+sm
 		position: fixed
-		top: 110px
-		left: 100vw
+		top: 120px
+		left: -100vw
 		bottom: 0
-		height: calc(100vh - 110px)
+		height: calc(100vh - 120px)
 		width: 100vw
 		transition: transform .6s ease-in-out
 		background: rgba($orange, .9)
@@ -155,16 +157,17 @@
 		overflow-y: auto
 		top: 100px
 		height: calc(100vh - 100px)
+		background: $white
 	&__list
 		+sm
 			display: flex
 			flex-direction: column
-			height: 100%
 			justify-content: center
 			align-items: stretch
 			max-width: 250px
 			margin: 0 auto
 			text-align: center
+			height: 100%
 		$parent: &
 		&-item
 			&:not(:first-child)
@@ -173,10 +176,14 @@
 					margin-top: 8px
 				+sm
 					margin-top: 25px
+				+xs
+					margin-top: 15px
 			&.active #{$parent}-link
 				color: $orange
 				+sm
 					color: $white
+				+xs
+					color: $orange
 			&.active #{$parent}-link::after,
 			&.active #{$parent}-link::before
 				height: 6em
@@ -200,6 +207,8 @@
 				padding: 15px 30px
 				color: $white
 				font-size: 20px
+			+xs
+				color: $orange
 			&::after, &::before
 				display: block
 				content: ''
@@ -214,7 +223,9 @@
 				left: 0
 				bottom: 0
 				+sm
-				    border-color: $white
+					border-color: $white
+				+xs
+					border-color: $orange
 			&::after
 				border-top: 3px solid $orange
 				border-right: 3px solid $orange
@@ -222,7 +233,10 @@
 				right: 0
 				top: 0
 				+sm
-				    border-color: $white
+					border-color: $white
+				+xs
+					border-color: $orange
+				 
 				
 	&__next-section
 		position: absolute

@@ -6,7 +6,7 @@
 		&:not(:first-child)
 			margin-left: 25px
 			+xs
-				margin-left: 15px
+				margin-left: 12px
 		.no-touch &:hover .icon
 			fill: $orange
 		.icon
@@ -30,6 +30,9 @@
 			
 	&_header
 		padding-top: 8px
+		+xs
+			order: -1
+			margin-left: 15px
 		
 	&_gray #{$parent}__link .icon
 		fill: #939aab

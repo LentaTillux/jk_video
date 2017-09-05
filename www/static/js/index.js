@@ -234,7 +234,7 @@ var Resp = exports.Resp = function () {
      */
 
   }, {
-    key: 'isMobileTablet',
+    key: 'isMobileToTablet',
     get: function get() {
       return window.matchMedia('(min-width: 320px) and (max-width: 1023px)').matches;
     }
@@ -626,32 +626,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 __webpack_require__(6);
 
 __webpack_require__(24);
-
-var _home = __webpack_require__(25);
-
-var _home2 = _interopRequireDefault(_home);
-
-var _helpers = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Run appropriate scripts for each page.
- **/
-
-
-/** Import page controllers */
-switch (_helpers.currentPage) {
-  /** Home page */
-  case 'home':
-    new _home2.default();break;
-
-  /** No page found */
-  default:
-    console.warn('Undefined page');
-}
-
-/** Import utils */
 
 /***/ }),
 /* 6 */
@@ -19016,11 +18990,13 @@ exports.default = initMobMenu;
 var _helpers = __webpack_require__(0);
 
 function initMobMenu() {
+  var $logo = $('.header__logo');
   var $menuBtn = $('.js-hamburger');
   var $menu = $('.nav');
+  var $menuItem = $menu.find('.nav__list-item');
   var $menuLink = $menu.find('.nav__list-link');
 
-  if (_helpers.Resp.isMobileTablet) initMobMenu();
+  if (_helpers.Resp.isMobileToTablet) initMobMenu();
 
   function initMobMenu() {
 
@@ -19033,11 +19009,11 @@ function initMobMenu() {
     $menuLink.on('click', function (ev) {
       $menu.removeClass(_helpers.css.active);
       $menuBtn.removeClass(_helpers.css.active);
+    });
 
-      // const el = $(this).attr('href');
-      // console.log(el);
-      // $scrolledElements.animate({ scrollTop: $(el).offset().top }, 2000);
-      // return false;
+    $logo.on('click', function (ev) {
+      $menu.removeClass(_helpers.css.active);
+      $menuBtn.removeClass(_helpers.css.active);
     });
   }
 }
@@ -19123,91 +19099,6 @@ var PublicAPI = exports.PublicAPI = function () {
 
 
 exports.default = window.PublicAPI = new PublicAPI();
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Home page scripts.
- *
- * @module Home
- */
-
-var Home = function () {
-  /**
-   * Cache data, make preparations and initialize page scripts.
-   */
-  function Home() {
-    _classCallCheck(this, Home);
-
-    this.pageName = 'Home';
-
-    // Initialize page scripts
-    this.init();
-  }
-
-  /**
-   * Load chunkExample module.
-   *
-   * @return {Promise}
-   */
-
-
-  _createClass(Home, [{
-    key: 'loadChunk',
-    value: function loadChunk() {
-      return new Promise(function (resolve) {
-        __webpack_require__.e/* require.ensure */(0/* empty */).then((function (require) {
-          var loadedChunk = __webpack_require__(27).default;
-
-          resolve(loadedChunk);
-        }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
-      });
-    }
-
-    /**
-     * Do something with loaded chunk.
-     *
-     * @param {Function} Chunk - loaded chunk
-     */
-
-  }, {
-    key: 'processChunk',
-    value: function processChunk(Chunk) {
-      new Chunk(this.pageName).consoleLogPageName();
-    }
-
-    /**
-     * Initialize Home page scripts.
-     */
-
-  }, {
-    key: 'init',
-    value: function init() {
-      var _this = this;
-
-      _this.loadChunk().then(function (chunk) {
-        return _this.processChunk(chunk);
-      });
-    }
-  }]);
-
-  return Home;
-}();
-
-exports.default = Home;
 
 /***/ })
 ],[5]);

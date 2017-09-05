@@ -1,11 +1,13 @@
 import {css, $window, Resp, $header, $scrolledElements} from '../modules/dev/helpers';
 
 export default function initMobMenu() {
+  const $logo = $('.header__logo');
   const $menuBtn = $('.js-hamburger');
   const $menu = $('.nav');
+  const $menuItem  = $menu.find('.nav__list-item');
   const $menuLink = $menu.find('.nav__list-link');
 
-  if (Resp.isMobileTablet) initMobMenu();
+  if (Resp.isMobileToTablet) initMobMenu();
 
   function initMobMenu() {
 
@@ -18,11 +20,11 @@ export default function initMobMenu() {
     $menuLink.on('click', function (ev) {
       $menu.removeClass(css.active);
       $menuBtn.removeClass(css.active);
+    });
 
-      // const el = $(this).attr('href');
-      // console.log(el);
-      // $scrolledElements.animate({ scrollTop: $(el).offset().top }, 2000);
-      // return false;
+    $logo.on('click', function (ev) {
+      $menu.removeClass(css.active);
+      $menuBtn.removeClass(css.active);
     });
   }
 }

@@ -184,7 +184,7 @@ export class Resp {
    * @static
    * @return {Boolean}
    */
-  static get isMobileTablet() {
+  static get isMobileToTablet() {
     return window.matchMedia(`(min-width: 320px) and (max-width: 1023px)`).matches;
   }
 }

@@ -4,10 +4,10 @@ block variables
 	- var title = 'JK Video';
 
 block main
-	main.content.js-fullpage(data-page='home')
+	main.content.js-fullpage
 
 		//begin screen
-		+b.SECTION.section.fp-section(data-anchor='screen')
+		+b.SECTION.section.fp-section(data-anchor='screen' id='screen')
 			.container
 				+e.inner._screen
 					+e.block._left._screen-left
@@ -47,7 +47,7 @@ block main
 							+e.BUTTON.btn.link(data-popup-target='invitePopup' type='button') Задать вопрос
 
 		//begin about
-		+b.SECTION.section.fp-section(data-anchor='about')
+		+b.SECTION.section.fp-section(data-anchor='about' id='about')
 			.container.container_about
 				//begin tabs
 				+b.c-tabs
@@ -246,7 +246,7 @@ block main
 		include ../components/portfolio
 
 		//begin order
-		+b.SECTION.section.fp-section(data-anchor='order')
+		+b.SECTION.section.fp-section(data-anchor='order' id='order')
 			.container.container_order
 				+e.inner
 					+e.block._left._order-left
@@ -265,7 +265,7 @@ block main
 							+e.BUTTON.btn.link(data-popup-target='invitePopup' type='button') Пригласить
 
 		//begin prices
-		+b.SECTION.section.fp-section(data-anchor='prices')
+		+b.SECTION.section.fp-section(data-anchor='prices' id='prices')
 			.container.container_prices
 				+e.inner._prices
 					+e.block._prices-left
@@ -307,7 +307,7 @@ block main
 							+e.BUTTON.btn.link.js-toggling-btn(type='button' data-default-text='Узнать' data-change-text='Скрыть') Узнать
 
 		//begin contacts
-		+b.SECTION.section.fp-section(data-anchor='contacts')
+		+b.SECTION.section.fp-section(data-anchor='contacts' id='contacts')
 			.container
 				+e.inner
 					+e.block._contacts-left

@@ -1,6 +1,6 @@
 import fullpage from 'fullpage.js';
 import slick from 'slick-carousel';
-import initScreenVideo from './screenVIdeo';
+import plyr from 'plyr';
 import { $window, $body, $header, css, Resp } from '../modules/dev/helpers';
 
 export default function InitFullpage() {

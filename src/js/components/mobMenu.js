@@ -1,10 +1,10 @@
-import {css, $window, Resp, $header, $scrolledElements} from '../modules/dev/helpers';
+import { css, $window, Resp, $header, $scrolledElements } from '../modules/dev/helpers';
 
 export default function initMobMenu() {
   const $logo = $('.header__logo');
   const $menuBtn = $('.js-hamburger');
   const $menu = $('.nav');
-  const $menuItem  = $menu.find('.nav__list-item');
+  const $menuItem = $menu.find('.nav__list-item');
   const $menuLink = $menu.find('.nav__list-link');
 
   if (Resp.isMobileToTablet) initMobMenu();
